@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "rege-bench sample v1",
+  "type": "object",
+  "required": ["id", "image", "task", "label", "meta"],
+  "properties": {
+    "id": {"type": "string"},
+    "image": {"type": "string"},
+    "task": {"type": "string"},
+    "label": {
+      "type": "object",
+      "required": ["time_hhmm", "time_minutes"],
+      "properties": {
+        "time_hhmm": {"type": "string", "pattern": "^(?:0?[1-9]|1[0-2]):[0-5]\\d$"},
+        "time_minutes": {"type": "integer", "minimum": 0, "maximum": 719}
+      },
+      "additionalProperties": false
+    },
+    "meta": {
+      "type": "object",
+      "required": ["domain", "style_id", "clock_type", "render", "degradation"],
+      "properties": {
+        "domain": {"type": "string"},
+        "style_id": {"type": "string"},
+        "clock_type": {"type": "string"},
+        "render": {
+          "type": "object",
+          "required": ["resolution", "seed"],
+          "properties": {
+            "resolution": {
+              "type": "array",
+              "items": {"type": "integer", "minimum": 1},
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "seed": {"type": "integer"},
+            "camera": {"type": "string"},
+            "lights": {"type": "string"}
+          },
+          "additionalProperties": true
+        },
+        "degradation": {
+          "type": "object",
+          "required": ["specular", "motion_blur", "defocus", "noise", "occlusion"],
+          "properties": {
+            "specular": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+            "motion_blur": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+            "defocus": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+            "noise": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+            "occlusion": {"type": "number", "minimum": 0.0, "maximum": 1.0}
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

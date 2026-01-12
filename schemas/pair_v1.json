@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "rege-bench pair v1",
+  "type": "object",
+  "required": ["id", "image_a", "image_b", "task", "label", "meta"],
+  "properties": {
+    "id": {"type": "string"},
+    "image_a": {"type": "string"},
+    "image_b": {"type": "string"},
+    "task": {"type": "string"},
+    "label": {
+      "type": "object",
+      "required": ["time_a_hhmm", "time_b_hhmm", "delta_minutes", "timezone_a", "timezone_b"],
+      "properties": {
+        "time_a_hhmm": {"type": "string", "pattern": "^(?:0?[1-9]|1[0-2]):[0-5]\\d$"},
+        "time_b_hhmm": {"type": "string", "pattern": "^(?:0?[1-9]|1[0-2]):[0-5]\\d$"},
+        "delta_minutes": {"type": "integer", "minimum": -719, "maximum": 719},
+        "timezone_a": {"type": "string"},
+        "timezone_b": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "meta": {
+      "type": "object",
+      "required": ["pair_type", "style_id_a", "style_id_b", "difficulty"],
+      "properties": {
+        "pair_type": {"type": "string"},
+        "style_id_a": {"type": "string"},
+        "style_id_b": {"type": "string"},
+        "difficulty": {
+          "type": "object",
+          "required": ["nearby_times", "cross_timezone"],
+          "properties": {
+            "nearby_times": {"type": "boolean"},
+            "cross_timezone": {"type": "boolean"}
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

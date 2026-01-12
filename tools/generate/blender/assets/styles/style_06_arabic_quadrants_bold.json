@@ -1,0 +1,21 @@
+{
+  "style_id": "style_06_arabic_quadrants_bold",
+  "dial": {"face_color": [0.98, 0.98, 0.98], "roughness": 0.6},
+  "ticks": {"type": "major_only", "color": [0.15, 0.15, 0.15], "major_len": 0.13, "major_w": 0.022},
+  "numerals": {
+    "type": "arabic",
+    "subset": "quadrants",
+    "color": [0.15, 0.15, 0.15],
+    "size": 0.22,
+    "font": "sans_bold"
+  },
+  "hands": {
+    "hour": {"color": [0.15, 0.15, 0.15], "length": 0.5, "width": 0.08, "shape": "rect"},
+    "minute": {"color": [0.8, 0.1, 0.1], "length": 0.85, "width": 0.04, "shape": "rect"}
+  },
+  "bezel": {
+    "enabled": true,
+    "material": {"metallic": 0.6, "roughness": 0.25, "color": [0.18, 0.18, 0.18]}
+  },
+  "glass": {"enabled": false}
+}

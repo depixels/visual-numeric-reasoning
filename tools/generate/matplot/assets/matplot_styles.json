@@ -1,0 +1,242 @@
+[
+  {
+    "style_id": "classic_black",
+    "background": {"color": "#f7f7f2"},
+    "dial": {"face_color": "#f0f0e8", "border_color": "#2b2b2b", "border_width": 2.0, "border_type": "single"},
+    "ticks": {"type": "major_minor", "color": "#1f1f1f", "width_major": 2.2, "width_minor": 1.0, "length_major": 0.12, "length_minor": 0.06},
+    "numerals": {"type": "arabic_full", "color": "#1c1c1c", "fontsize": 18, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.5, "width": 0.06, "color": "#111111"},
+      "minute": {"type": "rect", "length": 0.8, "width": 0.04, "color": "#111111"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "navy_clean",
+    "background": {"color": "#eef3f7"},
+    "dial": {"face_color": "#f9fbff", "border_color": "#1d2b44", "border_width": 1.8, "border_type": "single"},
+    "ticks": {"type": "major_minor", "color": "#1d2b44", "width_major": 2.0, "width_minor": 0.8, "length_major": 0.11, "length_minor": 0.05},
+    "numerals": {"type": "arabic_full", "color": "#1d2b44", "fontsize": 17, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.48, "width": 0.055, "color": "#1d2b44"},
+      "minute": {"type": "rect", "length": 0.78, "width": 0.035, "color": "#1d2b44"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "warm_cream",
+    "background": {"color": "#fff3e4"},
+    "dial": {"face_color": "#fff7eb", "border_color": "#5e3b1c", "border_width": 2.0, "border_type": "double"},
+    "ticks": {"type": "major_only", "color": "#5e3b1c", "width_major": 2.4, "width_minor": 1.0, "length_major": 0.12, "length_minor": 0.06},
+    "numerals": {"type": "arabic_full", "color": "#5e3b1c", "fontsize": 18, "fontfamily": "DejaVu Serif"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.5, "width": 0.08, "color": "#5e3b1c"},
+      "minute": {"type": "triangle", "length": 0.82, "width": 0.06, "color": "#5e3b1c"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "minimal_dots",
+    "background": {"color": "#f6f6f6"},
+    "dial": {"face_color": "#ffffff", "border_color": "#222222", "border_width": 1.2, "border_type": "single"},
+    "ticks": {"type": "dots", "color": "#333333", "dot_size": 18},
+    "numerals": {"type": "none"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.45, "width": 0.05, "color": "#222222"},
+      "minute": {"type": "rect", "length": 0.75, "width": 0.035, "color": "#222222"},
+      "second": {"enabled": true, "length": 0.85, "width": 0.015, "color": "#a32020"}
+    }
+  },
+  {
+    "style_id": "roman_ink",
+    "background": {"color": "#f3efe9"},
+    "dial": {"face_color": "#f8f3ea", "border_color": "#3b2f2a", "border_width": 2.2, "border_type": "double"},
+    "ticks": {"type": "sparse_5min", "color": "#3b2f2a", "width_major": 2.2, "length_major": 0.11},
+    "numerals": {"type": "roman_full", "color": "#2f2420", "fontsize": 18, "fontfamily": "DejaVu Serif"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.52, "width": 0.08, "color": "#2f2420"},
+      "minute": {"type": "triangle", "length": 0.82, "width": 0.06, "color": "#2f2420"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "graphite_mod",
+    "background": {"color": "#e9ecef"},
+    "dial": {"face_color": "#f5f6f7", "border_color": "#333333", "border_width": 1.5, "border_type": "single"},
+    "ticks": {"type": "major_minor", "color": "#333333", "width_major": 2.0, "width_minor": 0.9, "length_major": 0.1, "length_minor": 0.05},
+    "numerals": {"type": "arabic_quadrants", "color": "#333333", "fontsize": 16, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.48, "width": 0.06, "color": "#333333"},
+      "minute": {"type": "rect", "length": 0.78, "width": 0.04, "color": "#333333"},
+      "second": {"enabled": true, "length": 0.88, "width": 0.015, "color": "#cc2e2e"}
+    }
+  },
+  {
+    "style_id": "forest",
+    "background": {"color": "#eef4ee"},
+    "dial": {"face_color": "#f6fbf6", "border_color": "#234d28", "border_width": 1.6, "border_type": "single"},
+    "ticks": {"type": "major_minor", "color": "#234d28", "width_major": 2.0, "width_minor": 0.8, "length_major": 0.1, "length_minor": 0.05},
+    "numerals": {"type": "arabic_full", "color": "#234d28", "fontsize": 17, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.5, "width": 0.07, "color": "#234d28"},
+      "minute": {"type": "triangle", "length": 0.8, "width": 0.05, "color": "#234d28"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "sunset",
+    "background": {"color": "#fff1e6"},
+    "dial": {"face_color": "#fff5ec", "border_color": "#5b2a22", "border_width": 2.0, "border_type": "double"},
+    "ticks": {"type": "major_only", "color": "#5b2a22", "width_major": 2.3, "length_major": 0.12},
+    "numerals": {"type": "arabic_quadrants", "color": "#5b2a22", "fontsize": 17, "fontfamily": "DejaVu Serif"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.48, "width": 0.07, "color": "#5b2a22"},
+      "minute": {"type": "rect", "length": 0.78, "width": 0.045, "color": "#5b2a22"},
+      "second": {"enabled": true, "length": 0.9, "width": 0.015, "color": "#bf2f2f"}
+    }
+  },
+  {
+    "style_id": "ice_blue",
+    "background": {"color": "#edf6fb"},
+    "dial": {"face_color": "#f5fbfe", "border_color": "#1e4e6b", "border_width": 1.6, "border_type": "single"},
+    "ticks": {"type": "sparse_5min", "color": "#1e4e6b", "width_major": 2.0, "length_major": 0.1},
+    "numerals": {"type": "arabic_full", "color": "#1e4e6b", "fontsize": 16, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.5, "width": 0.07, "color": "#1e4e6b"},
+      "minute": {"type": "triangle", "length": 0.82, "width": 0.05, "color": "#1e4e6b"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "slate",
+    "background": {"color": "#f1f2f4"},
+    "dial": {"face_color": "#f7f8fa", "border_color": "#2b2e33", "border_width": 1.5, "border_type": "single"},
+    "ticks": {"type": "major_minor", "color": "#2b2e33", "width_major": 2.0, "width_minor": 0.9, "length_major": 0.11, "length_minor": 0.05},
+    "numerals": {"type": "arabic_full", "color": "#2b2e33", "fontsize": 16, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.5, "width": 0.06, "color": "#2b2e33"},
+      "minute": {"type": "rect", "length": 0.8, "width": 0.04, "color": "#2b2e33"},
+      "second": {"enabled": true, "length": 0.88, "width": 0.015, "color": "#d02d2d"}
+    }
+  },
+  {
+    "style_id": "teal_mod",
+    "background": {"color": "#eef7f7"},
+    "dial": {"face_color": "#f5fcfc", "border_color": "#0f4b4b", "border_width": 1.7, "border_type": "single"},
+    "ticks": {"type": "major_minor", "color": "#0f4b4b", "width_major": 2.1, "width_minor": 0.9, "length_major": 0.11, "length_minor": 0.05},
+    "numerals": {"type": "arabic_quadrants", "color": "#0f4b4b", "fontsize": 16, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.48, "width": 0.07, "color": "#0f4b4b"},
+      "minute": {"type": "triangle", "length": 0.8, "width": 0.05, "color": "#0f4b4b"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "mono_light",
+    "background": {"color": "#ffffff"},
+    "dial": {"face_color": "#ffffff", "border_color": "#000000", "border_width": 1.4, "border_type": "single"},
+    "ticks": {"type": "major_only", "color": "#000000", "width_major": 2.0, "length_major": 0.11},
+    "numerals": {"type": "arabic_full", "color": "#000000", "fontsize": 15, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.48, "width": 0.06, "color": "#000000"},
+      "minute": {"type": "rect", "length": 0.8, "width": 0.04, "color": "#000000"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "mono_dark",
+    "background": {"color": "#1b1b1b"},
+    "dial": {"face_color": "#242424", "border_color": "#e6e6e6", "border_width": 1.6, "border_type": "single"},
+    "ticks": {"type": "major_minor", "color": "#e6e6e6", "width_major": 2.0, "width_minor": 0.9, "length_major": 0.1, "length_minor": 0.05},
+    "numerals": {"type": "arabic_full", "color": "#e6e6e6", "fontsize": 16, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.48, "width": 0.06, "color": "#e6e6e6"},
+      "minute": {"type": "rect", "length": 0.8, "width": 0.04, "color": "#e6e6e6"},
+      "second": {"enabled": true, "length": 0.88, "width": 0.015, "color": "#ff4d4d"}
+    }
+  },
+  {
+    "style_id": "lavender",
+    "background": {"color": "#f4f0f9"},
+    "dial": {"face_color": "#faf7ff", "border_color": "#4a3b6a", "border_width": 1.7, "border_type": "double"},
+    "ticks": {"type": "sparse_5min", "color": "#4a3b6a", "width_major": 2.1, "length_major": 0.1},
+    "numerals": {"type": "arabic_quadrants", "color": "#4a3b6a", "fontsize": 16, "fontfamily": "DejaVu Serif"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.5, "width": 0.07, "color": "#4a3b6a"},
+      "minute": {"type": "triangle", "length": 0.82, "width": 0.05, "color": "#4a3b6a"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "sand",
+    "background": {"color": "#f7f1e6"},
+    "dial": {"face_color": "#fdf7ea", "border_color": "#7a5a2f", "border_width": 1.8, "border_type": "double"},
+    "ticks": {"type": "major_minor", "color": "#7a5a2f", "width_major": 2.0, "width_minor": 0.9, "length_major": 0.11, "length_minor": 0.05},
+    "numerals": {"type": "arabic_full", "color": "#7a5a2f", "fontsize": 17, "fontfamily": "DejaVu Serif"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.5, "width": 0.06, "color": "#7a5a2f"},
+      "minute": {"type": "rect", "length": 0.8, "width": 0.04, "color": "#7a5a2f"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "mint",
+    "background": {"color": "#eaf7f0"},
+    "dial": {"face_color": "#f6fff9", "border_color": "#2f6d59", "border_width": 1.6, "border_type": "single"},
+    "ticks": {"type": "major_only", "color": "#2f6d59", "width_major": 2.2, "length_major": 0.11},
+    "numerals": {"type": "arabic_quadrants", "color": "#2f6d59", "fontsize": 16, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.48, "width": 0.07, "color": "#2f6d59"},
+      "minute": {"type": "triangle", "length": 0.78, "width": 0.05, "color": "#2f6d59"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "copper",
+    "background": {"color": "#f6efe9"},
+    "dial": {"face_color": "#fbf5f0", "border_color": "#6b3f2a", "border_width": 2.1, "border_type": "double"},
+    "ticks": {"type": "major_minor", "color": "#6b3f2a", "width_major": 2.1, "width_minor": 0.9, "length_major": 0.11, "length_minor": 0.05},
+    "numerals": {"type": "arabic_full", "color": "#6b3f2a", "fontsize": 17, "fontfamily": "DejaVu Serif"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.5, "width": 0.06, "color": "#6b3f2a"},
+      "minute": {"type": "rect", "length": 0.8, "width": 0.04, "color": "#6b3f2a"},
+      "second": {"enabled": true, "length": 0.88, "width": 0.015, "color": "#b12d2d"}
+    }
+  },
+  {
+    "style_id": "ocean",
+    "background": {"color": "#e8f2f8"},
+    "dial": {"face_color": "#f2f9fd", "border_color": "#1a4b6e", "border_width": 1.7, "border_type": "single"},
+    "ticks": {"type": "major_minor", "color": "#1a4b6e", "width_major": 2.0, "width_minor": 0.9, "length_major": 0.11, "length_minor": 0.05},
+    "numerals": {"type": "arabic_full", "color": "#1a4b6e", "fontsize": 16, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.5, "width": 0.07, "color": "#1a4b6e"},
+      "minute": {"type": "triangle", "length": 0.8, "width": 0.05, "color": "#1a4b6e"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "plum",
+    "background": {"color": "#f5eff5"},
+    "dial": {"face_color": "#faf4fa", "border_color": "#4a2a4a", "border_width": 1.8, "border_type": "double"},
+    "ticks": {"type": "sparse_5min", "color": "#4a2a4a", "width_major": 2.0, "length_major": 0.1},
+    "numerals": {"type": "arabic_quadrants", "color": "#4a2a4a", "fontsize": 16, "fontfamily": "DejaVu Serif"},
+    "hands": {
+      "hour": {"type": "rect", "length": 0.48, "width": 0.06, "color": "#4a2a4a"},
+      "minute": {"type": "rect", "length": 0.78, "width": 0.04, "color": "#4a2a4a"},
+      "second": {"enabled": false}
+    }
+  },
+  {
+    "style_id": "lime",
+    "background": {"color": "#f2f8e8"},
+    "dial": {"face_color": "#f8fde8", "border_color": "#556d21", "border_width": 1.6, "border_type": "single"},
+    "ticks": {"type": "major_only", "color": "#556d21", "width_major": 2.1, "length_major": 0.11},
+    "numerals": {"type": "arabic_full", "color": "#556d21", "fontsize": 16, "fontfamily": "DejaVu Sans"},
+    "hands": {
+      "hour": {"type": "triangle", "length": 0.48, "width": 0.07, "color": "#556d21"},
+      "minute": {"type": "triangle", "length": 0.78, "width": 0.05, "color": "#556d21"},
+      "second": {"enabled": false}
+    }
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "style_id": "style_10_blue_hands",
+  "dial": {"face_color": [0.98, 0.98, 0.98], "roughness": 0.6},
+  "ticks": {
+    "type": "major_minor",
+    "color": [0.12, 0.12, 0.12],
+    "major_len": 0.11,
+    "minor_len": 0.05,
+    "major_w": 0.02,
+    "minor_w": 0.01
+  },
+  "numerals": {"type": "none"},
+  "hands": {
+    "hour": {"color": [0.08, 0.2, 0.7], "length": 0.55, "width": 0.065, "shape": "rect"},
+    "minute": {"color": [0.08, 0.2, 0.7], "length": 0.85, "width": 0.035, "shape": "rect"}
+  },
+  "bezel": {
+    "enabled": true,
+    "material": {"metallic": 0.6, "roughness": 0.25, "color": [0.2, 0.2, 0.2]}
+  },
+  "glass": {"enabled": false}
+}

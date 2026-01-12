@@ -1,0 +1,15 @@
+{
+  "style_id": "style_14_dark_face_white_ticks",
+  "dial": {"face_color": [0.06, 0.06, 0.06], "roughness": 0.55},
+  "ticks": {"type": "major_only", "color": [0.95, 0.95, 0.95], "major_len": 0.12, "major_w": 0.025},
+  "numerals": {"type": "none"},
+  "hands": {
+    "hour": {"color": [0.95, 0.95, 0.95], "length": 0.55, "width": 0.07, "shape": "rect"},
+    "minute": {"color": [0.95, 0.95, 0.95], "length": 0.85, "width": 0.04, "shape": "rect"}
+  },
+  "bezel": {
+    "enabled": true,
+    "material": {"metallic": 0.8, "roughness": 0.15, "color": [0.1, 0.1, 0.1]}
+  },
+  "glass": {"enabled": true, "ior": 1.45, "roughness": 0.02, "specular": 0.9}
+}

@@ -1,0 +1,12 @@
+{
+  "style_id": "style_08_dots_modern",
+  "dial": {"face_color": [0.99, 0.99, 0.99], "roughness": 0.55},
+  "ticks": {"type": "dots", "color": [0.08, 0.08, 0.08], "dot_r_major": 0.028, "dot_r_minor": 0.012},
+  "numerals": {"type": "none"},
+  "hands": {
+    "hour": {"color": [0.08, 0.08, 0.08], "length": 0.55, "width": 0.06, "shape": "rect"},
+    "minute": {"color": [0.08, 0.08, 0.08], "length": 0.85, "width": 0.03, "shape": "rect"}
+  },
+  "bezel": {"enabled": false},
+  "glass": {"enabled": false}
+}

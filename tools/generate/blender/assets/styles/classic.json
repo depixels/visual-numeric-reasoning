@@ -1,0 +1,16 @@
+{
+  "style_id": "classic",
+  "dial": {"color": [0.94, 0.94, 0.94]},
+  "scale": {"type": "major_minor", "color": [0.2, 0.2, 0.2]},
+  "numerals": {"type": "arabic", "color": [0.1, 0.1, 0.1]},
+  "hands": {
+    "hour_length": 0.5,
+    "minute_length": 0.8,
+    "hour_width": 0.08,
+    "minute_width": 0.05,
+    "color": [0.05, 0.05, 0.05]
+  },
+  "bezel": {"enabled": true, "color": [0.12, 0.12, 0.12], "thickness": 0.07},
+  "glass": {"enabled": true, "roughness": 0.03},
+  "background": {"color": [0.96, 0.96, 0.96]}
+}

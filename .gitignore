@@ -1,0 +1,23 @@
+# datasets / large files
+data/
+*.zip
+
+# experiment outputs
+runs/
+logs/
+outputs/
+checkpoints/
+
+# python cache
+__pycache__/
+*.pyc
+
+# env
+.venv/
+venv/
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

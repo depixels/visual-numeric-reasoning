@@ -1,0 +1,16 @@
+{
+  "style_id": "minimal_dots",
+  "dial": {"color": [0.98, 0.98, 0.98]},
+  "scale": {"type": "dots", "color": [0.25, 0.25, 0.25]},
+  "numerals": {"type": "none"},
+  "hands": {
+    "hour_length": 0.45,
+    "minute_length": 0.78,
+    "hour_width": 0.06,
+    "minute_width": 0.04,
+    "color": [0.15, 0.15, 0.15]
+  },
+  "bezel": {"enabled": false},
+  "glass": {"enabled": false},
+  "background": {"color": [0.97, 0.97, 0.97]}
+}

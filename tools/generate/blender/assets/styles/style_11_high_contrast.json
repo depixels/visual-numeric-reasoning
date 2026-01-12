@@ -1,0 +1,28 @@
+{
+  "style_id": "style_11_high_contrast",
+  "dial": {"face_color": [1.0, 1.0, 1.0], "roughness": 0.35},
+  "ticks": {
+    "type": "major_minor",
+    "color": [0.0, 0.0, 0.0],
+    "major_len": 0.13,
+    "minor_len": 0.06,
+    "major_w": 0.03,
+    "minor_w": 0.016
+  },
+  "numerals": {
+    "type": "arabic",
+    "subset": "full",
+    "color": [0.0, 0.0, 0.0],
+    "size": 0.2,
+    "font": "sans_bold"
+  },
+  "hands": {
+    "hour": {"color": [0.0, 0.0, 0.0], "length": 0.55, "width": 0.09, "shape": "rect"},
+    "minute": {"color": [0.0, 0.0, 0.0], "length": 0.85, "width": 0.055, "shape": "rect"}
+  },
+  "bezel": {
+    "enabled": true,
+    "material": {"metallic": 0.0, "roughness": 0.8, "color": [0.0, 0.0, 0.0]}
+  },
+  "glass": {"enabled": false}
+}
