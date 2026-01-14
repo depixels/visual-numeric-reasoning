@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 '''
 python train_stage1.py \
-    --jsonl data/stage1_contrastive/annotations.jsonl \
-    --root_dir data/stage1_contrastive \
-    --output_dir runs/stage1_qwen3vl_vit \
-    --model_name /data/hyz/workspace/hf/Qwen3-VL-4B-Instruct \
-    --batch_size 32 \
-    --epochs 5 \
-    --lr 1e-4 \
-    --margin 0.3 \
-    --workers 8 \
-    --bf16 \
-    --grad_checkpoint
+  --jsonl data/stage1_contrastive/annotations.jsonl \
+  --root_dir data/stage1_contrastive \
+  --output_dir runs/stage1_qwen3vl_vit \
+  --model_name /data/hyz/workspace/hf/Qwen3-VL-4B-Instruct \
+  --batch_size 32 \
+  --epochs 5 \
+  --lr 1e-4 \
+  --margin 0.3 \
+  --workers 8 \
+  --bf16 \
+  --grad_checkpoint
 '''
+
 
 import argparse
 import json
@@ -21,11 +23,13 @@ import os
 import sys
 import gc
 from typing import Dict, List, Optional
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from PIL import Image
 from torch.utils.data import Dataset
+
 from transformers import (
     AutoImageProcessor,
     AutoModel,
@@ -54,7 +58,6 @@ class TripletClockDataset(Dataset):
     Qwen2.5-VL 视觉塔期望输入是 patchified 的 pixel_values + image_grid_thw。
     这里直接用 AutoImageProcessor 产出该格式，避免把 [B,3,H,W] 错误喂进去导致 1280/640 mismatch。
     """
-
     def __init__(
         self,
         jsonl_path: str,
@@ -66,11 +69,11 @@ class TripletClockDataset(Dataset):
     ):
         print(f"Loading index from {jsonl_path}...")
         self.rows = _load_jsonl(jsonl_path)
-
         if triplet_type_filter:
             original_len = len(self.rows)
             self.rows = [
-                r for r in self.rows if r.get("meta", {}).get("triplet_type") == triplet_type_filter
+                r for r in self.rows
+                if r.get("meta", {}).get("triplet_type") == triplet_type_filter
             ]
             print(f"Filtered dataset from {original_len} to {len(self.rows)} items (type={triplet_type_filter})")
 
@@ -106,8 +109,8 @@ class TripletClockDataset(Dataset):
     @torch.no_grad()
     def _encode_vision_inputs(self, pil_img: Image.Image):
         out = self.processor(images=pil_img, return_tensors="pt")
-        pixel_values = out.get("pixel_values", None)
 
+        pixel_values = out.get("pixel_values", None)
         if pixel_values is None:
             raise RuntimeError(f"Processor output missing 'pixel_values'. Keys: {list(out.keys())}")
 
@@ -120,7 +123,6 @@ class TripletClockDataset(Dataset):
         #   pixel_values: (num_patches, cps) 或 (1, num_patches, cps)
         # Generic:
         #   pixel_values: (1, 3, H, W)
-
         if pixel_values.dim() == 2:
             # 已经是 (num_patches, cps) ✅
             pass
@@ -141,6 +143,7 @@ class TripletClockDataset(Dataset):
                 raise RuntimeError(
                     f"Patchified pixel_values requires grid_thw, but got None. Keys: {list(out.keys())}"
                 )
+
             # grid_thw 可能是 (1,3) / (3,) / (1,1,3)
             if isinstance(grid_thw, torch.Tensor):
                 if grid_thw.dim() == 3:
@@ -154,11 +157,15 @@ class TripletClockDataset(Dataset):
 
         return pixel_values, grid_thw
 
+
+
     def __getitem__(self, idx):
         row = self.rows[idx]
+
         a_pv, a_grid = self._encode_vision_inputs(self._load_pil(row["anchor"]))
         p_pv, p_grid = self._encode_vision_inputs(self._load_pil(row["positive"]))
         n_pv, n_grid = self._encode_vision_inputs(self._load_pil(row["negative"]))
+
         delta = float(row.get("label", {}).get("negative_delta", 0.0))
 
         return {
@@ -204,6 +211,7 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
     a_pv, a_grid = collate_side("anchor")
     p_pv, p_grid = collate_side("positive")
     n_pv, n_grid = collate_side("negative")
+
     deltas = torch.stack([f["negative_delta"] for f in features], dim=0)
 
     batch = {
@@ -212,14 +220,12 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
         "negative_pixel_values": n_pv,
         "negative_delta": deltas,
     }
-
     if patch_mode:
         batch.update({
             "anchor_grid_thw": a_grid,
             "positive_grid_thw": p_grid,
             "negative_grid_thw": n_grid,
         })
-
     return batch
 
 
@@ -232,9 +238,10 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
 #     def __init__(self, model_name: str, gradient_checkpointing: bool = False):
 #         super().__init__()
 #         print(f"Loading model from: {model_name}")
+
 #         self.encoder = None
 #         self.is_qwen_vl = False
-#
+
 #         # --- 优先尝试 Qwen2.5-VL 专用类 ---
 #         Qwen2_5_VLForConditionalGeneration = None
 #         try:
@@ -242,7 +249,7 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
 #             Qwen2_5_VLForConditionalGeneration = _Q
 #         except Exception:
 #             Qwen2_5_VLForConditionalGeneration = None
-#
+
 #         if Qwen2_5_VLForConditionalGeneration is not None:
 #             try:
 #                 print("Attempting to load via Qwen2_5_VLForConditionalGeneration...")
@@ -261,7 +268,7 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
 #                 print(f"Qwen2_5_VL specific load failed: {e}")
 #                 self.encoder = None
 #                 self.is_qwen_vl = False
-#
+
 #         # --- 回退：AutoModel（比如纯 ViT）---
 #         if self.encoder is None:
 #             print("Falling back to AutoModel (generic)...")
@@ -284,32 +291,34 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
 #             except Exception as e:
 #                 print(f"CRITICAL: Failed to load model: {e}", file=sys.stderr)
 #                 sys.exit(1)
-#
+
 #         gc.collect()
 #         if torch.cuda.is_available():
 #             torch.cuda.empty_cache()
-#
+
 #         if gradient_checkpointing:
 #             if hasattr(self.encoder, "gradient_checkpointing_enable"):
 #                 self.encoder.gradient_checkpointing_enable()
 #             elif hasattr(self.encoder, "enable_gradient_checkpointing"):
 #                 self.encoder.enable_gradient_checkpointing()
-#
+
 #         print(f"Vision Tower ready. is_qwen_vl={self.is_qwen_vl}")
-#
+
 #     def _get_spatial_merge_unit(self) -> int:
 #         # Qwen 系列通常有 spatial_merge_unit 或 spatial_merge_size（size^2）
 #         unit = getattr(self.encoder, "spatial_merge_unit", None)
 #         if unit is not None:
 #             return int(unit)
+
 #         size = getattr(self.encoder, "spatial_merge_size", None)
 #         if size is None and hasattr(self.encoder, "config"):
 #             size = getattr(self.encoder.config, "spatial_merge_size", None)
 #         if size is not None:
 #             size = int(size)
 #             return size * size
+
 #         return 1
-#
+
 #     def _pool_qwen_tokens(self, x: torch.Tensor, grid_thw: torch.Tensor) -> torch.Tensor:
 #         """
 #         x: (sum_tokens, dim)
@@ -320,14 +329,14 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
 #             # 偶尔某些实现会直接返回 (B, seq, dim)
 #             feats = x.mean(dim=1)
 #             return F.normalize(feats, dim=-1)
-#
+
 #         if x.dim() != 2:
 #             raise RuntimeError(f"Unexpected qwen visual output dim: {x.dim()} shape={tuple(x.shape)}")
-#
+
 #         merge_unit = self._get_spatial_merge_unit()
 #         counts = (grid_thw[:, 0] * grid_thw[:, 1] * grid_thw[:, 2]) // merge_unit
 #         counts = counts.to(torch.long).tolist()
-#
+
 #         feats = []
 #         offset = 0
 #         for c in counts:
@@ -336,15 +345,15 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
 #                 raise RuntimeError(f"Non-positive token count computed from grid_thw: {counts}")
 #             feats.append(x[offset:offset + c].mean(dim=0))
 #             offset += c
-#
+
 #         if offset != x.shape[0]:
 #             # 不强制 assert，给个提示（通常意味着 grid_thw 或 merge_unit 不匹配）
 #             # 但仍然返回已切分的部分，避免直接 crash
 #             print(f"[Warn] token slicing mismatch: used {offset} tokens, but x has {x.shape[0]} tokens.", file=sys.stderr)
-#
+
 #         feats = torch.stack(feats, dim=0)
 #         return F.normalize(feats, dim=-1)
-#
+
 #     def forward(self, pixel_values: torch.Tensor, grid_thw: Optional[torch.Tensor] = None, **kwargs) -> torch.Tensor:
 #         """
 #         - Qwen patchified: pixel_values (sum_patches, cps) + grid_thw (num_images,3)
@@ -354,34 +363,36 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
 #         if pixel_values.dim() == 2:
 #             if grid_thw is None:
 #                 raise RuntimeError("pixel_values is patchified (2D) but grid_thw is None.")
+
 #             try:
 #                 outputs = self.encoder(pixel_values, grid_thw=grid_thw)
 #             except TypeError:
 #                 # 某些版本参数名可能不同/不需要 grid_thw
 #                 outputs = self.encoder(pixel_values)
-#
+
 #             if isinstance(outputs, tuple):
 #                 x = outputs[0]
 #             elif hasattr(outputs, "last_hidden_state"):
 #                 x = outputs.last_hidden_state
 #             else:
 #                 x = outputs
+
 #             return self._pool_qwen_tokens(x, grid_thw)
-#
+
 #         # Generic vision encoder (B,3,H,W)
 #         if pixel_values.dim() == 4:
 #             try:
 #                 outputs = self.encoder(pixel_values=pixel_values)
 #             except TypeError:
 #                 outputs = self.encoder(pixel_values)
-#
+
 #             if isinstance(outputs, tuple):
 #                 x = outputs[0]
 #             elif hasattr(outputs, "last_hidden_state"):
 #                 x = outputs.last_hidden_state
 #             else:
 #                 x = outputs
-#
+
 #             # x: (B, seq, dim) or (B, dim)
 #             if x.dim() == 3:
 #                 feats = x.mean(dim=1)
@@ -389,15 +400,16 @@ def qwen_vl_triplet_collator(features: List[Dict]) -> Dict[str, torch.Tensor]:
 #                 feats = x
 #             else:
 #                 raise RuntimeError(f"Unexpected generic visual output shape: {tuple(x.shape)}")
-#
+
 #             return F.normalize(feats, dim=-1)
-#
+
 #         raise RuntimeError(f"Unsupported pixel_values shape: {tuple(pixel_values.shape)}")
 
 
 import gc
 import sys
 from typing import Optional
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -409,39 +421,42 @@ class ClockAdapter(nn.Module):
         super().__init__()
         self.mlp = nn.Sequential(
             nn.Linear(input_dim, input_dim),
-            nn.GELU(),  # MLLM 常用 GELU 甚至是 SiLU
-            nn.Linear(input_dim, output_dim)
+            nn.GELU(), # MLLM 常用 GELU 甚至是 SiLU
+            nn.Linear(input_dim, output_dim) 
         )
-
+        
     def forward(self, x):
         return self.mlp(x)
-
-
+    
 class VisionEmbeddingModel(nn.Module):
     """
-    自动根据 model_path/config.json 判断是 qwen3_vl / qwen2_5_vl，然后用正确的 *ForConditionalGeneration 来加载并抽取视觉塔（visual），避免 “newly initialized”。
+    自动根据 model_path/config.json 判断是 qwen3_vl / qwen2_5_vl，然后用正确的 *ForConditionalGeneration
+    来加载并抽取视觉塔（visual），避免 “newly initialized”。
+    
     支持两类输入：
     1) Qwen VL patchified: pixel_values=(sum_patches,cps), grid_thw=(num_images,3)
-    2) 普通 vision: pixel_values=(B,3,H,W), grid_thw=None
+    2) 普通 vision:       pixel_values=(B,3,H,W),         grid_thw=None
     """
-
     def _infer_vision_dim(self, model_name_or_path: str, torch_dtype: torch.dtype) -> int:
         # 用同一个 processor 做一次最小 dry-run，拿到视觉塔 pooled feature 的维度
         proc = AutoImageProcessor.from_pretrained(model_name_or_path, trust_remote_code=True)
+
         img = Image.new("RGB", (224, 224), (0, 0, 0))
         out = proc(images=img, return_tensors="pt")
+
         pv = out.get("pixel_values", None)
         if pv is None:
             raise RuntimeError(f"Processor output missing pixel_values. keys={list(out.keys())}")
+
         grid = out.get("image_grid_thw", None)
         if grid is None:
             grid = out.get("grid_thw", None)
 
         # 对齐你 dataset 里的 squeeze 逻辑
         if pv.dim() == 3:
-            pv = pv.squeeze(0)  # (num_patches,cps) or (3,H,W)
+            pv = pv.squeeze(0)         # (num_patches,cps) or (3,H,W)
         elif pv.dim() == 4:
-            pv = pv.squeeze(0)  # (3,H,W)
+            pv = pv.squeeze(0)         # (3,H,W)
 
         dev = next(self.encoder.parameters()).device
         pv = pv.to(device=dev, dtype=torch_dtype)
@@ -453,7 +468,8 @@ class VisionEmbeddingModel(nn.Module):
             grid = grid.to(device=dev)
 
         with torch.no_grad():
-            if pv.dim() == 2:  # patchified
+            if pv.dim() == 2:
+                # patchified
                 if grid is None:
                     raise RuntimeError("Patchified pixel_values but grid_thw is None in dry-run.")
                 try:
@@ -461,8 +477,9 @@ class VisionEmbeddingModel(nn.Module):
                 except TypeError:
                     outputs = self.encoder(pv)
                 x = outputs[0] if isinstance(outputs, tuple) else getattr(outputs, "last_hidden_state", outputs)
-                feats = self._pool_qwen_tokens(x, grid)  # (B, D)
-            else:  # generic: (3,H,W) -> (1,3,H,W)
+                feats = self._pool_qwen_tokens(x, grid)   # (B, D)
+            else:
+                # generic: (3,H,W) -> (1,3,H,W)
                 if pv.dim() == 3:
                     pv_b = pv.unsqueeze(0)
                 else:
@@ -475,16 +492,17 @@ class VisionEmbeddingModel(nn.Module):
                 feats = x.mean(dim=1) if x.dim() == 3 else x  # (B,D) or (B,seq,D)->(B,D)
 
         return int(feats.shape[-1])
-
+    
     def __init__(
         self,
         model_name_or_path: str,
         gradient_checkpointing: bool = False,
         torch_dtype: Optional[torch.dtype] = None,
-        device_map: Optional[str] = "cpu",  # 你也可以传 None，让 Trainer/Accelerate 自己搬到 GPU
+        device_map: Optional[str] = "cpu",   # 你也可以传 None，让 Trainer/Accelerate 自己搬到 GPU
     ):
         super().__init__()
         print(f"Loading model from: {model_name_or_path}")
+
         if torch_dtype is None:
             torch_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float32
 
@@ -564,13 +582,13 @@ class VisionEmbeddingModel(nn.Module):
                 except Exception as e:
                     last_err = e
                     print(f"{cls_name} load failed: {e}", file=sys.stderr)
+                    self.encoder = None
 
+        # 4) 仍失败才 fallback 到 AutoModel（注意：这一步可能再次出现权重不完整的风险）
         if self.encoder is None:
-            # 4) 仍失败才 fallback 到 AutoModel（注意：这一步可能再次出现权重不完整的风险）
             print("Falling back to AutoModel (generic)...", file=sys.stderr)
             if last_err is not None:
                 print(f"[Prev error] {last_err}", file=sys.stderr)
-
             try:
                 full_model = AutoModel.from_pretrained(
                     model_name_or_path,
@@ -604,6 +622,7 @@ class VisionEmbeddingModel(nn.Module):
 
         # ✅ 再建 adapter，就不会 2560 vs 1024 mismatch
         self.adapter = ClockAdapter(self.hidden_size, output_dim=256)
+
         # 不建议在这里强行 .to(bfloat16)，让 Trainer/AMP 管 dtype 更稳
         # 如果你一定要 cast，至少用 torch_dtype：
         self.adapter = self.adapter.to(dtype=torch_dtype)
@@ -615,6 +634,7 @@ class VisionEmbeddingModel(nn.Module):
         unit = getattr(self.encoder, "spatial_merge_unit", None)
         if unit is not None:
             return int(unit)
+
         size = getattr(self.encoder, "spatial_merge_size", None)
         if size is None and hasattr(self.encoder, "config"):
             size = getattr(self.encoder.config, "spatial_merge_size", None)
@@ -622,14 +642,14 @@ class VisionEmbeddingModel(nn.Module):
             size = int(size)
             return size * size
         return 1
-
+    
     def _pool_qwen_tokens(self, x: torch.Tensor, grid_thw: torch.Tensor) -> torch.Tensor:
         # x: (sum_tokens, dim) or (B, seq, dim)
         if x.dim() == 3:
             # 这种情况通常是 Generic 模式下的 fallback，直接取 mean
             feats = x.mean(dim=1)
             # CHANGE 1: 这里不要 normalize，返回 raw features
-            return feats
+            return feats 
 
         if x.dim() != 2:
             raise RuntimeError(f"Unexpected qwen visual output dim: {x.dim()} shape={tuple(x.shape)}")
@@ -662,10 +682,7 @@ class VisionEmbeddingModel(nn.Module):
         grid_thw: Optional[torch.Tensor] = None,
         **kwargs
     ) -> torch.Tensor:
-        if self.training and torch.rand(()) < 0.001:
-            print("general_feats:", general_feats.shape, general_feats.dtype, general_feats.device)
-            print("adapter expects:", self.adapter.mlp[0].weight.shape)
-
+        
         # === Step 1: 获取 Backbone 特征 (Frozen / No Grad) ===
         # 使用 no_grad 确保梯度不会传回 Vision Tower，节省显存并加快速度
         with torch.no_grad():
@@ -684,6 +701,7 @@ class VisionEmbeddingModel(nn.Module):
                     x = outputs.last_hidden_state
                 else:
                     x = outputs
+                
                 # 此时得到的 general_feats 是 (B, hidden_size)，且未归一化
                 general_feats = self._pool_qwen_tokens(x, grid_thw)
 
@@ -707,6 +725,7 @@ class VisionEmbeddingModel(nn.Module):
                     general_feats = x
                 else:
                     raise RuntimeError(f"Unexpected generic visual output shape: {tuple(x.shape)}")
+            
             else:
                 raise RuntimeError(f"Unsupported pixel_values shape: {tuple(pixel_values.shape)}")
 
@@ -718,132 +737,177 @@ class VisionEmbeddingModel(nn.Module):
         # === Step 3: 归一化 (用于 Triplet Loss) ===
         return F.normalize(fine_grained_feats, dim=-1)
 
+    # def _pool_qwen_tokens(self, x: torch.Tensor, grid_thw: torch.Tensor) -> torch.Tensor:
+    #     # x: (sum_tokens, dim) or (B, seq, dim)
+    #     if x.dim() == 3:
+    #         feats = x.mean(dim=1)
+    #         return F.normalize(feats, dim=-1)
 
-#     def _pool_qwen_tokens(self, x: torch.Tensor, grid_thw: torch.Tensor) -> torch.Tensor:
-#         # x: (sum_tokens, dim) or (B, seq, dim)
-#         if x.dim() == 3:
-#             feats = x.mean(dim=1)
-#             return F.normalize(feats, dim=-1)
-#
-#         if x.dim() != 2:
-#             raise RuntimeError(f"Unexpected qwen visual output dim: {x.dim()} shape={tuple(x.shape)}")
-#
-#         merge_unit = self._get_spatial_merge_unit()
-#         counts = (grid_thw[:, 0] * grid_thw[:, 1] * grid_thw[:, 2]) // merge_unit
-#         counts = counts.to(torch.long).tolist()
-#
-#         feats = []
-#         offset = 0
-#         for c in counts:
-#             c = int(c)
-#             if c <= 0:
-#                 raise RuntimeError(f"Non-positive token count computed from grid_thw: {counts}")
-#             feats.append(x[offset:offset + c].mean(dim=0))
-#             offset += c
-#
-#         if offset != x.shape[0]:
-#             print(f"[Warn] token slicing mismatch: used {offset} tokens, but x has {x.shape[0]} tokens.",
-#                   file=sys.stderr)
-#
-#         feats = torch.stack(feats, dim=0)
-#         return F.normalize(feats, dim=-1)
-#
-#     def forward(
-#         self,
-#         pixel_values: torch.Tensor,
-#         grid_thw: Optional[torch.Tensor] = None,
-#         **kwargs
-#     ) -> torch.Tensor:
-#         # Qwen patchified: (sum_patches, cps)
-#         if pixel_values.dim() == 2:
-#             if grid_thw is None:
-#                 raise RuntimeError("pixel_values is patchified (2D) but grid_thw is None.")
-#             try:
-#                 outputs = self.encoder(pixel_values, grid_thw=grid_thw)
-#             except TypeError:
-#                 # 某些实现参数名不同或不需要 grid_thw
-#                 outputs = self.encoder(pixel_values)
-#
-#             if isinstance(outputs, tuple):
-#                 x = outputs[0]
-#             elif hasattr(outputs, "last_hidden_state"):
-#                 x = outputs.last_hidden_state
-#             else:
-#                 x = outputs
-#             return self._pool_qwen_tokens(x, grid_thw)
-#
-#         # Generic vision: (B,3,H,W)
-#         if pixel_values.dim() == 4:
-#             try:
-#                 outputs = self.encoder(pixel_values=pixel_values)
-#             except TypeError:
-#                 outputs = self.encoder(pixel_values)
-#
-#             if isinstance(outputs, tuple):
-#                 x = outputs[0]
-#             elif hasattr(outputs, "last_hidden_state"):
-#                 x = outputs.last_hidden_state
-#             else:
-#                 x = outputs
-#
-#             if x.dim() == 3:
-#                 feats = x.mean(dim=1)
-#             elif x.dim() == 2:
-#                 feats = x
-#             else:
-#                 raise RuntimeError(f"Unexpected generic visual output shape: {tuple(x.shape)}")
-#
-#             return F.normalize(feats, dim=-1)
-#
-#         raise RuntimeError(f"Unsupported pixel_values shape: {tuple(pixel_values.shape)}")
+    #     if x.dim() != 2:
+    #         raise RuntimeError(f"Unexpected qwen visual output dim: {x.dim()} shape={tuple(x.shape)}")
 
+    #     merge_unit = self._get_spatial_merge_unit()
+    #     counts = (grid_thw[:, 0] * grid_thw[:, 1] * grid_thw[:, 2]) // merge_unit
+    #     counts = counts.to(torch.long).tolist()
+
+    #     feats = []
+    #     offset = 0
+    #     for c in counts:
+    #         c = int(c)
+    #         if c <= 0:
+    #             raise RuntimeError(f"Non-positive token count computed from grid_thw: {counts}")
+    #         feats.append(x[offset:offset + c].mean(dim=0))
+    #         offset += c
+
+    #     if offset != x.shape[0]:
+    #         print(f"[Warn] token slicing mismatch: used {offset} tokens, but x has {x.shape[0]} tokens.",
+    #               file=sys.stderr)
+
+    #     feats = torch.stack(feats, dim=0)
+    #     return F.normalize(feats, dim=-1)
+
+    # def forward(
+    #     self,
+    #     pixel_values: torch.Tensor,
+    #     grid_thw: Optional[torch.Tensor] = None,
+    #     **kwargs
+    # ) -> torch.Tensor:
+    #     # Qwen patchified: (sum_patches, cps)
+    #     if pixel_values.dim() == 2:
+    #         if grid_thw is None:
+    #             raise RuntimeError("pixel_values is patchified (2D) but grid_thw is None.")
+    #         try:
+    #             outputs = self.encoder(pixel_values, grid_thw=grid_thw)
+    #         except TypeError:
+    #             # 某些实现参数名不同或不需要 grid_thw
+    #             outputs = self.encoder(pixel_values)
+
+    #         if isinstance(outputs, tuple):
+    #             x = outputs[0]
+    #         elif hasattr(outputs, "last_hidden_state"):
+    #             x = outputs.last_hidden_state
+    #         else:
+    #             x = outputs
+
+    #         return self._pool_qwen_tokens(x, grid_thw)
+
+    #     # Generic vision: (B,3,H,W)
+    #     if pixel_values.dim() == 4:
+    #         try:
+    #             outputs = self.encoder(pixel_values=pixel_values)
+    #         except TypeError:
+    #             outputs = self.encoder(pixel_values)
+
+    #         if isinstance(outputs, tuple):
+    #             x = outputs[0]
+    #         elif hasattr(outputs, "last_hidden_state"):
+    #             x = outputs.last_hidden_state
+    #         else:
+    #             x = outputs
+
+    #         if x.dim() == 3:
+    #             feats = x.mean(dim=1)
+    #         elif x.dim() == 2:
+    #             feats = x
+    #         else:
+    #             raise RuntimeError(f"Unexpected generic visual output shape: {tuple(x.shape)}")
+
+    #         return F.normalize(feats, dim=-1)
+
+    #     raise RuntimeError(f"Unsupported pixel_values shape: {tuple(pixel_values.shape)}")
 
 class TripletTrainer(Trainer):
-    def __init__(self, margin=0.3, delta_weight=False, **kwargs):
+    def __init__(
+        self,
+        margin=0.5,
+        delta_weight=False,
+        t_pos=0.75,
+        t_neg=0.20,
+        w_pos=0.5,
+        w_neg=0.5,
+        w_inbatch=0.0,   # 想开 in-batch negatives 就设成 0.1~0.3
+        tau=0.07,        # in-batch 的温度
+        **kwargs
+    ):
         super().__init__(**kwargs)
         self.margin = margin
         self.delta_weight = delta_weight
 
+        self.t_pos = t_pos
+        self.t_neg = t_neg
+        self.w_pos = w_pos
+        self.w_neg = w_neg
+        self.w_inbatch = w_inbatch
+        self.tau = tau
+
     def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
-        delta = inputs["negative_delta"]
-        # Qwen patchified 分支：pixel_values 是 2D，且带 grid_thw
+        delta = inputs["negative_delta"]  # (B,)
+
+        # --- forward: 取 embedding ---
         if inputs["anchor_pixel_values"].dim() == 2:
             a_pv, a_grid = inputs["anchor_pixel_values"], inputs["anchor_grid_thw"]
             p_pv, p_grid = inputs["positive_pixel_values"], inputs["positive_grid_thw"]
             n_pv, n_grid = inputs["negative_pixel_values"], inputs["negative_grid_thw"]
+
             pv = torch.cat([a_pv, p_pv, n_pv], dim=0)
             grid = torch.cat([a_grid, p_grid, n_grid], dim=0)
-            emb = model(pv, grid)  # (3B, dim)
+            emb = model(pv, grid)  # (3B, D)
         else:
-            # Generic 分支：pixel_values 是 4D (B,3,H,W)
             anchor = inputs["anchor_pixel_values"]
             positive = inputs["positive_pixel_values"]
             negative = inputs["negative_pixel_values"]
+
             combined = torch.cat([anchor, positive, negative], dim=0)
-            emb = model(combined)  # (3B, dim)
+            emb = model(combined)  # (3B, D)
 
-        a, p, n = torch.chunk(emb, 3, dim=0)
+        a, p, n = torch.chunk(emb, 3, dim=0)  # each: (B, D), 已 normalize
 
-        sim_ap = torch.sum(a * p, dim=-1)
-        sim_an = torch.sum(a * n, dim=-1)
+        # --- cosine similarities ---
+        sim_ap = (a * p).sum(dim=-1)  # (B,)
+        sim_an = (a * n).sum(dim=-1)  # (B,)
 
-        d_ap = 1.0 - sim_ap
-        d_an = 1.0 - sim_an
+        # 1) 排序项：softplus(rank)  (B,)
+        rank = F.softplus(sim_an - sim_ap + self.margin)
 
-        losses = F.relu(d_ap - d_an + self.margin)
+        # 2) 绝对拉近：sim_ap >= t_pos  (B,)
+        pos_pull = F.relu(self.t_pos - sim_ap)
 
+        # 3) 绝对推远：sim_an <= t_neg  (B,)
+        neg_push = F.relu(sim_an - self.t_neg)
+
+        # per-sample loss (B,)
+        losses = rank + self.w_pos * pos_pull + self.w_neg * neg_push
+
+        # 4) 可选：in-batch negatives（InfoNCE），这个是 batch-level 标量
+        if self.w_inbatch > 0:
+            logits = (a @ p.t()) / self.tau          # (B, B)
+            labels = torch.arange(a.size(0), device=a.device)
+            inbatch = F.cross_entropy(logits, labels)  # scalar
+        else:
+            inbatch = None
+
+        # delta 加权：要在 mean 之前做
         if self.delta_weight:
-            weights = 1.0 + torch.log1p(delta.abs())
+            weights = 1.0 + torch.log1p(delta.abs())  # (B,)
             losses = losses * weights
 
         loss = losses.mean()
+        if inbatch is not None:
+            loss = loss + self.w_inbatch * inbatch
 
+        # logging
         if self.state.global_step % self.args.logging_steps == 0:
-            self.log({
+            log_dict = {
                 "train_loss": float(loss.detach().cpu()),
                 "cos_ap": float(sim_ap.mean().detach().cpu()),
                 "cos_an": float(sim_an.mean().detach().cpu()),
-            })
+                "rank": float(rank.mean().detach().cpu()),
+                "pos_pull": float(pos_pull.mean().detach().cpu()),
+                "neg_push": float(neg_push.mean().detach().cpu()),
+            }
+            if inbatch is not None:
+                log_dict["inbatch"] = float(inbatch.detach().cpu())
+            self.log(log_dict)
 
         return (loss, None) if return_outputs else loss
 
@@ -854,24 +918,35 @@ def parse_args():
     parser.add_argument("--root_dir", required=True)
     parser.add_argument("--model_name", default="Qwen/Qwen2.5-VL-3B-Instruct")
     parser.add_argument("--output_dir", required=True)
+
     # Training Hyperparams
     parser.add_argument("--resolution", type=int, default=0, help="Optional override for processor.size if supported; 0 means use model default.")
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--lr", type=float, default=2e-5)
     parser.add_argument("--margin", type=float, default=0.3)
+
     # Options
     parser.add_argument("--delta_weight", action="store_true")
     parser.add_argument("--triplet_type", default=None)
     parser.add_argument("--resume_from", default=None)
+
     # Optimization Flags
     parser.add_argument("--fp16", action="store_true")
     parser.add_argument("--bf16", action="store_true", help="Better for Qwen/LLaVA training")
     parser.add_argument("--grad_checkpoint", action="store_true")
     parser.add_argument("--workers", type=int, default=8)
+
     # Processor behavior
     parser.add_argument("--use_fast_processor", action="store_true", help="Force use_fast=True for image processor.")
     parser.add_argument("--use_slow_processor", action="store_true", help="Force use_fast=False for image processor.")
+    
+    parser.add_argument("--t_pos", type=float, default=0.75)
+    parser.add_argument("--t_neg", type=float, default=0.20)
+    parser.add_argument("--w_pos", type=float, default=0.5)
+    parser.add_argument("--w_neg", type=float, default=0.5)
+    parser.add_argument("--w_inbatch", type=float, default=0.0)  # 建议 0.1~0.3
+    parser.add_argument("--tau", type=float, default=0.07)
 
     return parser.parse_args()
 
@@ -886,7 +961,7 @@ def main():
     if args.use_fast_processor and args.use_slow_processor:
         print("Warning: Both --use_fast_processor and --use_slow_processor set. Using fast.")
         args.use_slow_processor = False
-    
+
     use_fast = None
     if args.use_fast_processor:
         use_fast = True
@@ -931,7 +1006,14 @@ def main():
         data_collator=qwen_vl_triplet_collator,
         margin=args.margin,
         delta_weight=args.delta_weight,
+        t_pos=args.t_pos,
+        t_neg=args.t_neg,
+        w_pos=args.w_pos,
+        w_neg=args.w_neg,
+        w_inbatch=args.w_inbatch,
+        tau=args.tau,
     )
+
 
     trainer.train(resume_from_checkpoint=args.resume_from)
     trainer.save_model(args.output_dir)
