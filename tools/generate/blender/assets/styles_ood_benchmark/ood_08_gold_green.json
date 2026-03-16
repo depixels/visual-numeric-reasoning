@@ -1,0 +1,12 @@
+{
+  "style_id": "ood_08_gold_green",
+  "dial": {"shape": "square", "face_color": [0.14, 0.18, 0.11], "roughness": 0.67},
+  "ticks": {"type": "major_only", "color": [0.92, 0.82, 0.45], "major_len": 0.18, "major_w": 0.03},
+  "numerals": {"type": "arabic", "subset": "quadrants", "color": [0.95, 0.9, 0.62], "size": 0.28, "font": "serif"},
+  "hands": {
+    "hour": {"color": [0.95, 0.9, 0.62], "length": 0.38, "width": 0.1, "shape": "triangle"},
+    "minute": {"color": [0.95, 0.9, 0.62], "length": 0.7, "width": 0.055, "shape": "triangle"}
+  },
+  "bezel": {"enabled": true, "color": [0.78, 0.66, 0.32], "thickness": 0.14},
+  "glass": {"enabled": true, "roughness": 0.07}
+}

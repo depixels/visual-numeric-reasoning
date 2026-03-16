@@ -44,15 +44,25 @@ Examples:
 import argparse
 import base64
 import json
-import math
 import os
-import statistics
 import time
 from typing import Any, Dict, List, Optional
 
 from openai import OpenAI
 
-from parse_time import parse_hhmm
+from eval_common import (
+    compute_metrics,
+    extract_gt_label,
+    extract_image_relpath,
+    finalize_prediction_row,
+    infer_split,
+    load_jsonl,
+    safe_div,
+    write_csv,
+    write_json,
+    write_jsonl,
+)
+from parse_time import parse_hhmm, parse_hhmmss
 
 
 DEFAULT_PROMPT = (
@@ -90,51 +100,10 @@ def _parse_args() -> argparse.Namespace:
 
     p.add_argument("--output_dir", required=True)
     p.add_argument("--pred_json", default="predictions.json")
+    p.add_argument("--pred_jsonl", default="per_sample_results.jsonl")
+    p.add_argument("--pred_csv", default="per_sample_results.csv")
     p.add_argument("--metrics_json", default="metrics.json")
     return p.parse_args()
-
-
-def _load_jsonl(path: str) -> List[Dict[str, Any]]:
-    rows: List[Dict[str, Any]] = []
-    with open(path, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                rows.append(json.loads(line))
-    return rows
-
-
-def _extract_image_relpath(row: Dict[str, Any]) -> str:
-    if isinstance(row.get("image"), str):
-        return row["image"]
-    images = row.get("images")
-    if isinstance(images, list) and images:
-        if isinstance(images[0], str):
-            return images[0]
-    # Stage2 format fallback
-    messages = row.get("messages", [])
-    for msg in messages:
-        if msg.get("role") != "user":
-            continue
-        for c in msg.get("content", []):
-            if c.get("type") == "image" and isinstance(c.get("image"), str):
-                return c["image"]
-    raise ValueError(f"Cannot find image path in row id={row.get('id')}")
-
-
-def _extract_gt_minutes(row: Dict[str, Any]) -> int:
-    label = row.get("label", {})
-    if "time_minutes" in label:
-        return int(label["time_minutes"])
-    hhmm = label.get("time_hhmm")
-    if isinstance(hhmm, str) and ":" in hhmm:
-        hh, mm = hhmm.split(":")
-        hh_i = int(hh)
-        mm_i = int(mm)
-        if hh_i == 12:
-            hh_i = 0
-        return hh_i * 60 + mm_i
-    raise ValueError(f"Cannot find time label in row id={row.get('id')}")
 
 
 def _image_to_data_url(path: str) -> str:
@@ -308,66 +277,6 @@ def _call_qwen_dashscope(
     return ""
 
 
-def _minutes_to_hour_minute(total_min: int) -> tuple[int, int]:
-    return (total_min // 60) % 12, total_min % 60
-
-
-def _safe_div(a: float, b: float) -> float:
-    return a / b if b else 0.0
-
-
-def _compute_metrics(pred_rows: List[Dict[str, Any]]) -> Dict[str, Any]:
-    total = len(pred_rows)
-    parsed = 0
-    hour_correct = 0
-    minute_correct = 0
-    exact_hhmm = 0
-    tol_1 = 0
-    tol_5 = 0
-    abs_errors: List[int] = []
-
-    for row in pred_rows:
-        gt = row["gt_time_minutes"]
-        pred = row.get("pred_time_minutes")
-        if pred is None:
-            continue
-        parsed += 1
-
-        gt_h, gt_m = _minutes_to_hour_minute(gt)
-        pr_h, pr_m = _minutes_to_hour_minute(pred)
-        h_ok = gt_h == pr_h
-        m_ok = gt_m == pr_m
-
-        if h_ok:
-            hour_correct += 1
-        if m_ok:
-            minute_correct += 1
-        if h_ok and m_ok:
-            exact_hhmm += 1
-
-        err = abs(pred - gt)
-        abs_errors.append(err)
-        if err <= 1:
-            tol_1 += 1
-        if err <= 5:
-            tol_5 += 1
-
-    metrics = {
-        "total": total,
-        "parsed": parsed,
-        "parsed_rate": _safe_div(parsed, total),
-        "hour_acc": _safe_div(hour_correct, total),
-        "minute_acc": _safe_div(minute_correct, total),
-        "exact_hhmm_acc": _safe_div(exact_hhmm, total),
-        "minute_given_hour_acc": _safe_div(exact_hhmm, hour_correct),
-        "tol_1min_acc": _safe_div(tol_1, total),
-        "tol_5min_acc": _safe_div(tol_5, total),
-        "mae_minutes": (sum(abs_errors) / parsed) if parsed else math.nan,
-        "median_abs_error_minutes": statistics.median(abs_errors) if abs_errors else math.nan,
-    }
-    return metrics
-
-
 def main() -> None:
     args = _parse_args()
     os.makedirs(args.output_dir, exist_ok=True)
@@ -376,11 +285,19 @@ def main() -> None:
     if not os.path.isabs(pred_json_path):
         pred_json_path = os.path.join(args.output_dir, pred_json_path)
 
+    pred_jsonl_path = args.pred_jsonl
+    if not os.path.isabs(pred_jsonl_path):
+        pred_jsonl_path = os.path.join(args.output_dir, pred_jsonl_path)
+
+    pred_csv_path = args.pred_csv
+    if not os.path.isabs(pred_csv_path):
+        pred_csv_path = os.path.join(args.output_dir, pred_csv_path)
+
     metrics_json_path = args.metrics_json
     if not os.path.isabs(metrics_json_path):
         metrics_json_path = os.path.join(args.output_dir, metrics_json_path)
 
-    rows = _load_jsonl(args.gt_jsonl)
+    rows = load_jsonl(args.gt_jsonl)
     end = None if args.limit is None else args.start_index + args.limit
     rows = rows[args.start_index:end]
 
@@ -402,9 +319,10 @@ def main() -> None:
 
     for i, row in enumerate(rows, 1):
         sample_id = row.get("id", f"sample_{i:06d}")
-        image_rel = _extract_image_relpath(row)
+        image_rel = extract_image_relpath(row)
         image_abs = image_rel if os.path.isabs(image_rel) else os.path.join(images_root, image_rel)
-        gt_minutes = _extract_gt_minutes(row)
+        gt_label = extract_gt_label(row)
+        split = infer_split(row, args.gt_jsonl)
 
         call_error = None
         response_text = ""
@@ -456,30 +374,36 @@ def main() -> None:
         except Exception as e:
             call_error = str(e)
 
-        pred_minutes = parse_hhmm(response_text) if response_text else None
+        pred_seconds_total = parse_hhmmss(response_text) if response_text else None
+        pred_minutes = (
+            pred_seconds_total // 60
+            if pred_seconds_total is not None
+            else parse_hhmm(response_text) if response_text else None
+        )
         elapsed = time.time() - t0
 
-        pred_row = {
-            "id": sample_id,
-            "image": image_rel,
-            "gt_time_minutes": gt_minutes,
-            "gt_time_hhmm": row.get("label", {}).get("time_hhmm"),
-            "raw_output": response_text,
-            "pred_time_minutes": pred_minutes,
-            "pred_time_hhmm": None if pred_minutes is None else f"{(pred_minutes // 60) % 12 or 12:02d}:{pred_minutes % 60:02d}",
-            "latency_sec": elapsed,
-            "error": call_error,
-        }
+        pred_row = finalize_prediction_row(
+            sample_id=sample_id,
+            split=split,
+            image_rel=image_rel,
+            gt_label=gt_label,
+            raw_output=response_text,
+            pred_minutes=pred_minutes,
+            pred_seconds_total=pred_seconds_total,
+            latency_sec=elapsed,
+            error=call_error,
+        )
         preds.append(pred_row)
 
         if i % args.save_every == 0 or i == len(rows):
-            with open(pred_json_path, "w", encoding="utf-8") as f:
-                json.dump(preds, f, ensure_ascii=False, indent=2)
+            write_json(pred_json_path, preds)
+            write_jsonl(pred_jsonl_path, preds)
+            write_csv(pred_csv_path, preds)
 
         if i % 10 == 0 or i == len(rows):
             print(f"[progress] {i}/{len(rows)} done")
 
-    metrics = _compute_metrics(preds)
+    metrics = compute_metrics(preds)
     metrics["provider"] = args.provider
     metrics["model"] = (
         args.model
@@ -488,15 +412,29 @@ def main() -> None:
     )
     metrics["num_samples"] = len(rows)
     metrics["elapsed_sec_total"] = time.time() - start_t
-    metrics["avg_latency_sec"] = _safe_div(sum(r["latency_sec"] for r in preds), len(preds))
+    metrics["avg_latency_sec"] = safe_div(
+        sum(float(r["latency_sec"]) for r in preds if isinstance(r.get("latency_sec"), (int, float))),
+        len(preds),
+    )
     metrics["pred_json"] = pred_json_path
+    metrics["pred_jsonl"] = pred_jsonl_path
+    metrics["pred_csv"] = pred_csv_path
+    metrics["gt_jsonl"] = args.gt_jsonl
+    metrics["eval_protocol"] = {
+        "developer_prompt": args.developer_prompt,
+        "system_prompt": args.system_prompt,
+        "user_prompt": args.user_prompt,
+        "temperature": args.temperature,
+        "max_tokens": args.max_tokens,
+    }
 
-    with open(metrics_json_path, "w", encoding="utf-8") as f:
-        json.dump(metrics, f, ensure_ascii=False, indent=2)
+    write_json(metrics_json_path, metrics)
 
     print("\nEvaluation done.")
     print(json.dumps(metrics, ensure_ascii=False, indent=2))
     print(f"\nSaved predictions: {pred_json_path}")
+    print(f"Saved per-sample jsonl: {pred_jsonl_path}")
+    print(f"Saved per-sample csv: {pred_csv_path}")
     print(f"Saved metrics: {metrics_json_path}")
 
 

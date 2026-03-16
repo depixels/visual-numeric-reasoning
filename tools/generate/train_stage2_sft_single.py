@@ -25,6 +25,7 @@ def _parse_args():
     parser.add_argument("--reuse_pools_dir", default=None)
     parser.add_argument("--pool_blender_splits", choices=["clean", "noisy", "both"], default="both")
     parser.add_argument("--pool_use_matplot", action="store_true")
+    parser.add_argument("--target_format", choices=["answer_only", "grounded_rationale"], default="grounded_rationale")
     parser.add_argument("--dry_run", type=int, default=0)
     parser.add_argument("--resume", action="store_true")
     return parser.parse_args()
@@ -286,6 +287,13 @@ def _generate_grounded_cot(label: Dict[str, Any], meta: Dict[str, Any], source: 
     think_block = " ".join(thoughts)
     return f"<think>{think_block}</think>\n<answer>{answer_str}</answer>"
 
+
+def _format_target(label: Dict[str, Any], meta: Dict[str, Any], source: str, target_format: str) -> str:
+    answer_str, _ = _label_answer(label)
+    if target_format == "answer_only":
+        return answer_str
+    return _generate_grounded_cot(label, meta, source)
+
 def main():
     args = _parse_args()
     rng = random.Random(args.seed)
@@ -410,13 +418,16 @@ def main():
             label = row["label"]
             meta = row.get("meta", {})
             source = row.get("_source", "unknown")
-            cot = _generate_grounded_cot(label, meta, source)
+            cot = _format_target(label, meta, source, args.target_format)
             answer, has_seconds = _label_answer(label)
             expected_answer = label.get("time_hhmmss") if has_seconds else label.get("time_hhmm")
-            if expected_answer not in cot:
-                raise AssertionError("CoT answer does not match label.")
-            if not cot.strip().endswith(f"<answer>{expected_answer}</answer>"):
-                raise AssertionError("Final <answer> tag does not match label.")
+            if args.target_format == "grounded_rationale":
+                if expected_answer not in cot:
+                    raise AssertionError("CoT answer does not match label.")
+                if not cot.strip().endswith(f"<answer>{expected_answer}</answer>"):
+                    raise AssertionError("Final <answer> tag does not match label.")
+            elif cot.strip() != expected_answer:
+                raise AssertionError("Answer-only target does not match label.")
             
             record = {
                 "id": f"stage2_single_{idx:06d}",
@@ -449,6 +460,7 @@ def main():
                 "meta": {
                     "source": source,
                     "style_id": meta.get("style_id", "unknown"),
+                    "target_format": args.target_format,
                 },
             }
             f.write(json.dumps(record, ensure_ascii=True) + "\n")

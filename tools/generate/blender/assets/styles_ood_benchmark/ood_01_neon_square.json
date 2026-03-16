@@ -1,0 +1,13 @@
+{
+  "style_id": "ood_01_neon_square",
+  "dial": {"shape": "square", "face_color": [0.07, 0.1, 0.12], "roughness": 0.3, "double_ring": true},
+  "ticks": {"type": "major_minor", "color": [0.15, 0.95, 0.75], "major_len": 0.16, "minor_len": 0.03, "major_w": 0.02, "minor_w": 0.006},
+  "numerals": {"type": "arabic", "subset": "full", "color": [0.75, 0.98, 0.95], "size": 0.16, "font": "sans"},
+  "hands": {
+    "hour": {"color": [0.95, 0.93, 0.2], "length": 0.42, "width": 0.1, "shape": "triangle"},
+    "minute": {"color": [0.95, 0.93, 0.2], "length": 0.74, "width": 0.055, "shape": "triangle"},
+    "second": {"enabled": true, "color": [1.0, 0.35, 0.1], "length": 0.93, "width": 0.02, "shape": "rect"}
+  },
+  "bezel": {"enabled": true, "color": [0.03, 0.04, 0.04], "thickness": 0.11},
+  "glass": {"enabled": true, "roughness": 0.06}
+}

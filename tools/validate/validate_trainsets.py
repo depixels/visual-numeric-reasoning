@@ -59,9 +59,11 @@ def _validate_stage2_single(row: Dict[str, Any], images_root: str, errors: list)
     path = os.path.join(images_root, image)
     if not os.path.exists(path):
         errors.append(f"missing image {path}")
-    answer = _extract_answer(row.get("messages", [{}, {}])[1].get("content", [{}])[0].get("text", ""))
+    target_text = row.get("messages", [{}, {}])[1].get("content", [{}])[0].get("text", "")
+    answer = _extract_answer(target_text) or target_text.strip()
     label = row.get("label", {})
-    if answer != label.get("time_hhmm"):
+    expected = label.get("time_hhmmss") if label.get("seconds") is not None and label.get("time_hhmmss") else label.get("time_hhmm")
+    if answer != expected:
         errors.append(f"answer mismatch {answer} != {label.get('time_hhmm')}")
 
 
@@ -70,7 +72,8 @@ def _validate_stage2_pair(row: Dict[str, Any], images_root: str, errors: list) -
         path = os.path.join(images_root, image)
         if not os.path.exists(path):
             errors.append(f"missing image {path}")
-    answer = _extract_answer(row.get("messages", [{}, {}])[1].get("content", [{}])[0].get("text", ""))
+    target_text = row.get("messages", [{}, {}])[1].get("content", [{}])[0].get("text", "")
+    answer = _extract_answer(target_text) or target_text.strip()
     label = row.get("label", {})
     try:
         if int(answer) != int(label.get("delta_minutes")):

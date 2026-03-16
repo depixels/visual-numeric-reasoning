@@ -1,0 +1,13 @@
+{
+  "style_id": "ood_07_mint_lab",
+  "dial": {"shape": "circle", "face_color": [0.82, 0.97, 0.93], "roughness": 0.22},
+  "ticks": {"type": "major_minor", "color": [0.0, 0.36, 0.28], "major_len": 0.09, "minor_len": 0.07, "major_w": 0.013, "minor_w": 0.01},
+  "numerals": {"type": "none"},
+  "hands": {
+    "hour": {"color": [0.0, 0.36, 0.28], "length": 0.62, "width": 0.055, "shape": "triangle"},
+    "minute": {"color": [0.0, 0.36, 0.28], "length": 0.92, "width": 0.028, "shape": "triangle"},
+    "second": {"enabled": true, "color": [0.95, 0.25, 0.22], "length": 0.96, "width": 0.015, "shape": "rect"}
+  },
+  "bezel": {"enabled": true, "color": [0.66, 0.88, 0.82], "thickness": 0.05},
+  "glass": {"enabled": false}
+}

@@ -134,3 +134,4 @@ python rege-bench/tools/eval/eval_single.py \
 python rege-bench/tools/eval/eval_pair.py \
   --gt_jsonl /tmp/rege/pair/pairs.jsonl --pred_jsonl /path/to/preds.jsonl
 ```
+codex resume 019cf249-0131-71f1-805c-3073d9a879b8

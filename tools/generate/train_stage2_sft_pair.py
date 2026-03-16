@@ -24,6 +24,7 @@ def _parse_args():
     parser.add_argument("--reuse_pools_dir", default=None)
     parser.add_argument("--pool_blender_splits", choices=["clean", "noisy", "both"], default="both")
     parser.add_argument("--pool_use_matplot", action="store_true")
+    parser.add_argument("--target_format", choices=["answer_only", "grounded_rationale"], default="grounded_rationale")
     parser.add_argument("--resume", action="store_true")
     return parser.parse_args()
 
@@ -209,6 +210,12 @@ def _generate_cot_pair(rng, label: dict) -> str:
     think_block = "\n".join(thoughts)
     return f"<think>{think_block}</think>\n<answer>{target_delta}</answer>"
 
+
+def _format_target_pair(rng, label: dict, target_format: str) -> str:
+    if target_format == "answer_only":
+        return str(label["delta_minutes"])
+    return _generate_cot_pair(rng, label)
+
 def main():
     args = _parse_args()
     rng = random.Random(args.seed)
@@ -364,7 +371,7 @@ def main():
                 "time_a_minutes": time_a_min,
                 "time_b_minutes": time_b_min,
             }
-            cot = _generate_cot_pair(rng, label_with_minutes)
+            cot = _format_target_pair(rng, label_with_minutes, args.target_format)
             
             meta = row.get("meta", {})
             
@@ -402,6 +409,7 @@ def main():
                     "pair_type": meta.get("pair_type"),
                     "style_id_a": meta.get("style_id_a"),
                     "style_id_b": meta.get("style_id_b"),
+                    "target_format": args.target_format,
                 },
             }
             f.write(json.dumps(record, ensure_ascii=True) + "\n")

@@ -1,0 +1,13 @@
+{
+  "style_id": "ood_05_pop_orange",
+  "dial": {"shape": "circle", "face_color": [0.98, 0.5, 0.12], "roughness": 0.48},
+  "ticks": {"type": "major_only", "color": [0.06, 0.06, 0.06], "major_len": 0.15, "major_w": 0.025},
+  "numerals": {"type": "arabic", "subset": "quadrants", "color": [0.04, 0.04, 0.04], "size": 0.3, "font": "sans"},
+  "hands": {
+    "hour": {"color": [0.04, 0.04, 0.04], "length": 0.45, "width": 0.11, "shape": "triangle"},
+    "minute": {"color": [0.04, 0.04, 0.04], "length": 0.78, "width": 0.06, "shape": "triangle"},
+    "second": {"enabled": true, "color": [1.0, 1.0, 1.0], "length": 0.94, "width": 0.018, "shape": "rect"}
+  },
+  "bezel": {"enabled": false},
+  "glass": {"enabled": true, "roughness": 0.09}
+}

@@ -49,6 +49,24 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--force_hand_config", choices=["2", "3", "4"], default=None)
     parser.add_argument("--max_seconds", type=int, default=59)
     parser.add_argument("--clean_view_mode", choices=["front", "mild"], default="mild")
+    parser.add_argument("--view_yaw_min", type=float, default=None)
+    parser.add_argument("--view_yaw_max", type=float, default=None)
+    parser.add_argument("--view_pitch_min", type=float, default=None)
+    parser.add_argument("--view_pitch_max", type=float, default=None)
+    parser.add_argument("--view_roll_min", type=float, default=None)
+    parser.add_argument("--view_roll_max", type=float, default=None)
+    parser.add_argument("--pose_yaw_max", type=float, default=None)
+    parser.add_argument("--pose_pitch_max", type=float, default=None)
+    parser.add_argument("--pose_roll_max", type=float, default=None)
+    parser.add_argument("--pose_x_max", type=float, default=None)
+    parser.add_argument("--pose_y_max", type=float, default=None)
+    parser.add_argument("--specular_min", type=float, default=None)
+    parser.add_argument("--specular_max", type=float, default=None)
+    parser.add_argument("--motion_blur_min", type=float, default=None)
+    parser.add_argument("--motion_blur_max", type=float, default=None)
+    parser.add_argument("--defocus_min", type=float, default=None)
+    parser.add_argument("--defocus_max", type=float, default=None)
+    parser.add_argument("--env_id_choices", default=None, help="Comma-separated lighting env ids")
     parser.add_argument("--spotcheck", action="store_true")
     parser.add_argument("--spotcheck_split", choices=["clean", "noisy"], default="noisy")
     parser.add_argument("--pair_quota_json", default=None)
@@ -60,6 +78,17 @@ def _parse_args() -> argparse.Namespace:
 
 def _clamp01(value: float) -> float:
     return max(0.0, min(1.0, value))
+
+
+def _sample_range(
+    min_value: Optional[float],
+    max_value: Optional[float],
+    default_min: float,
+    default_max: float,
+) -> float:
+    low = default_min if min_value is None else min_value
+    high = default_max if max_value is None else max_value
+    return random.uniform(low, high)
 
 
 def _color_tuple(values: Optional[List[float]], fallback: Tuple[float, float, float]) -> Tuple[float, float, float]:
@@ -883,13 +912,23 @@ def _time_hhmm(time_minutes: int) -> str:
     return f"{hh:02d}:{mm:02d}"
 
 
-def _random_degradation(noisy: bool) -> Dict[str, float]:
-    if not noisy:
+def _random_degradation(noisy: bool, args: argparse.Namespace) -> Dict[str, float]:
+    if not noisy and all(
+        value is None
+        for value in (
+            args.specular_min,
+            args.specular_max,
+            args.motion_blur_min,
+            args.motion_blur_max,
+            args.defocus_min,
+            args.defocus_max,
+        )
+    ):
         return {"specular": 0.0, "motion_blur": 0.0, "defocus": 0.0}
     return {
-        "specular": random.uniform(0.3, 1.0),
-        "motion_blur": random.random(),
-        "defocus": random.random(),
+        "specular": _clamp01(_sample_range(args.specular_min, args.specular_max, 0.3 if noisy else 0.0, 1.0 if noisy else 0.0)),
+        "motion_blur": _clamp01(_sample_range(args.motion_blur_min, args.motion_blur_max, 0.0, 1.0 if noisy else 0.0)),
+        "defocus": _clamp01(_sample_range(args.defocus_min, args.defocus_max, 0.0, 1.0 if noisy else 0.0)),
     }
 
 
@@ -952,14 +991,17 @@ def _set_render_samples(noisy: bool) -> None:
     scene.cycles.samples = 96 if noisy else 128
 
 
-def _pose_jitter(noisy: bool) -> Dict[str, float]:
-    if noisy:
+def _pose_jitter(noisy: bool, args: argparse.Namespace) -> Dict[str, float]:
+    if noisy or any(
+        value is not None
+        for value in (args.pose_yaw_max, args.pose_pitch_max, args.pose_roll_max, args.pose_x_max, args.pose_y_max)
+    ):
         return {
-            "yaw": random.uniform(-15.0, 15.0),
-            "pitch": random.uniform(-15.0, 15.0),
-            "roll": random.uniform(-15.0, 15.0),
-            "x": random.uniform(-0.05, 0.05),
-            "y": random.uniform(-0.05, 0.05),
+            "yaw": random.uniform(-(args.pose_yaw_max or 15.0), args.pose_yaw_max or 15.0),
+            "pitch": random.uniform(-(args.pose_pitch_max or 15.0), args.pose_pitch_max or 15.0),
+            "roll": random.uniform(-(args.pose_roll_max or 15.0), args.pose_roll_max or 15.0),
+            "x": random.uniform(-(args.pose_x_max or 0.05), args.pose_x_max or 0.05),
+            "y": random.uniform(-(args.pose_y_max or 0.05), args.pose_y_max or 0.05),
         }
     return {"yaw": 0.0, "pitch": 0.0, "roll": 0.0, "x": 0.0, "y": 0.0}
 
@@ -1092,7 +1134,22 @@ def _build_time_label(time_minutes: int, seconds: Optional[int]) -> Dict[str, An
     return label
 
 
-def _view_config(noisy: bool, clean_view_mode: str) -> Tuple[Dict[str, float], float]:
+def _view_config(noisy: bool, clean_view_mode: str, args: argparse.Namespace) -> Tuple[Dict[str, float], float]:
+    if any(
+        value is not None
+        for value in (
+            args.view_yaw_min,
+            args.view_yaw_max,
+            args.view_pitch_min,
+            args.view_pitch_max,
+            args.view_roll_min,
+            args.view_roll_max,
+        )
+    ):
+        return {
+            "yaw": _sample_range(args.view_yaw_min, args.view_yaw_max, -60.0 if noisy else -25.0, 60.0 if noisy else 25.0),
+            "pitch": _sample_range(args.view_pitch_min, args.view_pitch_max, 25.0 if noisy else 30.0, 75.0 if noisy else 60.0),
+        }, _sample_range(args.view_roll_min, args.view_roll_max, -8.0 if noisy else -2.0, 8.0 if noisy else 2.0)
     if noisy:
         return {
             "yaw": random.uniform(-60.0, 60.0),
@@ -1152,12 +1209,13 @@ def _render_single(
     force_hand_config: Optional[str],
     max_seconds: int,
     clean_view_mode: str,
+    args: argparse.Namespace,
 ) -> Dict[str, Any]:
     _clear_scene()
     _set_cycles(bpy.context.scene)
     bpy.context.scene.cycles.seed = seed
 
-    degradation = _random_degradation(noisy)
+    degradation = _random_degradation(noisy, args)
     hand_config, has_second, has_alarm = _select_hand_config(force_hand_config, noisy, second_hand_prob, alarm_hand_prob)
     if time_minutes is None:
         time_minutes, seconds = _sample_time(time_mode, hand_config, max_seconds)
@@ -1169,8 +1227,8 @@ def _render_single(
     style_cfg = _ensure_square_legibility(style_cfg)
     style_cfg = _ensure_hand_contrast(style_cfg)
     style_cfg = _apply_hand_config(style_cfg, hand_config, has_second, has_alarm)
-    pose_jitter = _pose_jitter(noisy)
-    view_cfg, view_roll = _view_config(noisy, clean_view_mode)
+    pose_jitter = _pose_jitter(noisy, args)
+    view_cfg, view_roll = _view_config(noisy, clean_view_mode, args)
 
     glass_enabled = noisy
     if noisy:
@@ -1199,8 +1257,14 @@ def _render_single(
         alarm_seconds=(time_minutes * 60 + seconds) if has_alarm else None,
     )
 
+    env_choices = [
+        item.strip()
+        for item in (args.env_id_choices or "").split(",")
+        if item.strip()
+    ]
     env_id = "studio_softbox" if not noisy else random.choice(
-        [
+        env_choices
+        or [
             "studio_softbox",
             "studio_softbox_round",
             "studio_softbox_ellipse",
@@ -1269,6 +1333,7 @@ def _render_pair(
     time_mode: str,
     force_hand_config: Optional[str],
     max_seconds: int,
+    args: argparse.Namespace,
 ) -> Dict[str, Any]:
     sample_a = _render_single(
         out_dir,
@@ -1286,6 +1351,7 @@ def _render_pair(
         force_hand_config=force_hand_config,
         max_seconds=max_seconds,
         clean_view_mode="front",
+        args=args,
     )
     sample_b = _render_single(
         out_dir,
@@ -1303,6 +1369,7 @@ def _render_pair(
         force_hand_config=force_hand_config,
         max_seconds=max_seconds,
         clean_view_mode="front",
+        args=args,
     )
 
     image_a = sample_a["image"].replace("sample_", "pair_").replace(".png", "_a.png")
@@ -1339,7 +1406,15 @@ def _ensure_dirs(out_dir: str) -> None:
     os.makedirs(os.path.join(out_dir, "images"), exist_ok=True)
 
 
-def _spotcheck(out_dir: str, styles: List[Dict[str, Any]], resolution: int, seed: int, noisy: bool, clean_view_mode: str) -> None:
+def _spotcheck(
+    out_dir: str,
+    styles: List[Dict[str, Any]],
+    resolution: int,
+    seed: int,
+    noisy: bool,
+    clean_view_mode: str,
+    args: argparse.Namespace,
+) -> None:
     rng = random.Random(seed)
     envs = [
         "studio_softbox",
@@ -1362,8 +1437,8 @@ def _spotcheck(out_dir: str, styles: List[Dict[str, Any]], resolution: int, seed
                 _clear_scene()
                 _set_cycles(bpy.context.scene)
                 bpy.context.scene.cycles.seed = seed + idx
-                pose_jitter = _pose_jitter(noisy=noisy)
-                view_cfg, view_roll = _view_config(noisy=noisy, clean_view_mode=clean_view_mode)
+                pose_jitter = _pose_jitter(noisy=noisy, args=args)
+                view_cfg, view_roll = _view_config(noisy=noisy, clean_view_mode=clean_view_mode, args=args)
                 style_cfg = _ensure_min_numerals(style_cfg)
                 style_cfg = _ensure_contrast(style_cfg)
                 style_cfg = _ensure_square_legibility(style_cfg)
@@ -1450,6 +1525,7 @@ def main() -> None:
             args.seed,
             noisy=args.spotcheck_split == "noisy",
             clean_view_mode=args.clean_view_mode,
+            args=args,
         )
         return
 
@@ -1489,6 +1565,7 @@ def main() -> None:
                     force_hand_config=args.force_hand_config,
                     max_seconds=args.max_seconds,
                     clean_view_mode=args.clean_view_mode,
+                    args=args,
                 )
                 f.write(json.dumps(row, ensure_ascii=True) + "\n")
                 if idx % 50 == 0:
@@ -1551,6 +1628,7 @@ def main() -> None:
                 time_mode="hm",
                 force_hand_config="2",
                 max_seconds=args.max_seconds,
+                args=args,
             )
         )
 
