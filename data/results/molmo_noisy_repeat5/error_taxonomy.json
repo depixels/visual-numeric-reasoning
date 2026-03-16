@@ -1,0 +1,15 @@
+{
+  "total": 500,
+  "counts": {
+    "both_wrong": 313,
+    "correct": 40,
+    "minute_only_wrong": 132,
+    "hour_only_wrong": 15
+  },
+  "rates": {
+    "both_wrong": 0.626,
+    "correct": 0.08,
+    "minute_only_wrong": 0.264,
+    "hour_only_wrong": 0.03
+  }
+}

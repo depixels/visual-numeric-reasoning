@@ -1,5 +1,4 @@
 # datasets / large files
-data/
 *.zip
 
 # experiment outputs
