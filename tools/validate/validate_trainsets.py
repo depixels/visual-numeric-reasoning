@@ -46,11 +46,13 @@ def _validate_stage1(row: Dict[str, Any], images_root: str, errors: list) -> Non
     label = row.get("label", {})
     delta_minutes = label.get("negative_delta")
     bucket = row.get("meta", {}).get("delta_bucket")
+    is_gauge = "anchor_gauge_value" in label
     if bucket == "hard" and not (1 <= abs(delta_minutes) <= 5):
         errors.append("hard delta out of range")
     if bucket == "medium" and not (6 <= abs(delta_minutes) <= 20):
         errors.append("medium delta out of range")
-    if bucket == "easy" and not (30 <= abs(delta_minutes) <= 180):
+    easy_min, easy_max = (21, 60) if is_gauge else (30, 180)
+    if bucket == "easy" and not (easy_min <= abs(delta_minutes) <= easy_max):
         errors.append("easy delta out of range")
 
 
@@ -62,6 +64,11 @@ def _validate_stage2_single(row: Dict[str, Any], images_root: str, errors: list)
     target_text = row.get("messages", [{}, {}])[1].get("content", [{}])[0].get("text", "")
     answer = _extract_answer(target_text) or target_text.strip()
     label = row.get("label", {})
+    if "gauge_value" in label:
+        expected = str(int(label["gauge_value"]))
+        if answer != expected:
+            errors.append(f"gauge answer mismatch {answer} != {expected}")
+        return
     expected = label.get("time_hhmmss") if label.get("seconds") is not None and label.get("time_hhmmss") else label.get("time_hhmm")
     if answer != expected:
         errors.append(f"answer mismatch {answer} != {label.get('time_hhmm')}")

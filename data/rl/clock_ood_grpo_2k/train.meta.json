@@ -1,0 +1,24 @@
+{
+  "num_rows": 2000,
+  "clean_n": 1000,
+  "noisy_n": 1000,
+  "unique_render_clean_n": 1000,
+  "unique_render_noisy_n": 1000,
+  "benchmark_out_dir": "/data/hyz/workspace/visual-numeric-reasoning/data/bench/clock_ood_grpo_2k",
+  "parquet_path": "/data/hyz/workspace/visual-numeric-reasoning/data/rl/clock_ood_grpo_2k/train.parquet",
+  "prompt": "Read the exact time shown on this analog clock. Answer in HH:MM:SS format.",
+  "schema_fields": [
+    "data_source",
+    "prompt",
+    "ability",
+    "reward_model",
+    "extra_info",
+    "image",
+    "images",
+    "image_abs",
+    "prompt_text",
+    "gt",
+    "split",
+    "id"
+  ]
+}

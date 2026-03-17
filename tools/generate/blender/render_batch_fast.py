@@ -66,7 +66,12 @@ def _fast_set_render_samples(noisy: bool) -> None:
     scene.cycles.samples = 32 if noisy else 24
     scene.cycles.use_denoising = True
     if hasattr(scene.cycles, "denoiser"):
-        scene.cycles.denoiser = "OPTIX"
+        for denoiser in ("OPTIX", "OPENIMAGEDENOISE"):
+            try:
+                scene.cycles.denoiser = denoiser
+                break
+            except Exception:
+                continue
 
 
 def main() -> None:

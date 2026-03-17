@@ -1,0 +1,18 @@
+{
+  "total": 500,
+  "parsed": 447,
+  "parsed_rate": 0.894,
+  "exact_acc": 0.046,
+  "tol1_acc": 0.13,
+  "tol5_acc": 0.32,
+  "hour_acc": 0.354,
+  "minute_acc": 0.062,
+  "second_acc": 0.044,
+  "mae": 74.98434004474272,
+  "median_abs_error_minutes": 62.0,
+  "exact_hhmm_acc": 0.046,
+  "tol_1min_acc": 0.13,
+  "tol_5min_acc": 0.32,
+  "mae_minutes": 74.98434004474272,
+  "minute_given_hour_acc": 0.12994350282485875
+}

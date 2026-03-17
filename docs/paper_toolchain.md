@@ -249,6 +249,138 @@ python tools/eval/eval_clock_api_repeat.py \
 - `per_sample_stability.jsonl`
 - `per_sample_stability.csv`
 
+### `summary.json` 关键字段解释
+
+`summary.json` 是 repeated eval 的总入口文件，建议论文里优先从这里取 run-level 稳定性结论。
+
+#### 顶层字段
+
+| 字段 | 含义 | 论文里怎么写 |
+|---|---|---|
+| `num_runs` | 一共重复跑了多少次 | repeated evaluation 的 `n` |
+| `provider` | API provider 类型 | 实验设置说明 |
+| `model` | 模型名 | 主表 / appendix 实验设置 |
+| `gt_jsonl` | 本次评测的 GT 文件 | 指向 clean/noisy 或 factorized split |
+| `images_root` | 图像目录 | 实验复现信息 |
+| `temperature` | 采样温度 | sampling variance 设置 |
+| `runs` | 每次 run 的原始 metrics 列表 | 可用于追踪单次波动 |
+| `aggregate` | 对多次 run 的均值/方差汇总 | 论文里最常用 |
+| `majority_vote_metrics` | 对每个样本做 majority vote 后的整体指标 | 多次采样投票后的稳定性能 |
+| `oracle_best_of_n_metrics` | 如果对每个样本从 n 次里选最好一次时的上界 | best-of-n 上界，不是实际部署性能 |
+| `stability_summary` | per-sample 一致性统计 | 分析模型输出稳定性 |
+| `majority_vote_results_jsonl` | majority vote 的逐样本结果文件路径 | 后续 join / analysis 输入 |
+| `per_sample_stability_jsonl` | 每个样本跨 run 的稳定性文件路径 | appendix 稳定性分析 |
+
+#### `aggregate` 字段
+
+`aggregate` 里每个指标都会给出：
+- `mean`
+- `std`
+- `min`
+- `max`
+
+例如：
+- `aggregate.exact_acc.mean`
+- `aggregate.exact_acc.std`
+- `aggregate.tol5_acc.mean`
+- `aggregate.mae.mean`
+
+这些字段最适合直接写进论文：
+
+| 字段 | 含义 | 推荐论文表述 |
+|---|---|---|
+| `aggregate.exact_acc.mean` | 多次 run 的 exact accuracy 平均值 | repeated-sampling mean exact accuracy |
+| `aggregate.exact_acc.std` | exact accuracy 的 run-to-run 波动 | sampling variance / instability |
+| `aggregate.tol1_acc.mean` | 多次 run 的 tol-1 平均值 | 容差 1 分钟下的平均性能 |
+| `aggregate.tol5_acc.mean` | 多次 run 的 tol-5 平均值 | 容差 5 分钟下的平均性能 |
+| `aggregate.hour_acc.mean` | 小时判断平均准确率 | 可用于拆解 hour/minute sensitivity |
+| `aggregate.minute_acc.mean` | 分钟判断平均准确率 | 分钟读取难度分析 |
+| `aggregate.parsed_rate.mean` | 输出可被成功解析的比例 | 格式稳定性 / output validity |
+| `aggregate.mae.mean` | 多次 run 的平均 MAE | 连续误差量化 |
+| `aggregate.avg_latency_sec.mean` | 平均推理时延 | 效率补充指标 |
+
+#### `majority_vote_metrics`
+
+这是把每个样本在 `num_runs` 次预测中的结果做多数投票后，再重新计算的总体指标。
+
+常用字段：
+- `majority_vote_metrics.exact_acc`
+- `majority_vote_metrics.tol1_acc`
+- `majority_vote_metrics.tol5_acc`
+- `majority_vote_metrics.hour_acc`
+- `majority_vote_metrics.minute_acc`
+- `majority_vote_metrics.parsed_rate`
+- `majority_vote_metrics.mae`
+
+论文里可以这样解释：
+- “majority vote reduces sampling noise and estimates the performance of a simple self-consistency strategy”
+- 这是一个轻量 test-time aggregation baseline，比 oracle 更保守、更现实
+
+#### `oracle_best_of_n_metrics`
+
+这部分是样本级 best-of-n 上界。
+
+当前包含：
+- `oracle_best_of_n_metrics.total`
+- `oracle_best_of_n_metrics.exact_acc`
+- `oracle_best_of_n_metrics.tol1_acc`
+- `oracle_best_of_n_metrics.tol5_acc`
+
+含义：
+- `exact_acc`: 若每个样本都能从 n 次结果中挑到一次 exact correct，则整体能达到的上界
+- `tol1_acc`: 若每个样本都能挑到一次 1 分钟内正确，则整体上界
+- `tol5_acc`: 若每个样本都能挑到一次 5 分钟内正确，则整体上界
+
+论文里建议明确写：
+- 这是 oracle upper bound
+- 它衡量“模型知识是否偶尔出现，但采样不稳定”
+- 不应当把它写成真实 test-time 方法结果
+
+#### `stability_summary`
+
+这是把逐样本的一致性压成几个全局统计量后的结果。
+
+当前字段：
+
+| 字段 | 含义 | 论文用途 |
+|---|---|---|
+| `mean_agreement_rate` | 每个样本中，出现次数最多的预测占比，再对所有样本取平均 | 输出一致性 / self-consistency |
+| `mean_unique_predictions` | 每个样本跨 run 出现过多少种不同预测，再对所有样本取平均 | 采样分散程度 |
+| `mean_parsed_rate` | 每个样本 across runs 的解析成功率均值 | 输出格式稳定性 |
+
+推荐论文表述：
+- `mean_agreement_rate` 越低，说明同一输入下模型输出更不稳定
+- `mean_unique_predictions` 越高，说明 sampling variance 越大
+- `mean_parsed_rate` 若下降，说明模型在困难 OOD 下不仅更不准，而且更容易输出不可解析答案
+
+### `per_sample_stability.jsonl` 关键字段
+
+如果你要做 appendix 或 case study，这个文件更直接。
+
+每条样本会包含：
+
+| 字段 | 含义 |
+|---|---|
+| `id` | 样本 id |
+| `split` | 数据 split |
+| `image` | 图像路径 |
+| `num_runs` | 该样本被评测的次数 |
+| `parsed_count` | 有多少次输出成功解析 |
+| `parsed_rate` | 该样本的解析成功率 |
+| `num_unique_predictions` | 出现过多少种不同预测 |
+| `agreement_rate` | 最常见预测所占比例 |
+| `vote_pred_time_hhmm` | 多数投票后的时间 |
+| `vote_pred_time_minutes` | 多数投票后的分钟值 |
+| `vote_support` | 多数票获得了多少票 |
+| `any_exact` | 是否至少有一次 exact correct |
+| `any_tol1` | 是否至少有一次落在 1 分钟误差内 |
+| `any_tol5` | 是否至少有一次落在 5 分钟误差内 |
+
+这些字段特别适合写：
+- 哪些样本是“偶尔答对但不稳定”
+- 哪些样本是“稳定地答错”
+- 哪些样本在 noisy split 下出现高方差
+
 ### 适用分析
 
 - sampling variance

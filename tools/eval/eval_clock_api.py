@@ -66,10 +66,9 @@ from parse_time import parse_hhmm, parse_hhmmss
 
 
 DEFAULT_PROMPT = (
-    "Read the analog clock in the image and answer with exact time in HH:MM (12-hour format). "
-    "Output only one time string like 03:25."
+    "Read the exact time shown on this analog clock. "
+    "Answer in HH:MM:SS format." 
 )
-
 
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Evaluate analog-clock API model outputs")

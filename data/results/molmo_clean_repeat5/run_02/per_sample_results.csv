@@ -1,0 +1,681 @@
+id,split,image,gt_time_hhmm,gt_time_minutes,gt_time_hhmmss,gt_time_seconds_total,gt_seconds,pred_time_hhmm,pred_time_minutes,pred_time_hhmmss,pred_time_seconds_total,parsed_ok,is_exact,tol_1,tol_5,abs_err_minutes,hour_correct,minute_correct,second_correct,raw_output,latency_sec,error
+rege_ood_clean_blender_000000,clean,images/sample_00000.png,11:00,660,11:00:45,39645,45,10:59,659,10:59:45,39585,True,False,True,True,1,False,False,True,10:59:45,0.48566269874572754,
+rege_ood_clean_blender_000001,clean,images/sample_00001.png,05:33,333,05:33:30,20010,30,05:35,335,05:35:30,20130,True,False,False,True,2,True,False,True,The exact time shown on this analog clock is 5:35:30.,0.8200323581695557,
+rege_ood_clean_blender_000002,clean,images/sample_00002.png,08:15,495,08:15:43,29743,43,08:42,522,08:42:45,31365,True,False,False,False,27,True,False,False,08:42:45,0.4716978073120117,
+rege_ood_clean_blender_000003,clean,images/sample_00003.png,08:25,505,08:25:23,30323,23,08:24,504,08:24:24,30264,True,False,True,True,1,True,False,False,08:24:24,0.5069959163665771,
+rege_ood_clean_blender_000004,clean,images/sample_00004.png,11:40,700,,,,,,,,False,False,False,False,,,,,00:46:42,0.34997129440307617,
+rege_ood_clean_blender_000005,clean,images/sample_00005.png,09:52,592,,,,10:55,655,10:55:00,39300,True,False,False,False,63,False,False,,10:55:00,0.4442570209503174,
+rege_ood_clean_blender_000006,clean,images/sample_00006.png,06:44,404,,,,06:44,404,06:44:44,24284,True,True,True,True,0,True,True,,06:44:44,0.5189309120178223,
+rege_ood_clean_blender_000007,clean,images/sample_00007.png,05:03,303,,,,03:29,209,03:29:05,12545,True,False,False,False,94,False,False,,03:29:05,0.5153806209564209,
+rege_ood_clean_blender_000008,clean,images/sample_00008.png,05:44,344,05:44:46,20686,46,05:46,346,05:46:46,20806,True,False,False,True,2,True,False,True,The exact time shown on the analog clock is 05:46:46.,0.6970648765563965,
+rege_ood_clean_blender_000009,clean,images/sample_00009.png,04:17,257,,,,,,,,False,False,False,False,,,,,13:15:13,0.3567695617675781,
+rege_ood_clean_blender_000010,clean,images/sample_00010.png,07:40,460,,,,07:40,460,07:40:39,27639,True,True,True,True,0,True,True,,07:40:39,0.45581674575805664,
+rege_ood_clean_blender_000011,clean,images/sample_00011.png,01:31,91,01:31:21,5481,21,01:32,92,01:32:18,5538,True,False,True,True,1,True,False,False,1:32:18,0.517221212387085,
+rege_ood_clean_blender_000012,clean,images/sample_00012.png,04:36,276,04:36:48,16608,48,04:36,276,04:36:47,16607,True,True,True,True,0,True,True,False,04:36:47,0.5405898094177246,
+rege_ood_clean_blender_000013,clean,images/sample_00013.png,01:25,85,,,,02:34,154,02:34:34,9274,True,False,False,False,69,False,False,,"To answer this question, I need to carefully examine the clock face described in the image. Let's break it down:
+
+1. The clock face shows 6 dashes between each number.
+2. These dashes represent 5-minute intervals.
+3. The hands of the clock are described as aqua blue.
+
+Now, let's determine the time:
+
+- The hour hand is between 2 and 3, closer to 3. This suggests it's about 2:15.
+- The minute hand is between 6 and 7, closer to 6. This indicates it's about 2:33.
+- The second hand is also between 6 and 7, but closer to 7. This suggests it's about 2:34.
+
+Therefore, the time shown on the analog clock is:
+
+02:34:34",4.086993455886841,
+rege_ood_clean_blender_000014,clean,images/sample_00014.png,08:43,523,08:43:22,31402,22,08:43,523,08:43:21,31401,True,True,True,True,0,True,True,False,08:43:21,0.36193394660949707,
+rege_ood_clean_blender_000015,clean,images/sample_00015.png,03:42,222,03:42:19,13339,19,03:42,222,03:42:19,13339,True,True,True,True,0,True,True,True,3:42:19,0.337679386138916,
+rege_ood_clean_blender_000016,clean,images/sample_00016.png,06:47,407,06:47:06,24426,6,06:47,407,06:47:07,24427,True,True,True,True,0,True,True,False,The time shown on the analog clock is 06:47:07.,0.5524289608001709,
+rege_ood_clean_blender_000017,clean,images/sample_00017.png,12:39,39,12:39:06,2346,6,07:40,460,07:40:05,27605,True,False,False,False,299,False,False,False,"To answer this question, I need to carefully examine the details of the clock in the image:
+
+1. The clock appears to show 7:40 + some seconds
+2. The second hand is described as being between 12 and 1, which suggests about 5 seconds
+3. The hour hand is between 7 and 8, indicating past 7 o'clock
+4. The minute hand is just past 8, confirming 40 minutes past the hour
+
+Putting this information together, the exact time shown on the analog clock is:
+
+07:40:05",2.973912239074707,
+rege_ood_clean_blender_000018,clean,images/sample_00018.png,12:19,19,12:19:05,1145,5,01:20,80,01:20:06,4806,True,False,False,False,61,False,False,False,The exact time shown on the analog clock is 1:20:06.,0.5361356735229492,
+rege_ood_clean_blender_000019,clean,images/sample_00019.png,06:07,367,06:07:08,22028,8,06:04,364,06:04:04,21844,True,False,False,True,3,True,False,False,06:04:04,0.3586108684539795,
+rege_ood_clean_blender_000020,clean,images/sample_00020.png,11:37,697,,,,11:38,698,11:38:00,41880,True,False,True,True,1,True,False,,11:38:00,0.3565499782562256,
+rege_ood_clean_blender_000021,clean,images/sample_00021.png,02:57,177,02:57:41,10661,41,02:55,175,02:55:38,10538,True,False,False,True,2,True,False,False,2:55:38,0.4687044620513916,
+rege_ood_clean_blender_000022,clean,images/sample_00022.png,01:50,110,01:50:05,6605,5,10:04,604,10:04:04,36244,True,False,False,False,226,False,False,False,10:04:04,0.4776582717895508,
+rege_ood_clean_blender_000023,clean,images/sample_00023.png,06:49,409,,,,06:46,406,06:46:46,24406,True,False,False,True,3,True,False,,The exact time shown on this analog clock is 06:46:46,0.6608161926269531,
+rege_ood_clean_blender_000024,clean,images/sample_00024.png,01:18,78,01:18:38,4718,38,01:17,77,01:17:38,4658,True,False,True,True,1,True,False,True,1:17:38,0.46546387672424316,
+rege_ood_clean_blender_000025,clean,images/sample_00025.png,08:03,483,,,,08:05,485,08:05:00,29100,True,False,False,True,2,True,False,,"To answer this question, I need to carefully examine the clock face in the image. The clock appears to be square-shaped with a blue face and white numbers. The hour hand is pointing just past the 8, and the minute hand is positioned between the 1 and 2, indicating it's about 5 minutes past 8. The second hand is not visible in the image.
+
+Based on this information, the exact time shown on the clock is:
+
+08:05:00
+
+This accounts for the visible hour and minute hands, with the seconds hand not visible but assumed to be at the 12 position (60 seconds).",3.711930513381958,
+rege_ood_clean_blender_000026,clean,images/sample_00026.png,03:18,198,03:18:44,11924,44,03:18,198,03:18:44,11924,True,True,True,True,0,True,True,True,03:18:44,0.4854307174682617,
+rege_ood_clean_blender_000027,clean,images/sample_00027.png,03:20,200,03:20:05,12005,5,02:11,131,02:11:57,7917,True,False,False,False,69,False,False,False,02:11:57,0.3561532497406006,
+rege_ood_clean_blender_000028,clean,images/sample_00028.png,01:42,102,01:42:38,6158,38,12:42,42,12:42:38,2558,True,False,False,False,60,False,True,True,12:42:38,0.4892234802246094,
+rege_ood_clean_blender_000029,clean,images/sample_00029.png,05:49,349,,,,05:51,351,05:51:51,21111,True,False,False,True,2,True,False,,The exact time shown on this analog clock is 05:51:51,0.760612964630127,
+rege_ood_clean_blender_000030,clean,images/sample_00030.png,01:53,113,,,,01:51,111,01:51:52,6712,True,False,False,True,2,True,False,,The exact time shown on the analog clock is 1:51:52.,0.6586554050445557,
+rege_ood_clean_blender_000031,clean,images/sample_00031.png,06:33,393,,,,12:00,0,12:00:00,0,True,False,False,False,327,False,False,,12:00:00,0.4567131996154785,
+rege_ood_clean_blender_000032,clean,images/sample_00032.png,10:58,658,10:58:30,39510,30,12:01,1,12:01:31,91,True,False,False,False,63,False,False,False,12:01:31,0.5028748512268066,
+rege_ood_clean_blender_000033,clean,images/sample_00033.png,03:58,238,03:58:21,14301,21,03:58,238,03:58:20,14300,True,True,True,True,0,True,True,False,The exact time shown on the analog clock is 3:58:20.,0.848052978515625,
+rege_ood_clean_blender_000034,clean,images/sample_00034.png,06:05,365,06:05:01,21901,1,12:03,3,12:03:07,187,True,False,False,False,358,False,False,False,12:03:07,0.4885101318359375,
+rege_ood_clean_blender_000035,clean,images/sample_00035.png,06:09,369,,,,06:08,368,,,True,False,True,True,1,True,False,,06:08,0.3328440189361572,
+rege_ood_clean_blender_000036,clean,images/sample_00036.png,12:30,30,,,,01:30,90,01:30:00,5400,True,False,False,False,60,False,True,,01:30:00,0.44607973098754883,
+rege_ood_clean_blender_000037,clean,images/sample_00037.png,04:08,248,,,,04:06,246,04:06:00,14760,True,False,False,True,2,True,False,,04:06:00,0.520301103591919,
+rege_ood_clean_blender_000038,clean,images/sample_00038.png,11:58,718,11:58:27,43107,27,11:59,719,11:59:27,43167,True,False,True,True,1,True,False,True,11:59:27,0.5247938632965088,
+rege_ood_clean_blender_000039,clean,images/sample_00039.png,03:33,213,03:33:58,12838,58,03:35,215,03:35:59,12959,True,False,False,True,2,True,False,False,3:35:59,0.5180652141571045,
+rege_ood_clean_blender_000040,clean,images/sample_00040.png,07:37,457,,,,07:33,453,07:33:33,27213,True,False,False,True,4,True,False,,The time shown on the analog clock is 07:33:33,0.8252987861633301,
+rege_ood_clean_blender_000041,clean,images/sample_00041.png,03:49,229,,,,,,,,False,False,False,False,,,,,13:40:55,0.4877922534942627,
+rege_ood_clean_blender_000042,clean,images/sample_00042.png,12:02,2,,,,12:02,2,12:02:00,120,True,True,True,True,0,True,True,,12:02:00,0.5034313201904297,
+rege_ood_clean_blender_000043,clean,images/sample_00043.png,04:23,263,04:23:21,15801,21,04:22,262,04:22:21,15741,True,False,True,True,1,True,False,True,The time shown on the analog clock is 04:22:21.,0.5341510772705078,
+rege_ood_clean_blender_000044,clean,images/sample_00044.png,09:49,589,09:49:50,35390,50,09:47,587,09:47:49,35269,True,False,False,True,2,True,False,False,09:47:49,0.44754815101623535,
+rege_ood_clean_blender_000045,clean,images/sample_00045.png,06:50,410,06:50:50,24650,50,06:49,409,06:49:50,24590,True,False,True,True,1,True,False,True,06:49:50,0.4773368835449219,
+rege_ood_clean_blender_000046,clean,images/sample_00046.png,01:01,61,01:01:19,3679,19,12:58,58,12:58:18,3498,True,False,False,True,3,False,False,False,The exact time shown on this analog clock is 12:58:18.,0.8065705299377441,
+rege_ood_clean_blender_000047,clean,images/sample_00047.png,10:29,629,,,,10:29,629,10:29:30,37770,True,True,True,True,0,True,True,,10:29:30,0.48870253562927246,
+rege_ood_clean_blender_000048,clean,images/sample_00048.png,11:18,678,,,,12:20,20,12:20:20,1220,True,False,False,False,62,False,False,,12:20:20,0.5088827610015869,
+rege_ood_clean_blender_000049,clean,images/sample_00049.png,06:34,394,,,,05:31,331,05:31:31,19891,True,False,False,False,63,False,False,,The exact time shown on the analog clock is 05:31:31,0.64632248878479,
+rege_ood_clean_blender_000050,clean,images/sample_00050.png,07:44,464,,,,07:45,465,07:45:00,27900,True,False,True,True,1,True,False,,"To answer this question, I need to carefully examine the clock face in the image. The clock appears to be a blue square clock with white numbers and hands. The hour hand is positioned between 7 and 8, closer to 7, while the minute hand is pointing directly at 9.
+
+Given this information, I can determine the exact time shown on the clock:
+
+The hour is 7 (as the minute hand is between 7 and 8)
+The minute is 45 (as it's pointing at 9, which represents 45 minutes past the hour)
+The seconds are 0 (as there's no additional information about the second hand's position)
+
+Therefore, the time shown on the clock in HH:MM:SS format is:
+
+07:45:00",3.4343225955963135,
+rege_ood_clean_blender_000051,clean,images/sample_00051.png,02:04,124,02:04:29,7469,29,02:04,124,02:04:29,7469,True,True,True,True,0,True,True,True,02:04:29,0.34034252166748047,
+rege_ood_clean_blender_000052,clean,images/sample_00052.png,12:54,54,,,,12:53,53,12:53:53,3233,True,False,True,True,1,True,False,,12:53:53,0.3763697147369385,
+rege_ood_clean_blender_000053,clean,images/sample_00053.png,07:12,432,07:12:22,25942,22,07:19,439,07:19:10,26350,True,False,False,False,7,True,False,False,07:19:10,0.34229350090026855,
+rege_ood_clean_blender_000054,clean,images/sample_00054.png,05:13,313,,,,05:12,312,05:12:00,18720,True,False,True,True,1,True,False,,05:12:00,0.46956515312194824,
+rege_ood_clean_blender_000055,clean,images/sample_00055.png,03:45,225,03:45:52,13552,52,03:57,237,03:57:27,14247,True,False,False,False,12,True,False,False,"To read the time on this analog clock, I'll need to carefully examine the position of the hour, minute, and second hands:
+
+Hour hand: Between 3 and 4, closer to 4
+Minute hand: Between 5 and 6, closer to 6
+Second hand: Between 6 and 7
+
+Based on these positions:
+
+The hour appears to be 3:57
+The minute is 27 seconds
+
+Therefore, the exact time shown on this analog clock is:
+
+03:57:27",2.7980434894561768,
+rege_ood_clean_blender_000056,clean,images/sample_00056.png,02:49,169,02:49:05,10145,5,02:50,170,02:50:03,10203,True,False,True,True,1,True,False,False,"To determine the time shown on this analog clock, I'll need to analyze the position of the clock hands:
+
+Hour hand: Between 2 and 3, closer to 2
+Minute hand: Between 9 and 10, closer to 10
+Second hand: Slightly past 12
+
+Based on this analysis, I can estimate the time as follows:
+
+Hour: 2:50
+Minute: 03
+Second: 03
+
+Therefore, the exact time shown on this analog clock is:
+
+2:50:03",2.8921022415161133,
+rege_ood_clean_blender_000057,clean,images/sample_00057.png,07:56,476,,,,07:55,475,07:55:55,28555,True,False,True,True,1,True,False,,The time shown on the analog clock is 07:55:55,0.5017228126525879,
+rege_ood_clean_blender_000058,clean,images/sample_00058.png,11:49,709,11:49:08,42548,8,11:47,707,11:47:05,42425,True,False,False,True,2,True,False,False,11:47:05,0.4690275192260742,
+rege_ood_clean_blender_000059,clean,images/sample_00059.png,06:19,379,,,,06:18,378,06:18:00,22680,True,False,True,True,1,True,False,,The time shown on the analog clock is 06:18:00.,0.5182785987854004,
+rege_ood_clean_blender_000060,clean,images/sample_00060.png,09:59,599,,,,10:02,602,10:02:02,36122,True,False,False,True,3,False,False,,The time shown on the analog clock is 10:02:02.,0.5143342018127441,
+rege_ood_clean_blender_000061,clean,images/sample_00061.png,05:35,335,05:35:08,20108,8,05:35,335,05:35:08,20108,True,True,True,True,0,True,True,True,The time shown on the analog clock is 05:35:08.,0.5192723274230957,
+rege_ood_clean_blender_000062,clean,images/sample_00062.png,03:08,188,,,,03:07,187,03:07:07,11227,True,False,True,True,1,True,False,,03:07:07,0.3424570560455322,
+rege_ood_clean_blender_000063,clean,images/sample_00063.png,10:57,657,10:57:32,39452,32,01:02,62,01:02:37,3757,True,False,False,False,125,False,False,False,01:02:37,0.5092060565948486,
+rege_ood_clean_blender_000064,clean,images/sample_00064.png,07:15,435,07:15:52,26152,52,07:14,434,07:14:51,26091,True,False,True,True,1,True,False,False,07:14:51,0.5464587211608887,
+rege_ood_clean_blender_000065,clean,images/sample_00065.png,04:14,254,,,,04:12,252,04:12:12,15132,True,False,False,True,2,True,False,,The exact time shown on the analog clock is 04:12:12.,0.8483576774597168,
+rege_ood_clean_blender_000066,clean,images/sample_00066.png,11:42,702,11:42:50,42170,50,11:48,708,11:48:42,42522,True,False,False,False,6,True,False,False,11:48:42,0.4715445041656494,
+rege_ood_clean_blender_000067,clean,images/sample_00067.png,11:59,719,,,,01:04,64,01:04:03,3843,True,False,False,False,65,False,False,,01:04:03,0.4612278938293457,
+rege_ood_clean_blender_000068,clean,images/sample_00068.png,01:10,70,,,,01:10,70,01:10:10,4210,True,True,True,True,0,True,True,,1:10:10,0.4472038745880127,
+rege_ood_clean_blender_000069,clean,images/sample_00069.png,02:19,139,,,,03:22,202,03:22:22,12142,True,False,False,False,63,False,False,,3:22:22,0.45330309867858887,
+rege_ood_clean_blender_000070,clean,images/sample_00070.png,04:17,257,,,,,,,,False,False,False,False,,,,,15:16:17,0.46993112564086914,
+rege_ood_clean_blender_000071,clean,images/sample_00071.png,08:59,539,,,,08:58,538,08:58:57,32337,True,False,True,True,1,True,False,,08:58:57,0.46544313430786133,
+rege_ood_clean_blender_000072,clean,images/sample_00072.png,08:18,498,,,,08:16,496,08:16:16,29776,True,False,False,True,2,True,False,,The time shown on this analog clock is 08:16:16.,0.7679469585418701,
+rege_ood_clean_blender_000073,clean,images/sample_00073.png,12:45,45,,,,,,,,False,False,False,False,,,,,00:00:43,0.4689631462097168,
+rege_ood_clean_blender_000074,clean,images/sample_00074.png,01:06,66,01:06:30,3990,30,01:29,89,01:29:30,5370,True,False,False,False,23,True,False,True,01:29:30,0.48340368270874023,
+rege_ood_clean_blender_000075,clean,images/sample_00075.png,02:30,150,,,,12:31,31,12:31:00,1860,True,False,False,False,119,False,False,,12:31:00,0.34099292755126953,
+rege_ood_clean_blender_000076,clean,images/sample_00076.png,01:09,69,,,,12:03,3,12:03:04,184,True,False,False,False,66,False,False,,The exact time shown on this analog clock is 12:03:04.,0.6487624645233154,
+rege_ood_clean_blender_000077,clean,images/sample_00077.png,10:11,611,,,,10:10,610,10:10:10,36610,True,False,True,True,1,True,False,,10:10:10,0.4924197196960449,
+rege_ood_clean_blender_000078,clean,images/sample_00078.png,03:10,190,03:10:31,11431,31,03:10,190,03:10:31,11431,True,True,True,True,0,True,True,True,03:10:31,0.35848259925842285,
+rege_ood_clean_blender_000079,clean,images/sample_00079.png,05:36,336,05:36:00,20160,0,06:36,396,06:36:01,23761,True,False,False,False,60,False,True,False,The exact time shown on this analog clock is 06:36:01.,0.7742478847503662,
+rege_ood_clean_blender_000080,clean,images/sample_00080.png,06:42,402,06:42:41,24161,41,07:46,466,07:46:47,28007,True,False,False,False,64,False,False,False,07:46:47,0.3518805503845215,
+rege_ood_clean_blender_000081,clean,images/sample_00081.png,10:09,609,10:09:20,36560,20,10:10,610,10:10:20,36620,True,False,True,True,1,True,False,True,10:10:20,0.4619565010070801,
+rege_ood_clean_blender_000082,clean,images/sample_00082.png,06:38,398,06:38:46,23926,46,06:45,405,06:45:37,24337,True,False,False,False,7,True,False,False,6:45:37,0.32361435890197754,
+rege_ood_clean_blender_000083,clean,images/sample_00083.png,09:29,569,,,,09:31,571,09:31:00,34260,True,False,False,True,2,True,False,,09:31:00,0.3422536849975586,
+rege_ood_clean_blender_000084,clean,images/sample_00084.png,03:11,191,03:11:31,11491,31,03:12,192,03:12:29,11549,True,False,True,True,1,True,False,False,The exact time shown on this analog clock is 03:12:29.,0.5360550880432129,
+rege_ood_clean_blender_000085,clean,images/sample_00085.png,11:36,696,,,,11:34,694,11:34:27,41667,True,False,False,True,2,True,False,,11:34:27,0.3421649932861328,
+rege_ood_clean_blender_000086,clean,images/sample_00086.png,04:36,276,,,,04:36,276,04:36:33,16593,True,True,True,True,0,True,True,,04:36:33,0.3424110412597656,
+rege_ood_clean_blender_000087,clean,images/sample_00087.png,07:43,463,07:43:57,27837,57,07:44,464,07:44:57,27897,True,False,True,True,1,True,False,True,The time shown on the analog clock is 7:44:57,0.483792781829834,
+rege_ood_clean_blender_000088,clean,images/sample_00088.png,04:25,265,04:25:43,15943,43,03:25,205,03:25:44,12344,True,False,False,False,60,False,True,False,3:25:44,0.4548501968383789,
+rege_ood_clean_blender_000089,clean,images/sample_00089.png,07:10,430,07:10:07,25807,7,02:09,129,02:09:06,7746,True,False,False,False,301,False,False,False,The time shown on the analog clock is 02:09:06.,0.6448962688446045,
+rege_ood_clean_blender_000090,clean,images/sample_00090.png,05:17,317,,,,06:18,378,06:18:00,22680,True,False,False,False,61,False,False,,06:18:00,0.5125830173492432,
+rege_ood_clean_blender_000091,clean,images/sample_00091.png,08:21,501,,,,08:21,501,08:21:33,30093,True,True,True,True,0,True,True,,The time shown on the analog clock is 08:21:33,0.7883670330047607,
+rege_ood_clean_blender_000092,clean,images/sample_00092.png,11:48,708,11:48:10,42490,10,11:47,707,11:47:09,42429,True,False,True,True,1,True,False,False,11:47:09,0.47019457817077637,
+rege_ood_clean_blender_000093,clean,images/sample_00093.png,09:19,559,09:19:16,33556,16,09:16,556,09:16:13,33373,True,False,False,True,3,True,False,False,The exact time shown on this analog clock is 09:16:13.,0.6639328002929688,
+rege_ood_clean_blender_000094,clean,images/sample_00094.png,06:04,364,06:04:43,21883,43,11:50,710,11:50:59,42659,True,False,False,False,346,False,False,False,11:50:59,0.33965563774108887,
+rege_ood_clean_blender_000095,clean,images/sample_00095.png,12:26,26,12:26:20,1580,20,12:26,26,12:26:19,1579,True,True,True,True,0,True,True,False,The exact time shown on this analog clock is 12:26:19.,0.6639833450317383,
+rege_ood_clean_blender_000096,clean,images/sample_00096.png,02:51,171,02:51:59,10319,59,01:23,83,01:23:58,5038,True,False,False,False,88,False,False,False,1:23:58,0.3254225254058838,
+rege_ood_clean_blender_000097,clean,images/sample_00097.png,08:51,531,08:51:30,31890,30,08:51,531,08:51:29,31889,True,True,True,True,0,True,True,False,08:51:29,0.3427305221557617,
+rege_ood_clean_blender_000098,clean,images/sample_00098.png,05:36,336,,,,05:35,335,05:35:35,20135,True,False,True,True,1,True,False,,05:35:35,0.3421905040740967,
+rege_ood_clean_blender_000099,clean,images/sample_00099.png,05:49,349,05:49:45,20985,45,10:45,645,10:45:44,38744,True,False,False,False,296,False,False,False,10:45:44,0.3419790267944336,
+rege_ood_clean_blender_000100,clean,images/sample_00100.png,10:58,658,,,,10:57,657,10:57:56,39476,True,False,True,True,1,True,False,,10:57:56,0.33664989471435547,
+rege_ood_clean_blender_000101,clean,images/sample_00101.png,07:17,437,07:17:09,26229,9,07:17,437,07:17:08,26228,True,True,True,True,0,True,True,False,The exact time shown on this analog clock is 7:17:08,0.5014290809631348,
+rege_ood_clean_blender_000102,clean,images/sample_00102.png,06:34,394,,,,03:27,207,03:27:06,12426,True,False,False,False,187,False,False,,"To answer this question, I need to carefully examine the clock image and make some inferences based on the visible information.
+
+The clock face shows only three numbers: 12, 3, and 6, which typically represent the 12-hour format. The hands are pointing to positions between these numbers, which means we need to estimate their exact positions.
+
+Looking at the hour hand, it appears to be slightly past the 3, but not quite to 6. This suggests it's around 3:25.
+
+The minute hand seems to be pointing just a bit past the 6, indicating approximately 27 minutes past the hour.
+
+As for the second hand, it's not explicitly mentioned, but since it's a typical clock, we can assume it's moving. Given the description doesn't mention it, we can estimate it's at the 6-second mark.
+
+Therefore, the exact time shown on this analog clock would be:
+
+03:27:06",5.024900436401367,
+rege_ood_clean_blender_000103,clean,images/sample_00103.png,09:07,547,,,,09:06,546,09:06:00,32760,True,False,True,True,1,True,False,,09:06:00,0.4899609088897705,
+rege_ood_clean_blender_000104,clean,images/sample_00104.png,03:54,234,03:54:19,14059,19,10:19,619,10:19:18,37158,True,False,False,False,335,False,False,False,10:19:18,0.49372363090515137,
+rege_ood_clean_blender_000105,clean,images/sample_00105.png,09:02,542,09:02:35,32555,35,10:05,605,10:05:40,36340,True,False,False,False,63,False,False,False,10:05:40,0.3703575134277344,
+rege_ood_clean_blender_000106,clean,images/sample_00106.png,02:51,171,,,,10:49,649,10:49:30,38970,True,False,False,False,242,False,False,,10:49:30,0.4554636478424072,
+rege_ood_clean_blender_000107,clean,images/sample_00107.png,05:47,347,05:47:22,20842,22,05:47,347,05:47:23,20843,True,True,True,True,0,True,True,False,The time shown on the analog clock is 5:47:23,0.7831697463989258,
+rege_ood_clean_blender_000108,clean,images/sample_00108.png,03:42,222,,,,03:42,222,03:42:00,13320,True,True,True,True,0,True,True,,3:42:00,0.4699258804321289,
+rege_ood_clean_blender_000109,clean,images/sample_00109.png,08:24,504,,,,08:23,503,08:23:00,30180,True,False,True,True,1,True,False,,08:23:00,0.36106324195861816,
+rege_ood_clean_blender_000110,clean,images/sample_00110.png,04:46,286,,,,04:46,286,04:46:54,17214,True,True,True,True,0,True,True,,The exact time shown on this analog clock is 04:46:54.,0.6806652545928955,
+rege_ood_clean_blender_000111,clean,images/sample_00111.png,06:06,366,06:06:44,22004,44,06:46,406,06:46:10,24370,True,False,False,False,40,True,False,False,The exact time shown on this analog clock is 06:46:10,0.536318302154541,
+rege_ood_clean_blender_000112,clean,images/sample_00112.png,03:05,185,03:05:53,11153,53,10:06,606,10:06:53,36413,True,False,False,False,299,False,False,True,10:06:53,0.36048054695129395,
+rege_ood_clean_blender_000113,clean,images/sample_00113.png,10:44,644,10:44:54,38694,54,10:44,644,10:44:54,38694,True,True,True,True,0,True,True,True,10:44:54,0.361356258392334,
+rege_ood_clean_blender_000114,clean,images/sample_00114.png,02:12,132,,,,11:40,700,,,True,False,False,False,152,False,False,,13:11:40,0.36505556106567383,
+rege_ood_clean_blender_000115,clean,images/sample_00115.png,05:26,326,,,,05:29,329,05:29:28,19768,True,False,False,True,3,True,False,,05:29:28,0.3631742000579834,
+rege_ood_clean_blender_000116,clean,images/sample_00116.png,03:47,227,,,,03:16,196,,,True,False,False,False,31,True,False,,03:16,0.3092496395111084,
+rege_ood_clean_blender_000117,clean,images/sample_00117.png,05:36,336,05:36:02,20162,2,05:35,335,05:35:01,20101,True,False,True,True,1,True,False,False,The time shown on the analog clock is 5:35:01.,0.5213141441345215,
+rege_ood_clean_blender_000118,clean,images/sample_00118.png,10:44,644,10:44:02,38642,2,10:43,643,10:43:01,38581,True,False,True,True,1,True,False,False,10:43:01,0.5122582912445068,
+rege_ood_clean_blender_000119,clean,images/sample_00119.png,11:22,682,11:22:57,40977,57,,,,,False,False,False,False,,,,,00:24:57,0.36197829246520996,
+rege_ood_clean_blender_000120,clean,images/sample_00120.png,07:04,424,,,,04:03,243,04:03:49,14629,True,False,False,False,181,False,False,,04:03:49,0.498424768447876,
+rege_ood_clean_blender_000121,clean,images/sample_00121.png,01:17,77,,,,12:12,12,,,True,False,False,False,65,False,False,,13:12:12,0.509521484375,
+rege_ood_clean_blender_000122,clean,images/sample_00122.png,10:55,655,10:55:46,39346,46,10:43,643,10:43:52,38632,True,False,False,False,12,True,False,False,10:43:52,0.3592405319213867,
+rege_ood_clean_blender_000123,clean,images/sample_00123.png,09:53,593,,,,10:52,652,10:52:53,39173,True,False,False,False,59,False,False,,10:52:53,0.45974230766296387,
+rege_ood_clean_blender_000124,clean,images/sample_00124.png,12:51,51,,,,12:47,47,12:47:46,2866,True,False,False,True,4,True,False,,12:47:46,0.5173616409301758,
+rege_ood_clean_blender_000125,clean,images/sample_00125.png,09:59,599,09:59:11,35951,11,01:15,75,01:15:03,4503,True,False,False,False,196,False,False,False,01:15:03,0.5003213882446289,
+rege_ood_clean_blender_000126,clean,images/sample_00126.png,06:14,374,,,,06:13,373,06:13:13,22393,True,False,True,True,1,True,False,,The exact time shown on this analog clock is 06:13:13.,0.8273458480834961,
+rege_ood_clean_blender_000127,clean,images/sample_00127.png,04:59,299,,,,04:02,242,04:02:01,14521,True,False,False,False,57,True,False,,04:02:01,0.4800376892089844,
+rege_ood_clean_blender_000128,clean,images/sample_00128.png,02:38,158,02:38:20,9500,20,12:52,52,12:52:12,3132,True,False,False,False,106,False,False,False,12:52:12,0.4692039489746094,
+rege_ood_clean_blender_000129,clean,images/sample_00129.png,01:20,80,01:20:27,4827,27,01:26,86,01:26:20,5180,True,False,False,False,6,True,False,False,01:26:20,0.47542238235473633,
+rege_ood_clean_blender_000130,clean,images/sample_00130.png,07:29,449,,,,07:26,446,07:26:26,26786,True,False,False,True,3,True,False,,The exact time shown on the analog clock is 07:26:26,0.8213193416595459,
+rege_ood_clean_blender_000131,clean,images/sample_00131.png,08:25,505,,,,08:24,504,08:24:20,30260,True,False,True,True,1,True,False,,"To determine the exact time shown on this analog clock, I'll need to analyze the hour, minute, and second hands:
+
+1. Hour hand: It's positioned between 8 and 9, closer to 8.
+
+2. Minute hand: It's pointing towards 24 (which represents 4 minutes past the hour).
+
+3. Second hand: It's pointed towards 4 (which represents 20 seconds past the minute).
+
+Based on these positions, the time shown on the clock is:
+
+08:24:20",2.677581787109375,
+rege_ood_clean_blender_000132,clean,images/sample_00132.png,03:50,230,03:50:43,13843,43,10:43,643,10:43:43,38623,True,False,False,False,307,False,False,True,10:43:43,0.4099137783050537,
+rege_ood_clean_blender_000133,clean,images/sample_00133.png,04:51,291,04:51:57,17517,57,10:55,655,10:55:53,39353,True,False,False,False,356,False,False,False,10:55:53,0.3943929672241211,
+rege_ood_clean_blender_000134,clean,images/sample_00134.png,12:51,51,12:51:55,3115,55,12:56,56,12:56:57,3417,True,False,False,True,5,True,False,False,"While I can see the clock in the image, the exact time is not clearly visible. The clock appears to show a time close to 12:56, but without being able to see the second hand precisely, I can't give the exact time in seconds. The best I can estimate is:
+
+12:56:57
+
+This is an educated guess based on the position of the hour and minute hands, but please note that the second component is approximate.",2.4566094875335693,
+rege_ood_clean_blender_000135,clean,images/sample_00135.png,06:48,408,,,,07:33,453,07:33:40,27220,True,False,False,False,45,False,False,,"To answer this question, I need to carefully examine the clock in the image. Looking at the clock face:
+
+The hour hand is pointing just past the 6, indicating it's in the 7 o'clock hour.
+The minute hand is pointing just past the 6, which represents 33 minutes.
+The second hand is moving counterclockwise and appears to be just past the 8, which is 40 seconds.
+
+Therefore, the exact time shown on the analog clock is:
+
+07:33:40",2.2723326683044434,
+rege_ood_clean_blender_000136,clean,images/sample_00136.png,11:17,677,11:17:44,40664,44,11:19,679,11:19:46,40786,True,False,False,True,2,True,False,False,11:19:46,0.3716561794281006,
+rege_ood_clean_blender_000137,clean,images/sample_00137.png,12:36,36,12:36:13,2173,13,01:11,71,01:11:12,4272,True,False,False,False,35,False,False,False,01:11:12,0.39562273025512695,
+rege_ood_clean_blender_000138,clean,images/sample_00138.png,11:43,703,11:43:33,42213,33,11:41,701,11:41:26,42086,True,False,False,True,2,True,False,False,11:41:26,0.49223804473876953,
+rege_ood_clean_blender_000139,clean,images/sample_00139.png,04:43,283,,,,04:43,283,04:43:44,17024,True,True,True,True,0,True,True,,04:43:44,0.5045297145843506,
+rege_ood_clean_blender_000140,clean,images/sample_00140.png,07:14,434,,,,10:13,613,10:13:00,36780,True,False,False,False,179,False,False,,10:13:00,0.5065348148345947,
+rege_ood_clean_blender_000141,clean,images/sample_00141.png,10:39,639,10:39:46,38386,46,10:36,636,10:36:44,38204,True,False,False,True,3,True,False,False,10:36:44,0.39510512351989746,
+rege_ood_clean_blender_000142,clean,images/sample_00142.png,05:46,346,,,,,,,,False,False,False,False,,,,,"Due to the limited view of the clock face, I cannot determine the exact time shown. The image only displays partial numbers (6, 3, and 12) and hands, which are not sufficient to read the full time. Without seeing the complete clock face or more detailed markings, it's not possible to provide a precise time in HH:MM:SS format.",2.1476025581359863,
+rege_ood_clean_blender_000143,clean,images/sample_00143.png,05:30,330,05:30:54,19854,54,05:29,329,05:29:52,19792,True,False,True,True,1,True,False,False,The exact time shown on the analog clock is 5:29:52.,0.7419507503509521,
+rege_ood_clean_blender_000144,clean,images/sample_00144.png,06:48,408,06:48:33,24513,33,07:40,460,07:40:35,27635,True,False,False,False,52,False,False,False,"To determine the exact time shown on the analog clock, I'll need to carefully examine the position of the clock hands:
+
+1. The hour hand is just past the 7, indicating it's slightly after 7 o'clock.
+2. The minute hand is pointing between the 8 and 9, specifically a bit past 8.
+3. The second hand is between the 7 and 8, a little past 7.
+
+Let's break it down:
+
+- Hour: 7
+- Minutes: 40 (past 8 minutes)
+- Seconds: 35 (past 7 seconds)
+
+Therefore, the exact time shown on the analog clock is:
+
+07:40:35",3.885556221008301,
+rege_ood_clean_blender_000145,clean,images/sample_00145.png,04:52,292,04:52:56,17576,56,10:54,654,10:54:56,39296,True,False,False,False,358,False,False,True,10:54:56,0.38809871673583984,
+rege_ood_clean_blender_000146,clean,images/sample_00146.png,05:17,317,,,,06:18,378,06:18:00,22680,True,False,False,False,61,False,False,,The exact time shown on this analog clock is 06:18:00.,0.8200283050537109,
+rege_ood_clean_blender_000147,clean,images/sample_00147.png,02:31,151,02:31:50,9110,50,02:29,149,02:29:49,8989,True,False,False,True,2,True,False,False,The time shown on the analog clock is 02:29:49,0.7828457355499268,
+rege_ood_clean_blender_000148,clean,images/sample_00148.png,05:38,338,05:38:41,20321,41,06:39,399,06:39:40,23980,True,False,False,False,61,False,False,False,The exact time shown on the analog clock is 6:39:40,0.6571824550628662,
+rege_ood_clean_blender_000149,clean,images/sample_00149.png,02:41,161,,,,02:40,160,02:40:40,9640,True,False,True,True,1,True,False,,2:40:40,0.49423766136169434,
+rege_ood_clean_blender_000150,clean,images/sample_00150.png,11:32,692,11:32:57,41577,57,12:35,35,12:35:01,2101,True,False,False,False,63,False,False,False,12:35:01,0.5013003349304199,
+rege_ood_clean_blender_000151,clean,images/sample_00151.png,05:35,335,,,,05:35,335,05:35:00,20100,True,True,True,True,0,True,True,,05:35:00,0.5026078224182129,
+rege_ood_clean_blender_000152,clean,images/sample_00152.png,09:35,575,,,,09:35,575,09:35:37,34537,True,True,True,True,0,True,True,,09:35:37,0.5042996406555176,
+rege_ood_clean_blender_000153,clean,images/sample_00153.png,01:13,73,01:13:34,4414,34,01:15,75,01:15:34,4534,True,False,False,True,2,True,False,True,1:15:34,0.4709043502807617,
+rege_ood_clean_blender_000154,clean,images/sample_00154.png,06:15,375,06:15:35,22535,35,06:13,373,,,True,False,False,True,2,True,False,,06:13,0.433107852935791,
+rege_ood_clean_blender_000155,clean,images/sample_00155.png,01:37,97,,,,02:36,156,02:36:08,9368,True,False,False,False,59,False,False,,02:36:08,0.5040595531463623,
+rege_ood_clean_blender_000156,clean,images/sample_00156.png,03:57,237,,,,11:02,662,11:02:03,39723,True,False,False,False,295,False,False,,11:02:03,0.48810386657714844,
+rege_ood_clean_blender_000157,clean,images/sample_00157.png,10:23,623,10:23:58,37438,58,11:02,662,11:02:03,39723,True,False,False,False,39,False,False,False,The exact time shown on this analog clock is 11:02:03.,0.8130896091461182,
+rege_ood_clean_blender_000158,clean,images/sample_00158.png,12:28,28,12:28:02,1682,2,05:26,326,05:26:02,19562,True,False,False,False,298,False,False,True,05:26:02,0.3763160705566406,
+rege_ood_clean_blender_000159,clean,images/sample_00159.png,03:40,220,,,,04:02,242,04:02:10,14530,True,False,False,False,22,False,False,,04:02:10,0.45589733123779297,
+rege_ood_clean_blender_000160,clean,images/sample_00160.png,08:25,505,08:25:36,30336,36,10:35,635,10:35:36,38136,True,False,False,False,130,False,False,True,The exact time shown on the analog clock is 10:35:36.,0.7879788875579834,
+rege_ood_clean_blender_000161,clean,images/sample_00161.png,05:47,347,,,,06:47,407,06:47:00,24420,True,False,False,False,60,False,True,,6:47:00,0.4533042907714844,
+rege_ood_clean_blender_000162,clean,images/sample_00162.png,04:15,255,04:15:07,15307,7,05:18,318,05:18:08,19088,True,False,False,False,63,False,False,False,The exact time shown on the analog clock is 5:18:08.,0.7970225811004639,
+rege_ood_clean_blender_000163,clean,images/sample_00163.png,05:01,301,05:01:34,18094,34,05:00,300,05:00:34,18034,True,False,True,True,1,True,False,True,05:00:34,0.4910721778869629,
+rege_ood_clean_blender_000164,clean,images/sample_00164.png,02:05,125,02:05:27,7527,27,02:04,124,02:04:26,7466,True,False,True,True,1,True,False,False,02:04:26,0.37621307373046875,
+rege_ood_clean_blender_000165,clean,images/sample_00165.png,05:23,323,,,,10:19,619,10:19:24,37164,True,False,False,False,296,False,False,,10:19:24,0.4600400924682617,
+rege_ood_clean_blender_000166,clean,images/sample_00166.png,03:37,217,03:37:57,13077,57,03:37,217,03:37:56,13076,True,True,True,True,0,True,True,False,The time shown on the analog clock is 3:37:56.,0.7598681449890137,
+rege_ood_clean_blender_000167,clean,images/sample_00167.png,10:59,659,10:59:47,39587,47,10:59,659,10:59:45,39585,True,True,True,True,0,True,True,False,10:59:45,0.496915340423584,
+rege_ood_clean_blender_000168,clean,images/sample_00168.png,03:14,194,03:14:58,11698,58,,,,,False,False,False,False,,,,,14:44:57,0.49205970764160156,
+rege_ood_clean_blender_000169,clean,images/sample_00169.png,10:55,655,10:55:02,39302,2,10:55,655,10:55:02,39302,True,True,True,True,0,True,True,True,10:55:02,0.49515724182128906,
+rege_ood_clean_blender_000170,clean,images/sample_00170.png,01:34,94,,,,02:38,158,02:38:36,9516,True,False,False,False,64,False,False,,"To determine the exact time shown on this analog clock, I'll need to carefully examine the position of the clock hands:
+
+1. The hour hand is between 1 and 2, closer to 2
+2. The minute hand is between 7 and 8, closer to 8
+3. There's a seconds hand visible
+
+Based on this, let's estimate:
+- Hour: 2
+- Minutes: 38 (closer to 8 minutes past the hour)
+- Seconds: 36 (between 30 and 45 seconds)
+
+Therefore, the exact time shown on this analog clock is:
+
+02:38:36",4.053864479064941,
+rege_ood_clean_blender_000171,clean,images/sample_00171.png,04:03,243,04:03:34,14614,34,04:04,244,04:04:04,14644,True,False,True,True,1,True,False,False,04:04:04,0.47618770599365234,
+rege_ood_clean_blender_000172,clean,images/sample_00172.png,12:43,43,,,,12:43,43,12:43:00,2580,True,True,True,True,0,True,True,,12:43:00,0.5008974075317383,
+rege_ood_clean_blender_000173,clean,images/sample_00173.png,04:50,290,04:50:44,17444,44,09:49,589,09:49:45,35385,True,False,False,False,299,False,False,False,09:49:45,0.49246740341186523,
+rege_ood_clean_blender_000174,clean,images/sample_00174.png,01:46,106,01:46:10,6370,10,10:45,645,10:45:11,38711,True,False,False,False,181,False,False,False,10:45:11,0.47305798530578613,
+rege_ood_clean_blender_000175,clean,images/sample_00175.png,11:37,697,11:37:38,41858,38,11:36,696,11:36:36,41796,True,False,True,True,1,True,False,False,11:36:36,0.5179500579833984,
+rege_ood_clean_blender_000176,clean,images/sample_00176.png,11:14,674,11:14:21,40461,21,11:15,675,11:15:20,40520,True,False,True,True,1,True,False,False,11:15:20,0.38907670974731445,
+rege_ood_clean_blender_000177,clean,images/sample_00177.png,11:16,676,11:16:24,40584,24,10:15,615,10:15:12,36912,True,False,False,False,61,False,False,False,The exact time shown on the analog clock is 10:15:12.,0.5817375183105469,
+rege_ood_clean_blender_000178,clean,images/sample_00178.png,02:54,174,02:54:39,10479,39,02:55,175,02:55:39,10539,True,False,True,True,1,True,False,True,2:55:39,0.36988306045532227,
+rege_ood_clean_blender_000179,clean,images/sample_00179.png,12:23,23,,,,01:24,84,01:24:00,5040,True,False,False,False,61,False,False,,01:24:00,0.38904356956481934,
+rege_ood_clean_blender_000180,clean,images/sample_00180.png,09:23,563,,,,09:27,567,09:27:33,34053,True,False,False,True,4,True,False,,"To determine the exact time shown on the analog clock, I need to carefully examine the position of the hour and minute hands. The hour hand appears to be just past the 9, while the minute hand is slightly before the 6. This suggests the time is around 9:27.
+
+However, to get the seconds, I need to make a more precise assessment. The hour hand seems to be a bit more than halfway between 9 and 10, indicating it's past 9:27. Given the sleek design of the clock, it's likely a high-precision timepiece, so we can estimate the seconds.
+
+The minute hand being slightly before the 6 suggests it's around 27 minutes past the hour, but not exactly. Given the hour hand's position, I'd estimate it's about 9:27:33.
+
+Therefore, the exact time shown on the analog clock is:
+
+09:27:33",5.636972427368164,
+rege_ood_clean_blender_000181,clean,images/sample_00181.png,05:35,335,,,,11:52,712,11:52:06,42726,True,False,False,False,343,False,False,,11:52:06,0.511878252029419,
+rege_ood_clean_blender_000182,clean,images/sample_00182.png,11:00,660,11:00:59,39659,59,12:01,1,12:01:59,119,True,False,False,False,61,False,False,True,12:01:59,0.38976168632507324,
+rege_ood_clean_blender_000183,clean,images/sample_00183.png,01:14,74,,,,01:13,73,01:13:59,4439,True,False,True,True,1,True,False,,1:13:59,0.4441206455230713,
+rege_ood_clean_blender_000184,clean,images/sample_00184.png,04:59,299,,,,05:00,300,05:00:31,18031,True,False,True,True,1,False,False,,The exact time shown on this analog clock is 05:00:31.,0.8226666450500488,
+rege_ood_clean_blender_000185,clean,images/sample_00185.png,07:13,433,07:13:07,25987,7,02:13,133,02:13:07,7987,True,False,False,False,300,False,True,True,02:13:07,0.49254345893859863,
+rege_ood_clean_blender_000186,clean,images/sample_00186.png,11:17,677,11:17:52,40672,52,11:17,677,11:17:51,40671,True,True,True,True,0,True,True,False,11:17:51,0.4755096435546875,
+rege_ood_clean_blender_000187,clean,images/sample_00187.png,11:52,712,,,,11:51,711,11:51:50,42710,True,False,True,True,1,True,False,,11:51:50,0.4718198776245117,
+rege_ood_clean_blender_000188,clean,images/sample_00188.png,10:17,617,10:17:50,37070,50,10:50,650,10:50:51,39051,True,False,False,False,33,True,False,False,10:50:51,0.47553563117980957,
+rege_ood_clean_blender_000189,clean,images/sample_00189.png,12:17,17,12:17:15,1035,15,12:16,16,12:16:15,975,True,False,True,True,1,True,False,True,12:16:15,0.47684717178344727,
+rege_ood_clean_blender_000190,clean,images/sample_00190.png,12:18,18,12:18:51,1131,51,12:50,50,12:50:21,3021,True,False,False,False,32,True,False,False,12:50:21,0.47604799270629883,
+rege_ood_clean_blender_000191,clean,images/sample_00191.png,09:02,542,,,,09:03,543,09:03:00,32580,True,False,True,True,1,True,False,,09:03:00,0.47095417976379395,
+rege_ood_clean_blender_000192,clean,images/sample_00192.png,02:35,155,02:35:35,9335,35,02:34,154,02:34:33,9273,True,False,True,True,1,True,False,False,The time shown on the analog clock is 2:34:33.,0.7706389427185059,
+rege_ood_clean_blender_000193,clean,images/sample_00193.png,06:44,404,,,,06:45,405,06:45:29,24329,True,False,True,True,1,True,False,,06:45:29,0.5005862712860107,
+rege_ood_clean_blender_000194,clean,images/sample_00194.png,04:06,246,04:06:03,14763,3,04:05,245,04:05:03,14703,True,False,True,True,1,True,False,True,04:05:03,0.5069525241851807,
+rege_ood_clean_blender_000195,clean,images/sample_00195.png,06:27,387,06:27:52,23272,52,11:53,713,11:53:21,42801,True,False,False,False,326,False,False,False,11:53:21,0.5396628379821777,
+rege_ood_clean_blender_000196,clean,images/sample_00196.png,05:54,354,05:54:44,21284,44,12:44,44,12:44:45,2685,True,False,False,False,310,False,False,False,The time shown on this analog clock is 12:44:45,0.6630697250366211,
+rege_ood_clean_blender_000197,clean,images/sample_00197.png,01:21,81,01:21:24,4884,24,01:21,81,01:21:23,4883,True,True,True,True,0,True,True,False,1:21:23,0.4362514019012451,
+rege_ood_clean_blender_000198,clean,images/sample_00198.png,08:48,528,08:48:58,31738,58,08:48,528,08:48:57,31737,True,True,True,True,0,True,True,False,The exact time shown on this analog clock is 08:48:57.,0.8481364250183105,
+rege_ood_clean_blender_000199,clean,images/sample_00199.png,04:17,257,04:17:13,15433,13,04:18,258,04:18:13,15493,True,False,True,True,1,True,False,True,04:18:13,0.511265754699707,
+rege_ood_clean_blender_000200,clean,images/sample_00200.png,01:40,100,01:40:05,6005,5,01:05,65,01:05:33,3933,True,False,False,False,35,True,False,False,01:05:33,0.5245447158813477,
+rege_ood_clean_blender_000201,clean,images/sample_00201.png,06:01,361,06:01:07,21667,7,12:09,9,12:09:09,549,True,False,False,False,352,False,False,False,12:09:09,0.5213456153869629,
+rege_ood_clean_blender_000202,clean,images/sample_00202.png,09:28,568,09:28:30,34110,30,09:27,567,09:27:29,34049,True,False,True,True,1,True,False,False,9:27:29,0.5370862483978271,
+rege_ood_clean_blender_000203,clean,images/sample_00203.png,03:21,201,03:21:05,12065,5,10:49,649,10:49:04,38944,True,False,False,False,272,False,False,False,10:49:04,0.5196366310119629,
+rege_ood_clean_blender_000204,clean,images/sample_00204.png,01:24,84,01:24:43,5083,43,12:25,25,12:25:44,1544,True,False,False,False,59,False,False,False,12:25:44,0.5207395553588867,
+rege_ood_clean_blender_000205,clean,images/sample_00205.png,07:23,443,07:23:22,26602,22,07:21,441,07:21:20,26480,True,False,False,True,2,True,False,False,07:21:20,0.5101008415222168,
+rege_ood_clean_blender_000206,clean,images/sample_00206.png,02:29,149,02:29:14,8954,14,02:29,149,02:29:14,8954,True,True,True,True,0,True,True,True,02:29:14,0.37547922134399414,
+rege_ood_clean_blender_000207,clean,images/sample_00207.png,07:26,446,,,,07:24,444,07:24:30,26670,True,False,False,True,2,True,False,,07:24:30,0.4521205425262451,
+rege_ood_clean_blender_000208,clean,images/sample_00208.png,10:21,621,10:21:01,37261,1,10:20,620,10:20:01,37201,True,False,True,True,1,True,False,True,10:20:01,0.472808837890625,
+rege_ood_clean_blender_000209,clean,images/sample_00209.png,08:57,537,08:57:03,32223,3,09:02,542,09:02:03,32523,True,False,False,True,5,False,False,True,09:02:03,0.46543025970458984,
+rege_ood_clean_blender_000210,clean,images/sample_00210.png,05:35,335,,,,06:35,395,06:35:35,23735,True,False,False,False,60,False,True,,06:35:35,0.47132039070129395,
+rege_ood_clean_blender_000211,clean,images/sample_00211.png,01:18,78,,,,01:18,78,01:18:59,4739,True,True,True,True,0,True,True,,1:18:59,0.464160680770874,
+rege_ood_clean_blender_000212,clean,images/sample_00212.png,10:36,636,10:36:09,38169,9,10:36,636,10:36:10,38170,True,True,True,True,0,True,True,False,10:36:10,0.49895143508911133,
+rege_ood_clean_blender_000213,clean,images/sample_00213.png,06:07,367,06:07:20,22040,20,12:33,33,12:33:18,1998,True,False,False,False,334,False,False,False,The exact time shown on the analog clock is 12:33:18.,0.8017985820770264,
+rege_ood_clean_blender_000214,clean,images/sample_00214.png,07:00,420,,,,07:00,420,07:00:01,25201,True,True,True,True,0,True,True,,07:00:01,0.5125365257263184,
+rege_ood_clean_blender_000215,clean,images/sample_00215.png,01:48,108,,,,01:47,107,01:47:44,6464,True,False,True,True,1,True,False,,01:47:44,0.49964046478271484,
+rege_ood_clean_blender_000216,clean,images/sample_00216.png,11:53,713,11:53:15,42795,15,12:54,54,12:54:16,3256,True,False,False,False,61,False,False,False,12:54:16,0.5181088447570801,
+rege_ood_clean_blender_000217,clean,images/sample_00217.png,01:41,101,,,,01:40,100,,,True,False,True,True,1,True,False,,01:40,0.3390076160430908,
+rege_ood_clean_blender_000218,clean,images/sample_00218.png,09:59,599,09:59:57,35997,57,10:00,600,10:00:58,36058,True,False,True,True,1,False,False,False,10:00:58,0.4740924835205078,
+rege_ood_clean_blender_000219,clean,images/sample_00219.png,12:49,49,,,,12:48,48,12:48:12,2892,True,False,True,True,1,True,False,,12:48:12,0.522984504699707,
+rege_ood_clean_blender_000220,clean,images/sample_00220.png,08:15,495,,,,08:15,495,08:15:00,29700,True,True,True,True,0,True,True,,The time shown on the analog clock is 08:15:00,0.8077988624572754,
+rege_ood_clean_blender_000221,clean,images/sample_00221.png,07:59,479,,,,08:59,539,08:59:59,32399,True,False,False,False,60,False,True,,"To answer this question, I need to carefully examine the clock hands in the image:
+
+Hour hand: Pointing just past the 8
+Minute hand: Exactly at 11:59
+Second hand: Also at 11:59
+
+Therefore, the exact time shown on this analog clock is:
+
+08:59:59",2.308753490447998,
+rege_ood_clean_blender_000222,clean,images/sample_00222.png,02:10,130,,,,12:14,14,12:14:14,854,True,False,False,False,116,False,False,,12:14:14,0.5233075618743896,
+rege_ood_clean_blender_000223,clean,images/sample_00223.png,06:36,396,06:36:52,23812,52,,,,,False,False,False,False,,,,,15:37:52,0.5111045837402344,
+rege_ood_clean_blender_000224,clean,images/sample_00224.png,03:32,212,,,,12:30,30,12:30:36,1836,True,False,False,False,182,False,False,,12:30:36,0.522193431854248,
+rege_ood_clean_blender_000225,clean,images/sample_00225.png,08:54,534,08:54:07,32047,7,08:54,534,08:54:08,32048,True,True,True,True,0,True,True,False,08:54:08,0.5041704177856445,
+rege_ood_clean_blender_000226,clean,images/sample_00226.png,05:08,308,,,,06:09,369,06:09:00,22140,True,False,False,False,61,False,False,,06:09:00,0.5194094181060791,
+rege_ood_clean_blender_000227,clean,images/sample_00227.png,12:40,40,12:40:00,2400,0,10:00,600,10:00:00,36000,True,False,False,False,160,False,False,True,10:00:00,0.5057897567749023,
+rege_ood_clean_blender_000228,clean,images/sample_00228.png,01:59,119,,,,02:02,122,02:02:04,7324,True,False,False,True,3,False,False,,02:02:04,0.5197961330413818,
+rege_ood_clean_blender_000229,clean,images/sample_00229.png,03:23,203,03:23:52,12232,52,03:24,204,03:24:50,12290,True,False,True,True,1,True,False,False,03:24:50,0.523343563079834,
+rege_ood_clean_blender_000230,clean,images/sample_00230.png,07:45,465,,,,11:47,707,11:47:46,42466,True,False,False,False,242,False,False,,The exact time shown on this analog clock is 11:47:46.,0.8427200317382812,
+rege_ood_clean_blender_000231,clean,images/sample_00231.png,02:46,166,,,,02:45,165,02:45:08,9908,True,False,True,True,1,True,False,,The time shown on the analog clock is 2:45:08,0.6641621589660645,
+rege_ood_clean_blender_000232,clean,images/sample_00232.png,01:49,109,01:49:25,6565,25,12:49,49,12:49:24,2964,True,False,False,False,60,False,True,False,12:49:24,0.5067925453186035,
+rege_ood_clean_blender_000233,clean,images/sample_00233.png,03:12,192,,,,12:39,39,12:39:55,2395,True,False,False,False,153,False,False,,The time shown on the analog clock is 12:39:55.,0.699143648147583,
+rege_ood_clean_blender_000234,clean,images/sample_00234.png,09:25,565,09:25:11,33911,11,09:26,566,09:26:11,33971,True,False,True,True,1,True,False,True,The exact time shown on the analog clock is 09:26:11.,0.8079941272735596,
+rege_ood_clean_blender_000235,clean,images/sample_00235.png,01:06,66,,,,01:05,65,01:05:00,3900,True,False,True,True,1,True,False,,The exact time shown on the analog clock is 01:05:00.,0.8009684085845947,
+rege_ood_clean_blender_000236,clean,images/sample_00236.png,06:56,416,,,,06:55,415,06:55:54,24954,True,False,True,True,1,True,False,,06:55:54,0.46657323837280273,
+rege_ood_clean_blender_000237,clean,images/sample_00237.png,03:56,236,03:56:24,14184,24,03:55,235,03:55:23,14123,True,False,True,True,1,True,False,False,3:55:23,0.4372076988220215,
+rege_ood_clean_blender_000238,clean,images/sample_00238.png,10:38,638,,,,10:39,639,10:39:00,38340,True,False,True,True,1,True,False,,The exact time shown on the analog clock is 10:39:00.,0.7903029918670654,
+rege_ood_clean_blender_000239,clean,images/sample_00239.png,05:02,302,,,,05:01,301,05:01:36,18096,True,False,True,True,1,True,False,,05:01:36,0.4661726951599121,
+rege_ood_clean_blender_000240,clean,images/sample_00240.png,03:39,219,03:39:09,13149,9,03:40,220,03:40:09,13209,True,False,True,True,1,True,False,True,3:40:09,0.41909217834472656,
+rege_ood_clean_blender_000241,clean,images/sample_00241.png,12:20,20,12:20:32,1232,32,12:20,20,12:20:30,1230,True,True,True,True,0,True,True,False,12:20:30,0.37187719345092773,
+rege_ood_clean_blender_000242,clean,images/sample_00242.png,10:26,626,10:26:11,37571,11,10:27,627,10:27:11,37631,True,False,True,True,1,True,False,True,The exact time shown on this analog clock is 10:27:11.,0.5688292980194092,
+rege_ood_clean_blender_000243,clean,images/sample_00243.png,11:27,687,,,,,,,,False,False,False,False,,,,,00:30:33,0.3763551712036133,
+rege_ood_clean_blender_000244,clean,images/sample_00244.png,08:17,497,08:17:54,29874,54,07:49,469,07:49:12,28152,True,False,False,False,28,False,False,False,The time shown on the analog clock is 07:49:12,0.7986688613891602,
+rege_ood_clean_blender_000245,clean,images/sample_00245.png,09:30,570,09:30:18,34218,18,09:31,571,09:31:20,34280,True,False,True,True,1,True,False,False,09:31:20,0.5048439502716064,
+rege_ood_clean_blender_000246,clean,images/sample_00246.png,05:21,321,05:21:14,19274,14,06:23,383,06:23:16,22996,True,False,False,False,62,False,False,False,The exact time shown on this analog clock is 06:23:16.,0.7160627841949463,
+rege_ood_clean_blender_000247,clean,images/sample_00247.png,06:06,366,06:06:26,21986,26,11:07,667,11:07:24,40044,True,False,False,False,301,False,False,False,11:07:24,0.4636104106903076,
+rege_ood_clean_blender_000248,clean,images/sample_00248.png,04:46,286,04:46:37,17197,37,03:45,225,03:45:36,13536,True,False,False,False,61,False,False,False,3:45:36,0.5035204887390137,
+rege_ood_clean_blender_000249,clean,images/sample_00249.png,05:51,351,05:51:01,21061,1,10:55,655,10:55:03,39303,True,False,False,False,304,False,False,False,10:55:03,0.5182971954345703,
+rege_ood_clean_blender_000250,clean,images/sample_00250.png,12:41,41,,,,01:45,105,01:45:45,6345,True,False,False,False,64,False,False,,01:45:45,0.3928337097167969,
+rege_ood_clean_blender_000251,clean,images/sample_00251.png,11:08,668,,,,11:07,667,11:07:01,40021,True,False,True,True,1,True,False,,11:07:01,0.3921785354614258,
+rege_ood_clean_blender_000252,clean,images/sample_00252.png,09:26,566,09:26:26,33986,26,,,,,False,False,False,False,,,,,23:56:01,0.3905806541442871,
+rege_ood_clean_blender_000253,clean,images/sample_00253.png,11:47,707,11:47:51,42471,51,11:50,710,11:50:52,42652,True,False,False,True,3,True,False,False,11:50:52,0.3741171360015869,
+rege_ood_clean_blender_000254,clean,images/sample_00254.png,01:12,72,01:12:19,4339,19,01:12,72,01:12:19,4339,True,True,True,True,0,True,True,True,1:12:19,0.3590669631958008,
+rege_ood_clean_blender_000255,clean,images/sample_00255.png,03:45,225,,,,12:45,45,12:45:45,2745,True,False,False,False,180,False,True,,12:45:45,0.39258360862731934,
+rege_ood_clean_blender_000256,clean,images/sample_00256.png,08:59,539,08:59:27,32367,27,08:57,537,08:57:26,32246,True,False,False,True,2,True,False,False,The time shown on the analog clock is 08:57:26.,0.553246259689331,
+rege_ood_clean_blender_000257,clean,images/sample_00257.png,04:04,244,,,,04:03,243,04:03:00,14580,True,False,True,True,1,True,False,,04:03:00,0.5162723064422607,
+rege_ood_clean_blender_000258,clean,images/sample_00258.png,10:08,608,10:08:41,36521,41,10:08,608,10:08:41,36521,True,True,True,True,0,True,True,True,10:08:41,0.5107574462890625,
+rege_ood_clean_blender_000259,clean,images/sample_00259.png,10:41,641,10:41:47,38507,47,10:43,643,10:43:40,38620,True,False,False,True,2,True,False,False,10:43:40,0.5132286548614502,
+rege_ood_clean_blender_000260,clean,images/sample_00260.png,09:30,570,09:30:09,34209,9,02:32,152,02:32:06,9126,True,False,False,False,302,False,False,False,The exact time shown on this analog clock is 2:32:06.,0.6592690944671631,
+rege_ood_clean_blender_000261,clean,images/sample_00261.png,10:50,650,10:50:40,39040,40,10:49,649,10:49:39,38979,True,False,True,True,1,True,False,False,10:49:39,0.4760298728942871,
+rege_ood_clean_blender_000262,clean,images/sample_00262.png,01:17,77,,,,12:14,14,12:14:00,840,True,False,False,False,63,False,False,,12:14:00,0.45487236976623535,
+rege_ood_clean_blender_000263,clean,images/sample_00263.png,11:21,681,11:21:46,40906,46,10:45,645,10:45:19,38719,True,False,False,False,36,False,False,False,10:45:19,0.4564337730407715,
+rege_ood_clean_blender_000264,clean,images/sample_00264.png,12:39,39,12:39:40,2380,40,12:38,38,12:38:00,2280,True,False,True,True,1,True,False,False,12:38:00,0.45175909996032715,
+rege_ood_clean_blender_000265,clean,images/sample_00265.png,11:21,681,11:21:23,40883,23,01:20,80,01:20:24,4824,True,False,False,False,119,False,False,False,01:20:24,0.4638845920562744,
+rege_ood_clean_blender_000266,clean,images/sample_00266.png,07:39,459,,,,07:38,458,07:38:39,27519,True,False,True,True,1,True,False,,07:38:39,0.46375036239624023,
+rege_ood_clean_blender_000267,clean,images/sample_00267.png,10:40,640,,,,10:42,642,10:42:00,38520,True,False,False,True,2,True,False,,10:42:00,0.46315789222717285,
+rege_ood_clean_blender_000268,clean,images/sample_00268.png,06:15,375,06:15:25,22525,25,06:14,374,06:14:25,22465,True,False,True,True,1,True,False,True,The time shown on the analog clock is 06:14:25,0.7487659454345703,
+rege_ood_clean_blender_000269,clean,images/sample_00269.png,10:51,651,10:51:55,39115,55,10:56,656,10:56:55,39415,True,False,False,True,5,True,False,True,10:56:55,0.49566054344177246,
+rege_ood_clean_blender_000270,clean,images/sample_00270.png,10:30,630,10:30:48,37848,48,09:47,587,09:47:48,35268,True,False,False,False,43,False,False,True,09:47:48,0.5050938129425049,
+rege_ood_clean_blender_000271,clean,images/sample_00271.png,12:56,56,,,,12:55,55,12:55:00,3300,True,False,True,True,1,True,False,,12:55:00,0.5205249786376953,
+rege_ood_clean_blender_000272,clean,images/sample_00272.png,06:03,363,,,,05:56,356,05:56:01,21361,True,False,False,False,7,False,False,,The exact time shown on the analog clock is 05:56:01,0.6919119358062744,
+rege_ood_clean_blender_000273,clean,images/sample_00273.png,08:13,493,,,,08:12,492,08:12:16,29536,True,False,True,True,1,True,False,,08:12:16,0.5185537338256836,
+rege_ood_clean_blender_000274,clean,images/sample_00274.png,07:24,444,07:24:44,26684,44,06:43,403,06:43:42,24222,True,False,False,False,41,False,False,False,06:43:42,0.5310406684875488,
+rege_ood_clean_blender_000275,clean,images/sample_00275.png,10:30,630,,,,,,,,False,False,False,False,,,,,00:36:00,0.5198843479156494,
+rege_ood_clean_blender_000276,clean,images/sample_00276.png,11:47,707,11:47:55,42475,55,11:46,706,11:46:55,42415,True,False,True,True,1,True,False,True,11:46:55,0.4981961250305176,
+rege_ood_clean_blender_000277,clean,images/sample_00277.png,06:11,371,06:11:24,22284,24,07:41,461,07:41:54,27714,True,False,False,False,90,False,False,False,07:41:54,0.5046677589416504,
+rege_ood_clean_blender_000278,clean,images/sample_00278.png,09:24,564,09:24:18,33858,18,09:23,563,09:23:16,33796,True,False,True,True,1,True,False,False,09:23:16,0.5036039352416992,
+rege_ood_clean_blender_000279,clean,images/sample_00279.png,02:54,174,,,,01:51,111,01:51:59,6719,True,False,False,False,63,False,False,,1:51:59,0.4887828826904297,
+rege_ood_clean_blender_000280,clean,images/sample_00280.png,03:59,239,,,,03:59,239,03:59:59,14399,True,True,True,True,0,True,True,,03:59:59,0.5022749900817871,
+rege_ood_clean_blender_000281,clean,images/sample_00281.png,11:34,694,11:34:29,41669,29,12:34,34,12:34:28,2068,True,False,False,False,60,False,True,False,12:34:28,0.37256622314453125,
+rege_ood_clean_blender_000282,clean,images/sample_00282.png,12:48,48,,,,12:42,42,12:42:42,2562,True,False,False,False,6,True,False,,The exact time shown on this analog clock is 12:42:42,0.7971282005310059,
+rege_ood_clean_blender_000283,clean,images/sample_00283.png,07:50,470,07:50:48,28248,48,10:43,643,10:43:17,38597,True,False,False,False,173,False,False,False,The exact time shown on this analog clock is 10:43:17.,0.8087000846862793,
+rege_ood_clean_blender_000284,clean,images/sample_00284.png,01:11,71,,,,01:13,73,01:13:01,4381,True,False,False,True,2,True,False,,1:13:01,0.4639923572540283,
+rege_ood_clean_blender_000285,clean,images/sample_00285.png,06:47,407,06:47:07,24427,7,10:47,647,10:47:05,38825,True,False,False,False,240,False,True,False,The exact time shown on this analog clock is 10:47:05.,0.8039021492004395,
+rege_ood_clean_blender_000286,clean,images/sample_00286.png,12:15,15,12:15:14,914,14,12:13,13,12:13:15,795,True,False,False,True,2,True,False,False,The time shown on the analog clock is 12:13:15,0.7401161193847656,
+rege_ood_clean_blender_000287,clean,images/sample_00287.png,11:27,687,11:27:39,41259,39,11:52,712,11:52:53,42773,True,False,False,False,25,True,False,False,11:52:53,0.4772605895996094,
+rege_ood_clean_blender_000288,clean,images/sample_00288.png,08:25,505,,,,,,,,False,False,False,False,,,,,The time shown on the analog clock is 14:25:25 in HH:MM:SS format.,1.040708303451538,
+rege_ood_clean_blender_000289,clean,images/sample_00289.png,12:47,47,,,,12:51,51,12:51:03,3063,True,False,False,True,4,True,False,,12:51:03,0.5027804374694824,
+rege_ood_clean_blender_000290,clean,images/sample_00290.png,07:41,461,07:41:15,27675,15,07:40,460,07:40:14,27614,True,False,True,True,1,True,False,False,The time shown on the analog clock is 07:40:14.,0.6774725914001465,
+rege_ood_clean_blender_000291,clean,images/sample_00291.png,10:58,658,,,,11:00,660,11:00:00,39600,True,False,False,True,2,False,False,,11:00:00,0.5005466938018799,
+rege_ood_clean_blender_000292,clean,images/sample_00292.png,12:32,32,,,,01:26,86,01:26:08,5168,True,False,False,False,54,False,False,,01:26:08,0.4812197685241699,
+rege_ood_clean_blender_000293,clean,images/sample_00293.png,10:11,611,,,,10:11,611,10:11:22,36682,True,True,True,True,0,True,True,,The time shown on this analog clock is 10:11:22.,0.7855856418609619,
+rege_ood_clean_blender_000294,clean,images/sample_00294.png,03:36,216,,,,03:37,217,03:37:37,13057,True,False,True,True,1,True,False,,3:37:37,0.46851110458374023,
+rege_ood_clean_blender_000295,clean,images/sample_00295.png,12:07,7,12:07:38,458,38,12:07,7,12:07:36,456,True,True,True,True,0,True,True,False,12:07:36,0.373213529586792,
+rege_ood_clean_blender_000296,clean,images/sample_00296.png,11:41,701,,,,,,,,False,False,False,False,,,,,00:42:42,0.45831751823425293,
+rege_ood_clean_blender_000297,clean,images/sample_00297.png,10:00,600,,,,10:02,602,10:02:02,36122,True,False,False,True,2,True,False,,10:02:02,0.5085303783416748,
+rege_ood_clean_blender_000298,clean,images/sample_00298.png,04:33,273,,,,04:33,273,04:33:34,16414,True,True,True,True,0,True,True,,The time shown on the analog clock is 04:33:34.,0.7060298919677734,
+rege_ood_clean_blender_000299,clean,images/sample_00299.png,12:37,37,,,,12:36,36,12:36:36,2196,True,False,True,True,1,True,False,,12:36:36,0.5079805850982666,
+rege_ood_clean_blender_000300,clean,images/sample_00300.png,09:41,581,09:41:29,34889,29,10:47,647,10:47:32,38852,True,False,False,False,66,False,False,False,10:47:32,0.5121479034423828,
+rege_ood_clean_blender_000301,clean,images/sample_00301.png,03:58,238,,,,03:57,237,03:57:00,14220,True,False,True,True,1,True,False,,3:57:00,0.4913449287414551,
+rege_ood_clean_blender_000302,clean,images/sample_00302.png,06:38,398,,,,06:38,398,06:38:38,23918,True,True,True,True,0,True,True,,06:38:38,0.4984619617462158,
+rege_ood_clean_blender_000303,clean,images/sample_00303.png,01:24,84,,,,12:23,23,12:23:24,1404,True,False,False,False,61,False,False,,12:23:24,0.5055978298187256,
+rege_ood_clean_blender_000304,clean,images/sample_00304.png,01:30,90,,,,01:31,91,01:31:31,5491,True,False,True,True,1,True,False,,1:31:31,0.48920536041259766,
+rege_ood_clean_blender_000305,clean,images/sample_00305.png,03:17,197,03:17:46,11866,46,03:13,193,03:13:44,11624,True,False,False,True,4,True,False,False,3:13:44,0.46613073348999023,
+rege_ood_clean_blender_000306,clean,images/sample_00306.png,07:06,426,,,,02:02,122,,,True,False,False,False,304,False,False,,02:02,0.4308586120605469,
+rege_ood_clean_blender_000307,clean,images/sample_00307.png,03:13,193,03:13:01,11581,1,03:13,193,03:13:00,11580,True,True,True,True,0,True,True,False,03:13:00,0.5077848434448242,
+rege_ood_clean_blender_000308,clean,images/sample_00308.png,01:49,109,01:49:04,6544,4,01:49,109,01:49:05,6545,True,True,True,True,0,True,True,False,1:49:05,0.4712522029876709,
+rege_ood_clean_blender_000309,clean,images/sample_00309.png,01:26,86,,,,01:26,86,01:26:26,5186,True,True,True,True,0,True,True,,1:26:26,0.4645547866821289,
+rege_ood_clean_blender_000310,clean,images/sample_00310.png,11:01,661,,,,10:59,659,10:59:56,39596,True,False,False,True,2,False,False,,10:59:56,0.4839174747467041,
+rege_ood_clean_blender_000311,clean,images/sample_00311.png,04:07,247,04:07:09,14829,9,04:07,247,04:07:08,14828,True,True,True,True,0,True,True,False,The time shown on the analog clock is 04:07:08.,0.8124477863311768,
+rege_ood_clean_blender_000312,clean,images/sample_00312.png,06:43,403,,,,06:45,405,06:45:45,24345,True,False,False,True,2,True,False,,The exact time shown on this analog clock is 06:45:45.,0.8203065395355225,
+rege_ood_clean_blender_000313,clean,images/sample_00313.png,12:30,30,12:30:55,1855,55,12:28,28,12:28:55,1735,True,False,False,True,2,True,False,True,12:28:55,0.4949057102203369,
+rege_ood_clean_blender_000314,clean,images/sample_00314.png,02:54,174,02:54:17,10457,17,12:53,53,12:53:16,3196,True,False,False,False,121,False,False,False,12:53:16,0.4957852363586426,
+rege_ood_clean_blender_000315,clean,images/sample_00315.png,12:35,35,,,,12:34,34,12:34:05,2045,True,False,True,True,1,True,False,,12:34:05,0.4939432144165039,
+rege_ood_clean_blender_000316,clean,images/sample_00316.png,04:59,299,,,,05:01,301,05:01:00,18060,True,False,False,True,2,False,False,,05:01:00,0.5286743640899658,
+rege_ood_clean_blender_000317,clean,images/sample_00317.png,08:03,483,,,,08:03,483,08:03:03,28983,True,True,True,True,0,True,True,,08:03:03,0.49429798126220703,
+rege_ood_clean_blender_000318,clean,images/sample_00318.png,07:29,449,,,,07:26,446,07:26:26,26786,True,False,False,True,3,True,False,,The exact time shown on this analog clock is 07:26:26.,0.8331239223480225,
+rege_ood_clean_blender_000319,clean,images/sample_00319.png,05:10,310,05:10:01,18601,1,04:05,245,04:05:58,14758,True,False,False,False,65,False,False,False,4:05:58,0.4889395236968994,
+rege_ood_clean_blender_000320,clean,images/sample_00320.png,07:15,435,,,,08:20,500,08:20:19,30019,True,False,False,False,65,False,False,,08:20:19,0.3776242733001709,
+rege_ood_clean_blender_000321,clean,images/sample_00321.png,08:38,518,08:38:18,31098,18,08:37,517,08:37:17,31037,True,False,True,True,1,True,False,False,The exact time shown on this analog clock is 8:37:17.,0.8015491962432861,
+rege_ood_clean_blender_000322,clean,images/sample_00322.png,09:40,580,,,,09:00,540,,,True,False,False,False,40,True,False,,"To answer this question, I need to examine the clock carefully:
+
+1. The hour hand is just past the 9, indicating it's after 9:00.
+2. The minute hand is pointing at 7, which represents 35 minutes past the hour.
+3. There's no second hand visible in the image.
+4. The clock face uses 24-hour format, so this time is already in the correct format.
+
+Therefore, the exact time shown on the clock is:
+
+21:35:00",3.5006439685821533,
+rege_ood_clean_blender_000323,clean,images/sample_00323.png,05:28,328,05:28:14,19694,14,06:14,374,06:14:15,22455,True,False,False,False,46,False,False,False,"Based on the image description, the time shown on the analog clock is 06:14:15.",0.9275205135345459,
+rege_ood_clean_blender_000324,clean,images/sample_00324.png,08:29,509,,,,08:29,509,08:29:29,30569,True,True,True,True,0,True,True,,The time shown on the analog clock is 8:29:29.,0.6897623538970947,
+rege_ood_clean_blender_000325,clean,images/sample_00325.png,07:50,470,07:50:23,28223,23,07:21,441,07:21:08,26468,True,False,False,False,29,True,False,False,The time shown on this analog clock is 07:21:08.,0.7899339199066162,
+rege_ood_clean_blender_000326,clean,images/sample_00326.png,10:27,627,,,,10:28,628,10:28:29,37709,True,False,True,True,1,True,False,,10:28:29,0.49070096015930176,
+rege_ood_clean_blender_000327,clean,images/sample_00327.png,08:52,532,08:52:52,31972,52,08:51,531,08:51:51,31911,True,False,True,True,1,True,False,False,The exact time shown on the analog clock is 08:51:51.,0.8214263916015625,
+rege_ood_clean_blender_000328,clean,images/sample_00328.png,05:20,320,,,,05:19,319,05:19:18,19158,True,False,True,True,1,True,False,,05:19:18,0.4891657829284668,
+rege_ood_clean_blender_000329,clean,images/sample_00329.png,03:57,237,,,,02:52,172,02:52:50,10370,True,False,False,False,65,False,False,,2:52:50,0.4712047576904297,
+rege_ood_clean_blender_000330,clean,images/sample_00330.png,12:46,46,,,,12:47,47,12:47:48,2868,True,False,True,True,1,True,False,,12:47:48,0.37703728675842285,
+rege_ood_clean_blender_000331,clean,images/sample_00331.png,02:50,170,02:50:38,10238,38,12:50,50,12:50:36,3036,True,False,False,False,120,False,True,False,12:50:36,0.46088743209838867,
+rege_ood_clean_blender_000332,clean,images/sample_00332.png,11:32,692,,,,12:32,32,12:32:32,1952,True,False,False,False,60,False,True,,12:32:32,0.4589540958404541,
+rege_ood_clean_blender_000333,clean,images/sample_00333.png,05:51,351,,,,06:51,411,06:51:18,24678,True,False,False,False,60,False,True,,The exact time shown on this analog clock is 06:51:18.,0.7956461906433105,
+rege_ood_clean_blender_000334,clean,images/sample_00334.png,09:09,549,09:09:05,32945,5,10:07,607,10:07:04,36424,True,False,False,False,58,False,False,False,10:07:04,0.48785853385925293,
+rege_ood_clean_blender_000335,clean,images/sample_00335.png,12:12,12,,,,12:15,15,12:15:00,900,True,False,False,True,3,True,False,,12:15:00,0.48992276191711426,
+rege_ood_clean_blender_000336,clean,images/sample_00336.png,12:09,9,12:09:54,594,54,12:10,10,12:10:55,655,True,False,True,True,1,True,False,False,12:10:55,0.4992067813873291,
+rege_ood_clean_blender_000337,clean,images/sample_00337.png,03:39,219,,,,01:34,94,01:34:00,5640,True,False,False,False,125,False,False,,1:34:00,0.47540998458862305,
+rege_ood_clean_blender_000338,clean,images/sample_00338.png,08:44,524,,,,12:45,45,12:45:45,2745,True,False,False,False,241,False,False,,12:45:45,0.37655186653137207,
+rege_ood_clean_blender_000339,clean,images/sample_00339.png,07:13,433,,,,12:41,41,12:41:46,2506,True,False,False,False,328,False,False,,The exact time shown on this analog clock is 12:41:46,0.7777676582336426,
+rege_ood_clean_blender_000340,clean,images/sample_00340.png,03:41,221,03:41:41,13301,41,03:39,219,03:39:39,13179,True,False,False,True,2,True,False,False,03:39:39,0.4854738712310791,
+rege_ood_clean_blender_000341,clean,images/sample_00341.png,09:20,560,,,,,,,,False,False,False,False,,,,,15:16:16,0.4883158206939697,
+rege_ood_clean_blender_000342,clean,images/sample_00342.png,09:52,592,09:52:57,35577,57,09:53,593,09:53:57,35637,True,False,True,True,1,True,False,True,The exact time shown on this analog clock is 09:53:57.,0.8252880573272705,
+rege_ood_clean_blender_000343,clean,images/sample_00343.png,11:22,682,11:22:29,40949,29,12:23,23,12:23:31,1411,True,False,False,False,61,False,False,False,12:23:31,0.3798105716705322,
+rege_ood_clean_blender_000344,clean,images/sample_00344.png,08:52,532,,,,10:39,639,10:39:48,38388,True,False,False,False,107,False,False,,10:39:48,0.46767377853393555,
+rege_ood_clean_blender_000345,clean,images/sample_00345.png,08:12,492,08:12:11,29531,11,08:12,492,08:12:12,29532,True,True,True,True,0,True,True,False,08:12:12,0.45055556297302246,
+rege_ood_clean_blender_000346,clean,images/sample_00346.png,07:09,429,,,,07:08,428,07:08:09,25689,True,False,True,True,1,True,False,,07:08:09,0.4652407169342041,
+rege_ood_clean_blender_000347,clean,images/sample_00347.png,09:39,579,,,,10:42,642,10:42:40,38560,True,False,False,False,63,False,False,,The exact time shown on the analog clock is 10:42:40.,0.7831144332885742,
+rege_ood_clean_blender_000348,clean,images/sample_00348.png,09:33,573,,,,09:33,573,09:33:42,34422,True,True,True,True,0,True,True,,09:33:42,0.474013090133667,
+rege_ood_clean_blender_000349,clean,images/sample_00349.png,05:30,330,,,,05:28,328,05:28:28,19708,True,False,False,True,2,True,False,,5:28:28,0.45810604095458984,
+rege_ood_clean_blender_000350,clean,images/sample_00350.png,05:39,339,,,,06:34,394,06:34:37,23677,True,False,False,False,55,False,False,,"To answer this question, I need to carefully examine the clock face in the image. The clock has a minimalist design with Roman numerals and white hands.
+
+Looking closely at the position of the hour, minute, and second hands:
+
+The hour hand is pointing just past the 6, indicating it's between 6:30 and 7:00.
+The minute hand is slightly past the 7, which corresponds to about 34 minutes.
+The second hand is pointing just before the 8, which is 37 seconds.
+
+Based on this analysis, the exact time shown on the analog clock is:
+
+06:34:37",4.131407737731934,
+rege_ood_clean_blender_000351,clean,images/sample_00351.png,02:29,149,,,,02:31,151,02:31:00,9060,True,False,False,True,2,True,False,,02:31:00,0.5257749557495117,
+rege_ood_clean_blender_000352,clean,images/sample_00352.png,04:59,299,,,,05:00,300,05:00:00,18000,True,False,True,True,1,False,False,,5:00:00,0.4987673759460449,
+rege_ood_clean_blender_000353,clean,images/sample_00353.png,09:24,564,09:24:31,33871,31,09:24,564,09:24:30,33870,True,True,True,True,0,True,True,False,The exact time shown on this analog clock is 9:24:30.,0.690230131149292,
+rege_ood_clean_blender_000354,clean,images/sample_00354.png,08:05,485,08:05:10,29110,10,08:06,486,08:06:11,29171,True,False,True,True,1,True,False,False,The exact time shown on this analog clock is 8:06:11.,0.5722253322601318,
+rege_ood_clean_blender_000355,clean,images/sample_00355.png,08:43,523,08:43:15,31395,15,,,,,False,False,False,False,,,,,20:14:15,0.392376184463501,
+rege_ood_clean_blender_000356,clean,images/sample_00356.png,05:07,307,05:07:23,18443,23,05:09,309,05:09:23,18563,True,False,False,True,2,True,False,True,5:09:23,0.36283349990844727,
+rege_ood_clean_blender_000357,clean,images/sample_00357.png,12:52,52,,,,09:53,593,09:53:51,35631,True,False,False,False,179,False,False,,09:53:51,0.396533727645874,
+rege_ood_clean_blender_000358,clean,images/sample_00358.png,12:00,0,12:00:58,58,58,01:56,116,,,True,False,False,False,116,False,False,,00:01:56,0.3963325023651123,
+rege_ood_clean_blender_000359,clean,images/sample_00359.png,07:50,470,,,,,,,,False,False,False,False,,,,,13:49:52,0.5302364826202393,
+rege_ood_clean_blender_000360,clean,images/sample_00360.png,01:55,115,01:55:54,6954,54,01:56,116,01:56:56,7016,True,False,True,True,1,True,False,False,1:56:56,0.49277496337890625,
+rege_ood_clean_blender_000361,clean,images/sample_00361.png,11:32,692,11:32:19,41539,19,11:33,693,11:33:17,41597,True,False,True,True,1,True,False,False,11:33:17,0.5238325595855713,
+rege_ood_clean_blender_000362,clean,images/sample_00362.png,12:07,7,12:07:32,452,32,12:08,8,12:08:33,513,True,False,True,True,1,True,False,False,12:08:33,0.5279865264892578,
+rege_ood_clean_blender_000363,clean,images/sample_00363.png,11:53,713,11:53:47,42827,47,11:52,712,11:52:47,42767,True,False,True,True,1,True,False,True,11:52:47,0.3976857662200928,
+rege_ood_clean_blender_000364,clean,images/sample_00364.png,04:02,242,04:02:57,14577,57,12:56,56,12:56:57,3417,True,False,False,False,186,False,False,True,12:56:57,0.38816404342651367,
+rege_ood_clean_blender_000365,clean,images/sample_00365.png,10:53,653,,,,10:53,653,10:53:55,39235,True,True,True,True,0,True,True,,10:53:55,0.39536118507385254,
+rege_ood_clean_blender_000366,clean,images/sample_00366.png,04:35,275,04:35:07,16507,7,04:32,272,04:32:03,16323,True,False,False,True,3,True,False,False,04:32:03,0.4133763313293457,
+rege_ood_clean_blender_000367,clean,images/sample_00367.png,02:06,126,,,,02:05,125,02:05:02,7502,True,False,True,True,1,True,False,,02:05:02,0.4140944480895996,
+rege_ood_clean_blender_000368,clean,images/sample_00368.png,09:03,543,,,,09:04,544,09:04:00,32640,True,False,True,True,1,True,False,,09:04:00,0.5308465957641602,
+rege_ood_clean_blender_000369,clean,images/sample_00369.png,04:02,242,04:02:16,14536,16,12:17,17,12:17:03,1023,True,False,False,False,225,False,False,False,12:17:03,0.3769502639770508,
+rege_ood_clean_blender_000370,clean,images/sample_00370.png,05:59,359,,,,01:01,61,01:01:02,3662,True,False,False,False,298,False,False,,01:01:02,0.3983273506164551,
+rege_ood_clean_blender_000371,clean,images/sample_00371.png,11:03,663,11:03:52,39832,52,10:54,654,10:54:52,39292,True,False,False,False,9,False,False,True,10:54:52,0.40987300872802734,
+rege_ood_clean_blender_000372,clean,images/sample_00372.png,10:46,646,10:46:16,38776,16,10:43,643,10:43:12,38592,True,False,False,True,3,True,False,False,10:43:12,0.39559149742126465,
+rege_ood_clean_blender_000373,clean,images/sample_00373.png,03:04,184,,,,03:03,183,03:03:01,10981,True,False,True,True,1,True,False,,03:03:01,0.3956432342529297,
+rege_ood_clean_blender_000374,clean,images/sample_00374.png,10:13,613,10:13:15,36795,15,10:13,613,10:13:14,36794,True,True,True,True,0,True,True,False,10:13:14,0.3957805633544922,
+rege_ood_clean_blender_000375,clean,images/sample_00375.png,10:38,638,,,,10:38,638,10:38:40,38320,True,True,True,True,0,True,True,,10:38:40,0.3969755172729492,
+rege_ood_clean_blender_000376,clean,images/sample_00376.png,08:08,488,,,,10:07,607,10:07:07,36427,True,False,False,False,119,False,False,,10:07:07,0.39609432220458984,
+rege_ood_clean_blender_000377,clean,images/sample_00377.png,12:53,53,12:53:27,3207,27,12:52,52,12:52:26,3146,True,False,True,True,1,True,False,False,12:52:26,0.3938271999359131,
+rege_ood_clean_blender_000378,clean,images/sample_00378.png,03:18,198,03:18:19,11899,19,,,,,False,False,False,False,,,,,15:17:19,0.46382689476013184,
+rege_ood_clean_blender_000379,clean,images/sample_00379.png,03:43,223,,,,03:43,223,03:43:00,13380,True,True,True,True,0,True,True,,03:43:00,0.4846162796020508,
+rege_ood_clean_blender_000380,clean,images/sample_00380.png,09:10,550,09:10:44,33044,44,09:10,550,09:10:44,33044,True,True,True,True,0,True,True,True,The time shown on the analog clock is 09:10:44.,0.6385378837585449,
+rege_ood_clean_blender_000381,clean,images/sample_00381.png,11:25,685,11:25:25,41125,25,10:20,620,10:20:18,37218,True,False,False,False,65,False,False,False,10:20:18,0.45640110969543457,
+rege_ood_clean_blender_000382,clean,images/sample_00382.png,12:58,58,,,,12:57,57,12:57:58,3478,True,False,True,True,1,True,False,,The exact time shown on this analog clock is 12:57:58,0.7602231502532959,
+rege_ood_clean_blender_000383,clean,images/sample_00383.png,10:42,642,10:42:36,38556,36,10:45,645,10:45:37,38737,True,False,False,True,3,True,False,False,10:45:37,0.5067276954650879,
+rege_ood_clean_blender_000384,clean,images/sample_00384.png,02:44,164,02:44:22,9862,22,09:21,561,09:21:56,33716,True,False,False,False,323,False,False,False,09:21:56,0.5029833316802979,
+rege_ood_clean_blender_000385,clean,images/sample_00385.png,10:52,652,,,,10:54,654,10:54:51,39291,True,False,False,True,2,True,False,,10:54:51,0.5150623321533203,
+rege_ood_clean_blender_000386,clean,images/sample_00386.png,01:03,63,01:03:46,3826,46,12:44,44,12:44:44,2684,True,False,False,False,19,False,False,False,12:44:44,0.5374400615692139,
+rege_ood_clean_blender_000387,clean,images/sample_00387.png,12:26,26,,,,12:25,25,12:25:00,1500,True,False,True,True,1,True,False,,12:25:00,0.5174529552459717,
+rege_ood_clean_blender_000388,clean,images/sample_00388.png,03:07,187,,,,03:06,186,03:06:00,11160,True,False,True,True,1,True,False,,03:06:00,0.5235812664031982,
+rege_ood_clean_blender_000389,clean,images/sample_00389.png,08:38,518,,,,10:38,638,10:38:35,38315,True,False,False,False,120,False,True,,10:38:35,0.5270717144012451,
+rege_ood_clean_blender_000390,clean,images/sample_00390.png,05:05,305,,,,05:05,305,05:05:03,18303,True,True,True,True,0,True,True,,The time shown on the analog clock is 05:05:03.,0.831108570098877,
+rege_ood_clean_blender_000391,clean,images/sample_00391.png,05:21,321,05:21:14,19274,14,05:20,320,05:20:13,19213,True,False,True,True,1,True,False,False,05:20:13,0.39418601989746094,
+rege_ood_clean_blender_000392,clean,images/sample_00392.png,10:34,634,,,,10:33,633,10:33:42,38022,True,False,True,True,1,True,False,,The time shown on the analog clock is 10:33:42.,0.8144919872283936,
+rege_ood_clean_blender_000393,clean,images/sample_00393.png,02:22,142,,,,02:21,141,02:21:22,8482,True,False,True,True,1,True,False,,02:21:22,0.51930832862854,
+rege_ood_clean_blender_000394,clean,images/sample_00394.png,11:17,677,11:17:59,40679,59,12:16,16,12:16:59,1019,True,False,False,False,59,False,False,True,12:16:59,0.521519660949707,
+rege_ood_clean_blender_000395,clean,images/sample_00395.png,12:36,36,,,,12:35,35,12:35:35,2135,True,False,True,True,1,True,False,,12:35:35,0.5188586711883545,
+rege_ood_clean_blender_000396,clean,images/sample_00396.png,03:47,227,,,,03:45,225,03:45:45,13545,True,False,False,True,2,True,False,,The time shown on the analog clock is 3:45:45.,0.8087623119354248,
+rege_ood_clean_blender_000397,clean,images/sample_00397.png,12:32,32,12:32:39,1959,39,07:20,440,07:20:33,26433,True,False,False,False,312,False,False,False,"To answer this question, I need to analyze the clock hands in the image:
+
+1. The hour hand is pointing just past the 7, indicating it's after 7 o'clock.
+2. The minute hand is pointing between 4 and 5, specifically just past the 4. This means 20 minutes past the hour.
+3. The second hand is pointing between 7 and 8, slightly past the 7. This indicates 33 seconds.
+
+Therefore, the exact time shown on the clock is:
+
+7:20:33",3.450819969177246,
+rege_ood_clean_blender_000398,clean,images/sample_00398.png,04:37,277,,,,05:39,339,05:39:02,20342,True,False,False,False,62,False,False,,05:39:02,0.5047552585601807,
+rege_ood_clean_blender_000399,clean,images/sample_00399.png,06:06,366,06:06:22,21982,22,06:03,363,06:03:04,21784,True,False,False,True,3,True,False,False,06:03:04,0.39223432540893555,
+rege_ood_clean_blender_000400,clean,images/sample_00400.png,07:02,422,07:02:33,25353,33,12:32,32,,,True,False,False,False,330,False,False,,12:32,0.3223874568939209,
+rege_ood_clean_blender_000401,clean,images/sample_00401.png,04:02,242,04:02:03,14523,3,05:04,304,05:04:03,18243,True,False,False,False,62,False,False,True,05:04:03,0.37430667877197266,
+rege_ood_clean_blender_000402,clean,images/sample_00402.png,06:21,381,,,,06:19,379,06:19:00,22740,True,False,False,True,2,True,False,,The time shown on the analog clock is 06:19:00,0.5345933437347412,
+rege_ood_clean_blender_000403,clean,images/sample_00403.png,12:00,0,,,,01:01,61,01:01:01,3661,True,False,False,False,61,False,False,,01:01:01,0.5039963722229004,
+rege_ood_clean_blender_000404,clean,images/sample_00404.png,07:44,464,07:44:23,27863,23,07:45,465,07:45:22,27922,True,False,True,True,1,True,False,False,7:45:22,0.49066805839538574,
+rege_ood_clean_blender_000405,clean,images/sample_00405.png,11:36,696,,,,10:33,633,10:33:32,38012,True,False,False,False,63,False,False,,10:33:32,0.49628496170043945,
+rege_ood_clean_blender_000406,clean,images/sample_00406.png,08:50,530,,,,08:49,529,08:49:00,31740,True,False,True,True,1,True,False,,08:49:00,0.5046427249908447,
+rege_ood_clean_blender_000407,clean,images/sample_00407.png,02:59,179,02:59:22,10762,22,03:00,180,03:00:23,10823,True,False,True,True,1,False,False,False,03:00:23,0.5244572162628174,
+rege_ood_clean_blender_000408,clean,images/sample_00408.png,03:03,183,03:03:02,10982,2,03:02,182,03:02:03,10923,True,False,True,True,1,True,False,False,03:02:03,0.48630762100219727,
+rege_ood_clean_blender_000409,clean,images/sample_00409.png,12:34,34,12:34:18,2058,18,12:33,33,12:33:18,1998,True,False,True,True,1,True,False,True,12:33:18,0.5250499248504639,
+rege_ood_clean_blender_000410,clean,images/sample_00410.png,04:06,246,,,,05:06,306,05:06:06,18366,True,False,False,False,60,False,True,,05:06:06,0.5232589244842529,
+rege_ood_clean_blender_000411,clean,images/sample_00411.png,11:08,668,11:08:02,40082,2,11:08,668,11:08:03,40083,True,True,True,True,0,True,True,False,11:08:03,0.5203197002410889,
+rege_ood_clean_blender_000412,clean,images/sample_00412.png,07:32,452,07:32:50,27170,50,07:33,453,07:33:48,27228,True,False,True,True,1,True,False,False,7:33:48,0.37903404235839844,
+rege_ood_clean_blender_000413,clean,images/sample_00413.png,05:02,302,,,,05:02,302,05:02:02,18122,True,True,True,True,0,True,True,,05:02:02,0.5073294639587402,
+rege_ood_clean_blender_000414,clean,images/sample_00414.png,05:11,311,05:11:16,18676,16,05:18,318,05:18:16,19096,True,False,False,False,7,True,False,True,05:18:16,0.5321862697601318,
+rege_ood_clean_blender_000415,clean,images/sample_00415.png,10:30,630,,,,10:28,628,10:28:53,37733,True,False,False,True,2,True,False,,10:28:53,0.5175755023956299,
+rege_ood_clean_blender_000416,clean,images/sample_00416.png,04:41,281,,,,04:42,282,04:42:00,16920,True,False,True,True,1,True,False,,04:42:00,0.5115540027618408,
+rege_ood_clean_blender_000417,clean,images/sample_00417.png,02:02,122,02:02:13,7333,13,01:03,63,01:03:15,3795,True,False,False,False,59,False,False,False,1:03:15,0.5058498382568359,
+rege_ood_clean_blender_000418,clean,images/sample_00418.png,12:03,3,,,,12:02,2,12:02:02,122,True,False,True,True,1,True,False,,The exact time shown on this analog clock is 12:02:02.,0.8393862247467041,
+rege_ood_clean_blender_000419,clean,images/sample_00419.png,09:49,589,09:49:27,35367,27,10:26,626,10:26:56,37616,True,False,False,False,37,False,False,False,10:26:56,0.5199997425079346,
+rege_ood_clean_blender_000420,clean,images/sample_00420.png,01:37,97,01:37:33,5853,33,07:35,455,07:35:34,27334,True,False,False,False,358,False,False,False,The time shown on the analog clock is 07:35:34,0.7657182216644287,
+rege_ood_clean_blender_000421,clean,images/sample_00421.png,04:43,283,,,,04:46,286,04:46:00,17160,True,False,False,True,3,True,False,,04:46:00,0.5014388561248779,
+rege_ood_clean_blender_000422,clean,images/sample_00422.png,01:18,78,,,,01:16,76,01:16:00,4560,True,False,False,True,2,True,False,,1:16:00,0.35335659980773926,
+rege_ood_clean_blender_000423,clean,images/sample_00423.png,04:03,243,,,,04:03,243,04:03:01,14581,True,True,True,True,0,True,True,,04:03:01,0.4535200595855713,
+rege_ood_clean_blender_000424,clean,images/sample_00424.png,08:34,514,,,,08:35,515,08:35:00,30900,True,False,True,True,1,True,False,,The exact time shown on the analog clock is 08:35:00,0.7704763412475586,
+rege_ood_clean_blender_000425,clean,images/sample_00425.png,02:55,175,,,,11:00,660,11:00:00,39600,True,False,False,False,235,False,False,,11:00:00,0.5131096839904785,
+rege_ood_clean_blender_000426,clean,images/sample_00426.png,06:47,407,06:47:27,24447,27,06:47,407,06:47:27,24447,True,True,True,True,0,True,True,True,6:47:27,0.49318933486938477,
+rege_ood_clean_blender_000427,clean,images/sample_00427.png,08:33,513,08:33:24,30804,24,08:25,505,08:25:00,30300,True,False,False,False,8,True,False,False,"While the clock in the image doesn't show precise time details, based on the description of its minimalist design with only the 12, 3, 6, and 9 markings visible, we can estimate the time as:
+
+08:25:00
+
+This guess assumes the hour hand is between 8 and 9, closer to 8, and the minute hand is pointing to 5 (25 minutes past the hour). The second hand isn't mentioned, so it's set to 00 for this estimate.",2.949389696121216,
+rege_ood_clean_blender_000428,clean,images/sample_00428.png,06:42,402,06:42:28,24148,28,06:43,403,06:43:27,24207,True,False,True,True,1,True,False,False,6:43:27,0.37032556533813477,
+rege_ood_clean_blender_000429,clean,images/sample_00429.png,06:42,402,,,,06:43,403,06:43:00,24180,True,False,True,True,1,True,False,,06:43:00,0.38796281814575195,
+rege_ood_clean_blender_000430,clean,images/sample_00430.png,12:36,36,12:36:54,2214,54,12:35,35,12:35:54,2154,True,False,True,True,1,True,False,True,12:35:54,0.3890378475189209,
+rege_ood_clean_blender_000431,clean,images/sample_00431.png,01:47,107,,,,01:46,106,01:46:45,6405,True,False,True,True,1,True,False,,1:46:45,0.37031030654907227,
+rege_ood_clean_blender_000432,clean,images/sample_00432.png,10:15,615,,,,10:13,613,10:13:13,36793,True,False,False,True,2,True,False,,10:13:13,0.4993407726287842,
+rege_ood_clean_blender_000433,clean,images/sample_00433.png,11:18,678,,,,11:18,678,11:18:00,40680,True,True,True,True,0,True,True,,11:18:00,0.5304632186889648,
+rege_ood_clean_blender_000434,clean,images/sample_00434.png,08:10,490,,,,08:10,490,08:10:00,29400,True,True,True,True,0,True,True,,08:10:00,0.5007364749908447,
+rege_ood_clean_blender_000435,clean,images/sample_00435.png,02:46,166,,,,02:46,166,02:46:45,10005,True,True,True,True,0,True,True,,2:46:45,0.4962928295135498,
+rege_ood_clean_blender_000436,clean,images/sample_00436.png,04:58,298,04:58:50,17930,50,12:02,2,12:02:52,172,True,False,False,False,296,False,False,False,12:02:52,0.5156359672546387,
+rege_ood_clean_blender_000437,clean,images/sample_00437.png,06:07,367,,,,06:05,365,06:05:00,21900,True,False,False,True,2,True,False,,"To determine the exact time shown on this analog clock, I need to carefully examine the position of the hour and minute hands. The hour hand is pointing slightly past the 6, indicating it's a little after 6 o'clock. The minute hand is positioned between the 1 and 2, which represents approximately 5 minutes past the hour. 
+
+Given this information, I can deduce that the time is 6:05. Since there's no second hand visible in the image, I'll assume the seconds are 00.
+
+Therefore, the exact time in HH:MM:SS format is:
+
+06:05:00",3.2076969146728516,
+rege_ood_clean_blender_000438,clean,images/sample_00438.png,01:00,60,01:00:45,3645,45,01:45,105,01:45:45,6345,True,False,False,False,45,True,False,True,1:45:45,0.3715803623199463,
+rege_ood_clean_blender_000439,clean,images/sample_00439.png,09:51,591,,,,10:50,650,10:50:49,39049,True,False,False,False,59,False,False,,10:50:49,0.39314723014831543,
+rege_ood_clean_blender_000440,clean,images/sample_00440.png,06:01,361,,,,12:02,2,12:02:03,123,True,False,False,False,359,False,False,,The time shown on the analog clock is 12:02:03.,0.7085978984832764,
+rege_ood_clean_blender_000441,clean,images/sample_00441.png,05:27,327,05:27:21,19641,21,11:20,680,11:20:20,40820,True,False,False,False,353,False,False,False,11:20:20,0.469907283782959,
+rege_ood_clean_blender_000442,clean,images/sample_00442.png,08:03,483,08:03:22,29002,22,08:23,503,08:23:04,30184,True,False,False,False,20,True,False,False,The exact time shown on the analog clock is 08:23:04.,0.6511917114257812,
+rege_ood_clean_blender_000443,clean,images/sample_00443.png,02:56,176,02:56:43,10603,43,10:52,652,10:52:37,39157,True,False,False,False,244,False,False,False,10:52:37,0.39078712463378906,
+rege_ood_clean_blender_000444,clean,images/sample_00444.png,06:26,386,06:26:09,23169,9,10:28,628,10:28:12,37692,True,False,False,False,242,False,False,False,10:28:12,0.39093542098999023,
+rege_ood_clean_blender_000445,clean,images/sample_00445.png,04:22,262,,,,12:26,26,12:26:26,1586,True,False,False,False,236,False,False,,12:26:26,0.39130139350891113,
+rege_ood_clean_blender_000446,clean,images/sample_00446.png,06:02,362,06:02:50,21770,50,12:05,5,12:05:51,351,True,False,False,False,357,False,False,False,The exact time shown on this analog clock is 12:05:51,0.569110631942749,
+rege_ood_clean_blender_000447,clean,images/sample_00447.png,09:04,544,,,,09:04,544,09:04:00,32640,True,True,True,True,0,True,True,,09:04:00,0.39443445205688477,
+rege_ood_clean_blender_000448,clean,images/sample_00448.png,08:26,506,,,,07:20,440,07:20:20,26420,True,False,False,False,66,False,False,,07:20:20,0.3925607204437256,
+rege_ood_clean_blender_000449,clean,images/sample_00449.png,05:35,335,,,,05:35,335,05:35:00,20100,True,True,True,True,0,True,True,,The time shown on the analog clock is 05:35:00,0.8295679092407227,
+rege_ood_clean_blender_000450,clean,images/sample_00450.png,06:17,377,06:17:28,22648,28,06:16,376,06:16:27,22587,True,False,True,True,1,True,False,False,The exact time shown on the analog clock is 06:16:27.,0.7178390026092529,
+rege_ood_clean_blender_000451,clean,images/sample_00451.png,08:19,499,08:19:37,29977,37,08:18,498,08:18:37,29917,True,False,True,True,1,True,False,True,8:18:37,0.5013022422790527,
+rege_ood_clean_blender_000452,clean,images/sample_00452.png,03:09,189,03:09:03,11343,3,03:08,188,03:08:03,11283,True,False,True,True,1,True,False,True,03:08:03,0.5021722316741943,
+rege_ood_clean_blender_000453,clean,images/sample_00453.png,04:52,292,,,,04:52,292,04:52:18,17538,True,True,True,True,0,True,True,,04:52:18,0.40929508209228516,
+rege_ood_clean_blender_000454,clean,images/sample_00454.png,01:13,73,01:13:50,4430,50,01:15,75,01:15:50,4550,True,False,False,True,2,True,False,True,1:15:50,0.3744690418243408,
+rege_ood_clean_blender_000455,clean,images/sample_00455.png,05:17,317,,,,12:14,14,12:14:56,896,True,False,False,False,303,False,False,,12:14:56,0.39188146591186523,
+rege_ood_clean_blender_000456,clean,images/sample_00456.png,11:00,660,,,,11:00,660,11:00:00,39600,True,True,True,True,0,True,True,,11:00:00,0.41070055961608887,
+rege_ood_clean_blender_000457,clean,images/sample_00457.png,12:07,7,,,,01:09,69,01:09:00,4140,True,False,False,False,62,False,False,,01:09:00,0.39307546615600586,
+rege_ood_clean_blender_000458,clean,images/sample_00458.png,07:00,420,07:00:41,25241,41,07:01,421,07:01:42,25302,True,False,True,True,1,True,False,False,07:01:42,0.4080932140350342,
+rege_ood_clean_blender_000459,clean,images/sample_00459.png,05:22,322,,,,05:21,321,05:21:22,19282,True,False,True,True,1,True,False,,The exact time shown on the analog clock is 05:21:22,0.5686562061309814,
+rege_ood_clean_blender_000460,clean,images/sample_00460.png,02:18,138,,,,03:14,194,03:14:01,11641,True,False,False,False,56,False,False,,The time shown on the analog clock is 03:14:01.,0.5796654224395752,
+rege_ood_clean_blender_000461,clean,images/sample_00461.png,02:45,165,02:45:51,9951,51,03:52,232,03:52:56,13976,True,False,False,False,67,False,False,False,The exact time shown on this analog clock is 3:52:56.,0.568138599395752,
+rege_ood_clean_blender_000462,clean,images/sample_00462.png,05:49,349,05:49:32,20972,32,06:32,392,06:32:23,23543,True,False,False,False,43,False,False,False,The time shown on the analog clock is 06:32:23.,0.5679566860198975,
+rege_ood_clean_blender_000463,clean,images/sample_00463.png,12:00,0,12:00:26,26,26,12:01,1,12:01:27,87,True,False,True,True,1,True,False,False,12:01:27,0.4524672031402588,
+rege_ood_clean_blender_000464,clean,images/sample_00464.png,07:15,435,,,,06:11,371,06:11:08,22268,True,False,False,False,64,False,False,,06:11:08,0.5218079090118408,
+rege_ood_clean_blender_000465,clean,images/sample_00465.png,02:20,140,02:20:01,8401,1,03:20,200,03:20:01,12001,True,False,False,False,60,False,True,True,The exact time shown on this analog clock is 03:20:01,0.8216769695281982,
+rege_ood_clean_blender_000466,clean,images/sample_00466.png,10:41,641,10:41:42,38502,42,10:45,645,10:45:45,38745,True,False,False,True,4,True,False,False,10:45:45,0.5199151039123535,
+rege_ood_clean_blender_000467,clean,images/sample_00467.png,09:50,590,,,,10:50,650,10:50:50,39050,True,False,False,False,60,False,True,,The exact time shown on this analog clock is 10:50:50.,0.8263981342315674,
+rege_ood_clean_blender_000468,clean,images/sample_00468.png,07:24,444,07:24:59,26699,59,06:32,392,06:32:23,23543,True,False,False,False,52,False,False,False,06:32:23,0.46146607398986816,
+rege_ood_clean_blender_000469,clean,images/sample_00469.png,02:31,151,,,,02:30,150,02:30:29,9029,True,False,True,True,1,True,False,,02:30:29,0.4619762897491455,
+rege_ood_clean_blender_000470,clean,images/sample_00470.png,02:51,171,02:51:40,10300,40,10:54,654,10:54:48,39288,True,False,False,False,237,False,False,False,10:54:48,0.5171487331390381,
+rege_ood_clean_blender_000471,clean,images/sample_00471.png,06:42,402,06:42:50,24170,50,06:48,408,06:48:46,24526,True,False,False,False,6,True,False,False,The exact time shown on the analog clock is 06:48:46.,0.8394856452941895,
+rege_ood_clean_blender_000472,clean,images/sample_00472.png,02:36,156,,,,12:25,25,12:25:56,1556,True,False,False,False,131,False,False,,12:25:56,0.5180463790893555,
+rege_ood_clean_blender_000473,clean,images/sample_00473.png,08:56,536,08:56:59,32219,59,08:59,539,08:59:56,32396,True,False,False,True,3,True,False,False,08:59:56,0.517462968826294,
+rege_ood_clean_blender_000474,clean,images/sample_00474.png,02:29,149,,,,02:29,149,02:29:00,8940,True,True,True,True,0,True,True,,02:29:00,0.5079700946807861,
+rege_ood_clean_blender_000475,clean,images/sample_00475.png,07:16,436,,,,10:15,615,10:15:16,36916,True,False,False,False,179,False,False,,The time shown on this analog clock is 10:15:16.,0.7064723968505859,
+rege_ood_clean_blender_000476,clean,images/sample_00476.png,03:38,218,03:38:44,13124,44,03:38,218,03:38:43,13123,True,True,True,True,0,True,True,False,03:38:43,0.45328521728515625,
+rege_ood_clean_blender_000477,clean,images/sample_00477.png,12:25,25,,,,12:22,22,12:22:28,1348,True,False,False,True,3,True,False,,12:22:28,0.526775598526001,
+rege_ood_clean_blender_000478,clean,images/sample_00478.png,07:28,448,07:28:41,26921,41,07:30,450,07:30:41,27041,True,False,False,True,2,True,False,True,The exact time shown on the analog clock is 07:30:41.,0.8519384860992432,
+rege_ood_clean_blender_000479,clean,images/sample_00479.png,10:11,611,,,,10:11,611,10:11:29,36689,True,True,True,True,0,True,True,,10:11:29,0.5125942230224609,
+rege_ood_clean_blender_000480,clean,images/sample_00480.png,07:10,430,07:10:12,25812,12,05:11,311,05:11:11,18671,True,False,False,False,119,False,False,False,The exact time shown on the analog clock is 5:11:11.,0.82950758934021,
+rege_ood_clean_blender_000481,clean,images/sample_00481.png,12:41,41,12:41:07,2467,7,12:40,40,12:40:06,2406,True,False,True,True,1,True,False,False,12:40:06,0.5076403617858887,
+rege_ood_clean_blender_000482,clean,images/sample_00482.png,06:03,363,06:03:57,21837,57,06:02,362,06:02:57,21777,True,False,True,True,1,True,False,True,06:02:57,0.5172975063323975,
+rege_ood_clean_blender_000483,clean,images/sample_00483.png,11:28,688,,,,12:28,28,12:28:00,1680,True,False,False,False,60,False,True,,12:28:00,0.4804537296295166,
+rege_ood_clean_blender_000484,clean,images/sample_00484.png,05:48,348,,,,05:47,347,05:47:48,20868,True,False,True,True,1,True,False,,5:47:48,0.4595608711242676,
+rege_ood_clean_blender_000485,clean,images/sample_00485.png,02:04,124,02:04:31,7471,31,01:03,63,01:03:28,3808,True,False,False,False,61,False,False,False,1:03:28,0.44358396530151367,
+rege_ood_clean_blender_000486,clean,images/sample_00486.png,06:12,372,06:12:51,22371,51,06:12,372,06:12:51,22371,True,True,True,True,0,True,True,True,06:12:51,0.47657036781311035,
+rege_ood_clean_blender_000487,clean,images/sample_00487.png,10:42,642,10:42:30,38550,30,10:42,642,10:42:28,38548,True,True,True,True,0,True,True,False,10:42:28,0.46463465690612793,
+rege_ood_clean_blender_000488,clean,images/sample_00488.png,09:02,542,,,,09:02,542,09:02:14,32534,True,True,True,True,0,True,True,,09:02:14,0.47278857231140137,
+rege_ood_clean_blender_000489,clean,images/sample_00489.png,07:01,421,,,,07:01,421,07:01:00,25260,True,True,True,True,0,True,True,,The time shown on the analog clock is 07:01:00.,0.5663270950317383,
+rege_ood_clean_blender_000490,clean,images/sample_00490.png,09:18,558,09:18:56,33536,56,09:19,559,09:19:55,33595,True,False,True,True,1,True,False,False,09:19:55,0.39013671875,
+rege_ood_clean_blender_000491,clean,images/sample_00491.png,02:10,130,02:10:43,7843,43,02:43,163,02:43:43,9823,True,False,False,False,33,True,False,True,The exact time shown on the analog clock is 02:43:43.,0.5831634998321533,
+rege_ood_clean_blender_000492,clean,images/sample_00492.png,11:06,666,,,,11:04,664,11:04:04,39844,True,False,False,True,2,True,False,,11:04:04,0.3933861255645752,
+rege_ood_clean_blender_000493,clean,images/sample_00493.png,05:50,350,05:50:03,21003,3,05:49,349,05:49:03,20943,True,False,True,True,1,True,False,True,The exact time shown on the analog clock is 05:49:03.,0.5861039161682129,
+rege_ood_clean_blender_000494,clean,images/sample_00494.png,02:28,148,02:28:28,8908,28,01:24,84,01:24:24,5064,True,False,False,False,64,False,False,False,1:24:24,0.37250709533691406,
+rege_ood_clean_blender_000495,clean,images/sample_00495.png,09:15,555,09:15:22,33322,22,11:44,704,11:44:51,42291,True,False,False,False,149,False,False,False,11:44:51,0.39018726348876953,
+rege_ood_clean_blender_000496,clean,images/sample_00496.png,04:05,245,,,,04:04,244,04:04:05,14645,True,False,True,True,1,True,False,,04:04:05,0.39038872718811035,
+rege_ood_clean_blender_000497,clean,images/sample_00497.png,09:51,591,09:51:04,35464,4,10:51,651,10:51:04,39064,True,False,False,False,60,False,True,True,10:51:04,0.3894777297973633,
+rege_ood_clean_blender_000498,clean,images/sample_00498.png,03:35,215,03:35:05,12905,5,03:37,217,03:37:03,13023,True,False,False,True,2,True,False,False,3:37:03,0.3728046417236328,
+rege_ood_clean_blender_000499,clean,images/sample_00499.png,01:08,68,,,,12:05,5,12:05:05,305,True,False,False,False,63,False,False,,12:05:05,0.39058494567871094,

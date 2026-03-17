@@ -1,6 +1,6 @@
 {
   "total": 500,
-  "exact_acc": 0.042,
-  "tol1_acc": 0.096,
-  "tol5_acc": 0.19
+  "exact_acc": 0.026,
+  "tol1_acc": 0.074,
+  "tol5_acc": 0.136
 }

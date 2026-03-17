@@ -1,0 +1,13 @@
+{
+  "num_train": 1800,
+  "num_validation": 200,
+  "total": 2000,
+  "features": [
+    "images",
+    "problem",
+    "answer"
+  ],
+  "prompt": "Read the exact time shown on this analog clock. Answer in HH:MM:SS format.",
+  "benchmark_out_dir": "/data/hyz/workspace/visual-numeric-reasoning/data/bench/clock_ood_grpo_2k",
+  "output_dir": "/data/hyz/workspace/visual-numeric-reasoning/data/rl/clock_ood_grpo_2k"
+}

@@ -21,9 +21,13 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--seed", type=int, default=2026)
     p.add_argument(
         "--style_bank_dir",
-        default=os.path.join(os.path.dirname(__file__), "blender", "assets", "styles_ood_benchmark"),
+        default=os.path.join(os.path.dirname(__file__), "blender", "assets", "styles"),
     )
     p.add_argument("--blender_bin", default="blender")
+    p.add_argument("--fast_render", action="store_true")
+    p.add_argument("--time_mode", choices=["hm", "hms", "random"], default="random")
+    p.add_argument("--force_hand_config", choices=["2", "3", "4"], default=None)
+    p.add_argument("--max_seconds", type=int, default=59)
     p.add_argument("--validate", action="store_true")
     return p.parse_args()
 
@@ -152,6 +156,9 @@ def _render_split(
     defocus_min: float,
     defocus_max: float,
     env_choices: str,
+    time_mode: str,
+    force_hand_config: Optional[str],
+    max_seconds: int,
 ) -> None:
     cmd = [
         blender_bin,
@@ -209,7 +216,13 @@ def _render_split(
         str(defocus_min),
         "--defocus_max",
         str(defocus_max),
+        "--time_mode",
+        time_mode,
+        "--max_seconds",
+        str(max_seconds),
     ]
+    if force_hand_config:
+        cmd.extend(["--force_hand_config", force_hand_config])
     if env_choices:
         cmd.extend(["--env_id_choices", env_choices])
     _run(cmd)
@@ -228,7 +241,11 @@ def main() -> None:
     os.makedirs(out_dir, exist_ok=True)
 
     base_dir = os.path.dirname(__file__)
-    render_script = os.path.join(base_dir, "blender", "render_batch.py")
+    render_script = os.path.join(
+        base_dir,
+        "blender",
+        "render_batch_fast.py" if args.fast_render else "render_batch.py",
+    )
     validate_script = os.path.join(base_dir, "..", "validate", "validate_annotations.py")
 
     if not os.path.isdir(args.style_bank_dir):
@@ -264,6 +281,9 @@ def main() -> None:
         defocus_min=0.0,
         defocus_max=0.04,
         env_choices="studio_softbox,studio_softbox_round,top_light",
+        time_mode=args.time_mode,
+        force_hand_config=args.force_hand_config,
+        max_seconds=args.max_seconds,
     )
     _postprocess_split(out_dir, "clean", severity="moderate", benchmark_source="blender_ood_clean")
 
@@ -297,6 +317,9 @@ def main() -> None:
         defocus_min=0.05,
         defocus_max=0.6,
         env_choices="studio_softbox,studio_softbox_round,studio_softbox_ellipse,top_light,top_light_round,top_light_ellipse,window_side",
+        time_mode=args.time_mode,
+        force_hand_config=args.force_hand_config,
+        max_seconds=args.max_seconds,
     )
     _postprocess_split(out_dir, "noisy", severity="severe", benchmark_source="blender_ood_noisy")
 
@@ -333,6 +356,9 @@ def main() -> None:
             defocus_min=0.0,
             defocus_max=0.0,
             env_choices="studio_softbox",
+            time_mode=args.time_mode,
+            force_hand_config=args.force_hand_config,
+            max_seconds=args.max_seconds,
         )
         shutil.move(os.path.join(tmp_root, "clean"), os.path.join(out_dir, "viewpoint_only"))
         shutil.rmtree(tmp_root)
@@ -371,6 +397,9 @@ def main() -> None:
             defocus_min=0.0,
             defocus_max=0.12,
             env_choices="studio_softbox_round,studio_softbox_ellipse,top_light,window_side",
+            time_mode=args.time_mode,
+            force_hand_config=args.force_hand_config,
+            max_seconds=args.max_seconds,
         )
         shutil.move(os.path.join(tmp_root, "clean"), os.path.join(out_dir, "illumination_only"))
         shutil.rmtree(tmp_root)
